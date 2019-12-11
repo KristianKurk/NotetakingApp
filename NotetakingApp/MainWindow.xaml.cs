@@ -12,17 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Database;
+using BLL;
 
 namespace NotetakingApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// This is a test
     /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            DB.Add(new Note() {note_title="New Note",note_content="New Content"});
+            DB.DeleteNote(6);
+            DB.Add(new Note() { note_title = "New Note 2", note_content = "New Content 2" });
+
+
         }
     }
 }
