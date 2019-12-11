@@ -16,20 +16,13 @@ using System.Windows.Shapes;
 namespace NotetakingApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MappingWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MappingWindow : Page
     {
-        public MainWindow()
+        public MappingWindow()
         {
             InitializeComponent();
-        }
-
-        
-
-        private void BtnClickMap(object sender, RoutedEventArgs e)
-        {
-            main.Content = new MappingWindow();
         }
     }
 }
