@@ -31,5 +31,19 @@ namespace NotetakingApp
         {
             main.Content = new MappingWindow();
         }
+        private void BtnClickNote(object sender, RoutedEventArgs e)
+        {
+            main.Content = new Note_takingWindow();
+        }
+        private void BtnClickRNG(object sender, RoutedEventArgs e)
+        {
+            DisableButton("");
+            main.Content = new RNGWindow();
+        }
+
+        private void DisableButton(string btn) {
+
+        }
+
     }
 }

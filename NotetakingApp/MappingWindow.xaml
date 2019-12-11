@@ -5,30 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1080"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="MappingWindow"
       
       >
     <!--ShowsNavigationUI="false" can go in the page oject-->
 
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+   
+        
         <!--Content-->
 
-        <Grid Grid.Row="0">
+        <Grid DockPanel.Dock="Top"  >
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5.5*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
 
             </Grid.ColumnDefinitions>
+           
 
             <!--Left Content-->
             <Grid Background="Brown" Grid.Column="0" 
+                  
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   >
@@ -38,15 +37,13 @@
             </Grid>
 
             <!--Right Action/Nav Bar-->
-            <Grid  Background="Beige"  Grid.Column="1">
+            
 
-                <Grid.RowDefinitions>
-                    
-                    <RowDefinition Height="*"/>
- 
-                </Grid.RowDefinitions>
 
-                <Grid  Grid.Row="0" VerticalAlignment="Stretch" Height="Auto" Margin="0,0,0,0">
+                <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
+                       Background="Beige"
+                       Height="750"
+                       >
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -74,26 +71,26 @@
                            Grid.Row="2" 
                            Margin="10,10,10,10" 
                            HorizontalAlignment="Center" 
-                           Width="100" 
+                           Width="200" 
+                           Height="25"
                            HorizontalContentAlignment="Center"/>
 
-                    <Button Name="pinNote" Content="Link/Delete Note" Grid.Row="3" Margin="10,5,10,20"/>
+                    <Button Name="pinNote" Content="Link/Delete Note" Grid.Row="3" Margin="10,5,10,20" Height="25"/>
                     <Button Name="pinDelete"
                             Content="Delete Pin" 
                             Grid.Row="4" 
                             Margin="10,5,10,20"
+                            Height="25"
                             Background="Red"/>
 
-                    <Button Name="mapReport" Content="Report" Grid.Row="5"  Height="40" Margin="10,20,10,5"/>
-                    <Button Name="mapPopup" Content="Pop-up" Grid.Row="6"  Height="40" Margin="10,5,10,20"/>
+                    <Button Name="mapReport" Content="Report" Grid.Row="5"  Height="50" Margin="10,20,10,5"/>
+                    <Button Name="mapPopup" Content="Pop-up" Grid.Row="6"  Height="50" Margin="10,5,10,20"/>
                   
 
                 </Grid>
             </Grid>
 
-        </Grid>
+       
 
-
-
-    </Grid>
+  
 </Page>
