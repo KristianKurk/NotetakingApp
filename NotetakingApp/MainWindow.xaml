@@ -10,6 +10,15 @@
        
       
         >
+
+    <!--Ressources for Custom Button-->
+    <Window.Resources>
+       
+                    
+    </Window.Resources>
+    
+    
+    
     <StackPanel Background="#563232">
 
         <!--Navigation-->
@@ -17,11 +26,11 @@
         <Grid Name="grid">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Text="Note-taking App" Background="#da6d42"/>

@@ -58,8 +58,13 @@ namespace NotetakingApp
 
             object button = grid.FindName(btn);
             Button button1 = (Button)button;
-            button1.IsEnabled = false;
-            button1.Background = new SolidColorBrush(Color.FromArgb(86, 50, 50, 0));
+             button1.Background = new SolidColorBrush(Color.FromArgb(255,86, 50, 50));
+
+            //  button1.IsEnabled = false;
+            button1.Focusable = false;
+           
+            
+
         }
         private void EnableAll() {
 
