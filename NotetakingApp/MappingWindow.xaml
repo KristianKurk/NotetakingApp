@@ -26,7 +26,7 @@
            
 
             <!--Left Content-->
-            <Grid Background="Brown" Grid.Column="0" 
+        <Grid Background="#563232" Grid.Column="0" 
                   
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
@@ -41,7 +41,7 @@
 
 
                 <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
-                       Background="Beige"
+                       Background="#ffc18c"
                        Height="750"
                        >
 

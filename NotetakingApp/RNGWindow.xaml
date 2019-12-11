@@ -26,7 +26,7 @@
 
         <Border BorderBrush="Black" BorderThickness="1">
         <!--Left Content-->
-        <StackPanel Background="SaddleBrown" Grid.Column="0" 
+            <StackPanel Background="#563232" Grid.Column="0" 
                   
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
@@ -37,7 +37,7 @@
                 FontSize="35"
                 Height="50"
                 Name="dataTitle"
-                Background="DarkOliveGreen" 
+                Background="#84240c" 
                 Text="Data Lists" 
                 TextAlignment="Center"></TextBlock>
 
@@ -48,7 +48,7 @@
 
         <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1">
             <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
-                       Background="Beige"
+                       Background="#ffc18c"
                        Height="750"
                        >
 
