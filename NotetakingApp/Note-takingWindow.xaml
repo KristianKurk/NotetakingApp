@@ -9,8 +9,11 @@
       Title="Note_takingWindow"
       
       >
-    
 
+    <Page.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Page.CommandBindings>
 
 
 
@@ -33,13 +36,41 @@
                   >
         
             <!--Content Goes Here-->
-            
+
+
+            <DockPanel>
+                <ToolBar DockPanel.Dock="Top">
+                    <Button Command="ApplicationCommands.Open">
+                        <Image Source="/Assets/NotetakingRTF/open.png" Width="16" Height="16" />
+                    </Button>
+                    <Button Command="ApplicationCommands.Save">
+                        <Image Source="/Assets/NotetakingRTF/save.png" Width="16" Height="16" />
+                    </Button>
+                    <Separator />
+                    <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                        <Image Source="/Assets/NotetakingRTF/bold.png" Width="16" Height="16" />
+                    </ToggleButton>
+                    <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
+                        <Image Source="/Assets/NotetakingRTF/ital.png" Width="16" Height="16" />
+                    </ToggleButton>
+                    <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
+                        <Image Source="/Assets/NotetakingRTF/under.png" Width="16" Height="16" />
+                    </ToggleButton>
+                    <Separator />
+                    <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
+                    <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+                </ToolBar>
+                <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" />
+            </DockPanel>
+
+
         </StackPanel>
 
-        <!--Right Action/Nav Bar-->
+         <!--Right Action/Nav Bar-->
 
-
-
+         <!-- Old Action/Nav Bar-->
+        
+         <!--
         <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
                        Background="#ffc18c"
                        Height="750"
@@ -59,8 +90,7 @@
 
             <Button Name="addCategory" Content="Add Category" Grid.Row="0" Height="40" Margin="10,20,10,20"/>
             <Button Name="addNote" Content="Add Note" Grid.Row="1"  Height="40" Margin="10,20,10,20"/>
-
-            <!--Border Surrounds Row 2,3,4-->
+          
             <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.RowSpan="3" Margin="5">
             </Border>
 
@@ -88,9 +118,43 @@
 
 
         </Grid>
+           -->
+        <!-- Old Action/Nav Bar-->
+
+        
+        <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
+                       Background="#ffc18c">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+                
+
+
+            </Grid.RowDefinitions>
+            
+            <!-- Add Category Button-->
+            <Button Name="addCategory" Content="Add Category" Grid.Row="0" Height="80"/>
+            
+            <StackPanel>
+                <!-- Categories and Notes go here-->
+                
+                <!--  Added Category
+                        
+                 - New Categories add StackPanel with Name + TextBlock
+                 - Notes go in the designated Category 
+           
+                -->
+                
+                
+                
+            </StackPanel>
+
+        </Grid>
+           
     </Grid>
 
-
+     
 
 
 </Page>

@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:NotetakingApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1280"
-        ResizeMode="NoResize"
+    
         
         
         
         
         >
+    <!-- ResizeMode="NoResize"-->
     <!--Ressources for Custom Button-->
 
     <Window.Resources>
