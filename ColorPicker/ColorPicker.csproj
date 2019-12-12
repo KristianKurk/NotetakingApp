@@ -3,7 +3,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ExpressionBlendVersion>3.0.1938.0</ExpressionBlendVersion>
-    <ProjectGuid>{6813ECB1-B6B3-49F4-9070-9E4DFEF34FAE}</ProjectGuid>
+    <ProjectGuid>{D417353A-DAF8-46F2-845C-43A0188841BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <DefaultClrNameSpace>ColorPicker</DefaultClrNameSpace>

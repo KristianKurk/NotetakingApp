@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28922.388
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotetakingApp", "NotetakingApp\NotetakingApp.csproj", "{A8648C87-5D61-4CB3-B57F-1715474424C9}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "Database\DAL.csproj"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{B3175873-6EF6-4619-9685-0BA24D78D5DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker2", "..\..\..\Downloads\RTFEditor\RTFEditor\ColorPicker\ColorPicker2.csproj", "{6813ECB1-B6B3-49F4-9070-9E4DFEF34FAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker", "ColorPicker\ColorPicker.csproj", "{D417353A-DAF8-46F2-845C-43A0188841BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{B3175873-6EF6-4619-9685-0BA24D78D5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3175873-6EF6-4619-9685-0BA24D78D5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3175873-6EF6-4619-9685-0BA24D78D5DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6813ECB1-B6B3-49F4-9070-9E4DFEF34FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6813ECB1-B6B3-49F4-9070-9E4DFEF34FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6813ECB1-B6B3-49F4-9070-9E4DFEF34FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6813ECB1-B6B3-49F4-9070-9E4DFEF34FAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D417353A-DAF8-46F2-845C-43A0188841BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D417353A-DAF8-46F2-845C-43A0188841BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D417353A-DAF8-46F2-845C-43A0188841BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D417353A-DAF8-46F2-845C-43A0188841BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
