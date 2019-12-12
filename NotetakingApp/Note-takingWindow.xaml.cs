@@ -31,7 +31,7 @@ namespace NotetakingApp
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
         }
         private bool dataChanged = false;
-        private int tableCount = 0;
+        
         private string privateText = null;
         public string text
         {
@@ -68,6 +68,9 @@ namespace NotetakingApp
             dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
             if (dlg.ShowDialog() == true)
             {
+               //Crash if file being used by something
+               //Can't open same file twice in a row, crashes
+
                 FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);

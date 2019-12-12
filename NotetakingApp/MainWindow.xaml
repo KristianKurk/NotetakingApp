@@ -128,10 +128,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Note-taking App" Background="#da6d42" />
+            
+            <Button Style="{StaticResource InformButton}" Name="mainNavButton" Grid.Column="0" Content="Main Menu" Click="BtnClickMain" ClickMode="Press" Background="#ffc18c" Height="50"/>
             <Button Style="{StaticResource InformButton}" Name="mapNavButton" Grid.Column="1" Content="Mapping" Click="BtnClickMap" ClickMode="Press" Background="#ffc18c" Height="50"/>
             <Button Style="{StaticResource InformButton}" Name="noteNavButton" Grid.Column="2" Content="Note-taking" ClickMode="Press" Click="BtnClickNote" Background="#ffc18c"/>
             <Button Style="{StaticResource InformButton}" Name="rngNavButton" Grid.Column="3" Content="RNG Utilities" ClickMode="Press" Click="BtnClickRNG" Background="#ffc18c"/>
+            <Button Style="{StaticResource InformButton}" Name="settingsNavButton" Grid.Column="4" Content="Settings" ClickMode="Press" Click="BtnClickSettings" Background="#ffc18c"/>
             
         </Grid>
 
