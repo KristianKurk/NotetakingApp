@@ -7,23 +7,117 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1280"
         ResizeMode="NoResize"
-       
-      
+        
+        
+        
+        
         >
-
     <!--Ressources for Custom Button-->
+
     <Window.Resources>
-       
-                    
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid>
+                           <!-- <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/> -->
+                            <!--  <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="0" />-->
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ShadowStyle">
+            <Setter Property="Control.Foreground" Value="Black" />
+        </Style>
+
+        <Style x:Key="InformButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <GradientStop Color="#ffc18c" Offset="0.2"/>
+                        <GradientStop Color="#ffc18c" Offset="0.85"/>
+                        <GradientStop Color="#ffc18c" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+        				BorderThickness="1,1,1,0"
+        				CornerRadius="8,8,0,0"
+        				BorderBrush="#563232" 
+        				
+        				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+        	                           VerticalAlignment="Center" Name="contentShadow" 
+        					Style="{StaticResource ShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                               
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#ffc18c" Offset="0.35"/>
+                                            <GradientStop Color="#ffc18c" Offset="0.95"/>
+                                            <GradientStop Color="#ffc18c" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                               
+                            </Trigger>
+                        
+                  
+                            <Trigger Property="IsEnabled" Value="False">
+                                
+                               
+                                <Setter TargetName="border" Property="CornerRadius" Value="8,8,0,0" />
+                                <Setter Property="Foreground" Value="#ffc18c" />
+                                <Setter Property="Background" Value="#563232" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
     <StackPanel Background="#563232">
 
         <!--Navigation-->
 
-        <Grid Name="grid">
+        <Grid Name="grid" Background="#ffc18c">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -33,10 +127,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Note-taking App" Background="#da6d42"/>
-            <Button Name="mapNavButton" Grid.Column="1" Content="Mapping" Click="BtnClickMap" ClickMode="Press" Background="#ffc18c"/>
-            <Button Name="noteNavButton" Grid.Column="2" Content="Note-taking" ClickMode="Press" Click="BtnClickNote" Background="#ffc18c"/>
-            <Button Name="rngNavButton" Grid.Column="3" Content="RNG Utilities" ClickMode="Press" Click="BtnClickRNG" Background="#ffc18c"/>
+            <TextBlock Grid.Column="0" Text="Note-taking App" Background="#da6d42" />
+            <Button Style="{StaticResource InformButton}" Name="mapNavButton" Grid.Column="1" Content="Mapping" Click="BtnClickMap" ClickMode="Press" Background="#ffc18c" Height="50"/>
+            <Button Style="{StaticResource InformButton}" Name="noteNavButton" Grid.Column="2" Content="Note-taking" ClickMode="Press" Click="BtnClickNote" Background="#ffc18c"/>
+            <Button Style="{StaticResource InformButton}" Name="rngNavButton" Grid.Column="3" Content="RNG Utilities" ClickMode="Press" Click="BtnClickRNG" Background="#ffc18c"/>
             
         </Grid>
 

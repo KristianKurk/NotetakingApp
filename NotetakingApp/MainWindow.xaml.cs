@@ -62,6 +62,7 @@ namespace NotetakingApp
 
             //  button1.IsEnabled = false;
             button1.Focusable = false;
+            button1.IsEnabled = false;
            
             
 
