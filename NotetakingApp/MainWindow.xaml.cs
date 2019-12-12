@@ -31,8 +31,16 @@ namespace NotetakingApp
 
 
         }
-
-        
+        private void BtnClickSettings(object sender, RoutedEventArgs e)
+        {
+            DisableButton("settingsNavButton");
+            main.Content = new SettingsWindow();
+        }
+        private void BtnClickMain(object sender, RoutedEventArgs e)
+        {
+            DisableButton("mainNavButton");
+            main.Content = new MainMenu();
+        }
 
         private void BtnClickMap(object sender, RoutedEventArgs e)
         {
@@ -74,18 +82,26 @@ namespace NotetakingApp
             object button1 = grid.FindName("noteNavButton");
             object button2 = grid.FindName("rngNavButton");
             object button3 = grid.FindName("mapNavButton");
+            object button4 = grid.FindName("mainNavButton");
+            object button5 = grid.FindName("settingsNavButton");
 
             Button navb1 = (Button)button1;
             Button navb2 = (Button)button2;
             Button navb3 = (Button)button3;
+            Button navb4 = (Button)button4;
+            Button navb5 = (Button)button5;
 
             navb1.IsEnabled = true;
             navb2.IsEnabled = true;
             navb3.IsEnabled = true;
+            navb4.IsEnabled = true;
+            navb5.IsEnabled = true;
 
             navb1.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
             navb2.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
             navb3.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
+            navb4.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
+            navb5.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
         }
 
     }

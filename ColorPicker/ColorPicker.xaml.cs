@@ -15,26 +15,6 @@ using System.Windows.Ink;
 
 namespace ColorPicker
 {
-    /// <summary>
-    /// A simple WPF color picker. The basic idea is to
-    /// ise a Color swatch image and then pick out a single
-    /// pixel and use that pixels RGB values along with the
-    /// Alpha slider to form a SelectedColor.
-    /// 
-    /// This class borrows an idea or two from the following source(s)
-    /// 
-    /// AlphaSlider, and Preview box
-    /// Based on an article by ShawnVN's Blog
-    /// http://weblogs.asp.net/savanness/archive/2006/12/05/colorcomb-yet-another-color-picker-dialog-for-wpf.aspx
-    /// 
-    /// 1*1 pixel copy
-    /// Based on an article by Lee Brimelow 
-    /// http://thewpfblog.com/?p=62
-    /// </summary>
-    /// 
-	/// <summary>
-	/// Interaktionslogik für "MainControl.xaml"
-	/// </summary>
     public partial class ColorPickerControl : UserControl
 	{
 		#region Data
