@@ -122,6 +122,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Downloads\RTFEditor\RTFEditor\ColorPicker\ColorPicker.csproj">
+      <Project>{6813ecb1-b6b3-49f4-9070-9e4dfef34fae}</Project>
+      <Name>ColorPicker</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{b3175873-6ef6-4619-9685-0ba24d78d5db}</Project>
       <Name>BLL</Name>
@@ -131,13 +135,29 @@
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\NotetakingRTF\bull_list.png" />
+    <Resource Include="Assets\NotetakingRTF\color.png" />
+    <Resource Include="Assets\NotetakingRTF\font.png" />
+    <Resource Include="Assets\NotetakingRTF\indent_decrease.png" />
+    <Resource Include="Assets\NotetakingRTF\indent_increase.png" />
+    <Resource Include="Assets\NotetakingRTF\justify.png" />
+    <Resource Include="Assets\NotetakingRTF\left.png" />
+    <Resource Include="Assets\NotetakingRTF\num_list.png" />
+    <Resource Include="Assets\NotetakingRTF\right.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\NotetakingRTF\bold.png" />
     <Resource Include="Assets\NotetakingRTF\ital.png" />
     <Resource Include="Assets\NotetakingRTF\open.png" />
     <Resource Include="Assets\NotetakingRTF\save.png" />
     <Resource Include="Assets\NotetakingRTF\under.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\NotetakingRTF\redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\NotetakingRTF\undo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />

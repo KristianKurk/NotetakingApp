@@ -59,8 +59,63 @@
                     <Separator />
                     <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
                     <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+                    
+                    <!-- Feature list 2-->
+
+                    <Button x:Name="ToolStripButtonTextcolor" Click="ToolStripButtonTextcolor_Click">
+                        <Image Source="/Assets/NotetakingRTF/color.png" Stretch="None"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonBackcolor" Click="ToolStripButtonBackcolor_Click">
+                        <Image Source="/Assets/NotetakingRTF/font.png" Stretch="None"/>
+                    </Button>
+                    <Separator/>
+                    <ToggleButton x:Name="ToolStripButtonAlignLeft" Command="EditingCommands.AlignLeft" ToolTip="Align Left" Click="ToolStripButtonAlignLeft_Click">
+                        <Image Source="/Assets/NotetakingRTF/left.png" Stretch="None"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonAlignCenter" Command="EditingCommands.AlignCenter" ToolTip="Align Center" Click="ToolStripButtonAlignCenter_Click">
+                        <Image Source="/Assets/NotetakingRTF/justify.png" Stretch="None"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonAlignRight" Command="EditingCommands.AlignRight" ToolTip="Align Right" Click="ToolStripButtonAlignRight_Click">
+                        <Image Source="/Assets/NotetakingRTF/right.png" Stretch="None"/>
+                    </ToggleButton>
+                    <Separator/>
+                    <Button x:Name="ToolStripButtonBulletList" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+                        <Image Source="/Assets/NotetakingRTF/bull_list.png" Stretch="None"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonNumbersList" Command="EditingCommands.ToggleNumbering" ToolTip="Numbers">
+                        <Image Source="/Assets/NotetakingRTF/num_list.png" Stretch="None"/>
+                    </Button>
+                    
+                    <Separator/>
+                    
+                    <Button x:Name="ToolStripButtonIndent" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
+                        <Image Source="/Assets/NotetakingRTF/indent_increase.png" Stretch="None"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonIndentDelete" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
+                        <Image Source="/Assets/NotetakingRTF/indent_decrease.png" Stretch="None"/>
+                    </Button>
+                    
+                    <!-- Feature List 3-->
+                    <Button x:Name="ToolStripButtonUndo" Command="ApplicationCommands.Undo" ToolTip="Undo">
+                        <Image Source="/Assets/NotetakingRTF/undo.png" Stretch="None"/>
+                    </Button>
+                    <Button x:Name="ToolStripButtonRedo" Command="ApplicationCommands.Redo" ToolTip="Redo">
+                        <Image Source="/Assets/NotetakingRTF/redo.png" Stretch="None"/>
+                    </Button>
+                    <Separator/>
+                    <!--
+                    <ToggleButton x:Name="ToolStripButtonSubscript" ToolTip="Subscript" Click="ToolStripButtonSubscript_Click">
+                        <Image Source="Images\Subscript.png" Stretch="None"/>
+                    </ToggleButton>
+                    <ToggleButton x:Name="ToolStripButtonSuperscript" ToolTip="Superscript" Click="ToolStripButtonSuperscript_Click">
+                        <Image Source="Images\Superscript.png" Stretch="None"/>
+                    </ToggleButton>
+                       -->
                 </ToolBar>
-                <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" />
+
+
+
+                <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True"/>
             </DockPanel>
 
 
