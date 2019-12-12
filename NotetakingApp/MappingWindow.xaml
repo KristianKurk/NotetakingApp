@@ -12,59 +12,67 @@
     <!--ShowsNavigationUI="false" can go in the page oject-->
 
 
-   
-        
-        <!--Content-->
 
-        <Grid DockPanel.Dock="Top"  >
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5.5*"/>
-                <ColumnDefinition Width="1*"/>
+    <!--Content-->
 
-            </Grid.ColumnDefinitions>
-           
+    <Grid DockPanel.Dock="Top"  >
 
-            <!--Left Content-->
-        <Grid Background="#563232" Grid.Column="0" 
-                  
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5.5*"/>
+            <ColumnDefinition Width="1*"/>
+
+        </Grid.ColumnDefinitions>
+
+
+        <!--Left Content-->
+        <DockPanel Background="#563232" Grid.Column="0" 
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
+                   Name="joe"
                   >
 
-                <!--Map Goes Here-->
-                
-            </Grid>
+            <!--Map Goes Here-->
+            <Canvas Name="daddyCanvas" Background="Black" ClipToBounds="True">
+                <Grid Name="cavRoot" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
+                    <Image Name="imgSource"
+                         Width="1625" Height="1070" Focusable="False">
+                    </Image>
+                    <Image Name="imgSource2" 
+                         Width="200" Height="200"/>
+                </Grid>
+            </Canvas>
+        </DockPanel>
 
-            <!--Right Action/Nav Bar-->
-            
+        <!--Right Action/Nav Bar-->
 
 
-                <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
+
+        <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
                        Background="#ffc18c"
                        Height="750"
                        >
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
 
 
-                    </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-                    <Button Name="addMap" Content="Add Map" Grid.Row="0" Height="40" Margin="10,20,10,20"/>
-                    <Button Name="addPin" Content="Add Pin" Grid.Row="1"  Height="40" Margin="10,20,10,20"/>
-                     
-                    <!--Border Surrounds Row 2,3,4-->
-                    <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.RowSpan="3" Margin="5">
-                    </Border>
+            <Button Name="addMap" Content="Add Map" Grid.Row="0" Height="40" Margin="10,20,10,20"/>
+            <Button Name="addPin" Content="Add Pin" Grid.Row="1"  Height="40" Margin="10,20,10,20"/>
 
-                    <Label 
+            <!--Border Surrounds Row 2,3,4-->
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.RowSpan="3" Margin="5">
+            </Border>
+
+            <Label 
                            Name="pinName"
                            Background="Gray"
                            Content="Pin Name"
@@ -75,22 +83,22 @@
                            Height="25"
                            HorizontalContentAlignment="Center"/>
 
-                    <Button Name="pinNote" Content="Link/Delete Note" Grid.Row="3" Margin="10,5,10,20" Height="25"/>
-                    <Button Name="pinDelete"
+            <Button Name="pinNote" Content="Link/Delete Note" Grid.Row="3" Margin="10,5,10,20" Height="25"/>
+            <Button Name="pinDelete"
                             Content="Delete Pin" 
                             Grid.Row="4" 
                             Margin="10,5,10,20"
                             Height="25"
                             Background="Red"/>
 
-                    <Button Name="mapReport" Content="Report" Grid.Row="5"  Height="50" Margin="10,20,10,5"/>
-                    <Button Name="mapPopup" Content="Pop-up" Grid.Row="6"  Height="50" Margin="10,5,10,20"/>
-                  
+            <Button Name="mapReport" Content="Report" Grid.Row="5"  Height="50" Margin="10,20,10,5"/>
+            <Button Name="mapPopup" Content="Pop-up" Grid.Row="6"  Height="50" Margin="10,5,10,20"/>
 
-                </Grid>
-            </Grid>
 
-       
+        </Grid>
+    </Grid>
 
-  
+
+
+
 </Page>
