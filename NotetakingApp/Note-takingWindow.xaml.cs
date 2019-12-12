@@ -187,7 +187,15 @@ namespace NotetakingApp
             rtbEditor.Document.Blocks.Clear();
         }
 
+        public void AddTable()
+        {
 
+            System.Windows.Controls.Button newBtn = new Button();
+
+         
+
+
+        }
 
 
 
