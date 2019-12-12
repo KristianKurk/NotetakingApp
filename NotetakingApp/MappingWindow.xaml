@@ -12,10 +12,8 @@
     <!--ShowsNavigationUI="false" can go in the page oject-->
     <Page.Resources>
         <ContextMenu x:Key="cmButton">
-            <MenuItem Header="Menu item 1" />
-            <MenuItem Header="Menu item 2" />
-            <Separator />
-            <MenuItem Header="Menu item 3" />
+            <MenuItem Header="Create Pin" Click="Create_Pin_Click"/>
+            <MenuItem Header="Create Map" Click="Create_Map_Click"/>
         </ContextMenu>
     </Page.Resources>
 
@@ -38,14 +36,12 @@
                   >
 
             <!--Map Goes Here-->
-            <Canvas Name="daddyCanvas" Background="Black" ClipToBounds="True">
-                <Grid Name="cavRoot" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
+            <Canvas Name="daddyCanvas" Background="White" ClipToBounds="True">
+                <Canvas Name="cavRoot" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
                     <Image Name="imgSource"
                          Width="1625" Height="1070" Focusable="False">
                     </Image>
-                    <Image Name="imgSource2" 
-                         Width="200" Height="200"/>
-                </Grid>
+                </Canvas>
             </Canvas>
         </DockPanel>
 
