@@ -31,7 +31,7 @@ namespace NotetakingApp
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
         }
         private bool dataChanged = false;
-
+        private int tableCount = 0;
         private string privateText = null;
         public string text
         {
@@ -187,15 +187,8 @@ namespace NotetakingApp
             rtbEditor.Document.Blocks.Clear();
         }
 
-        public void AddTable()
-        {
-
-            System.Windows.Controls.Button newBtn = new Button();
-
-         //aosidj
-
-
-        }
+        
+        
 
 
 

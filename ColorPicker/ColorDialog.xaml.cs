@@ -14,10 +14,7 @@ using System.Windows.Shapes;
 
 namespace ColorPicker
 {
-    /// <summary>
-    /// Holds a ColorPicker control, and exposes
-    /// the ColorPicker.SelectedColor
-    /// </summary>
+   
     public partial class ColorDialog : Window
     {
         #region Ctor
