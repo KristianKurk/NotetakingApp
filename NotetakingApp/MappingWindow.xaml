@@ -10,9 +10,14 @@
       
       >
     <!--ShowsNavigationUI="false" can go in the page oject-->
-
-
-
+    <Page.Resources>
+        <ContextMenu x:Key="cmButton">
+            <MenuItem Header="Menu item 1" />
+            <MenuItem Header="Menu item 2" />
+            <Separator />
+            <MenuItem Header="Menu item 3" />
+        </ContextMenu>
+    </Page.Resources>
 
     <!--Content-->
 

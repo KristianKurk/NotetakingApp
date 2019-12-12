@@ -22,16 +22,19 @@ namespace NotetakingApp
     /// </summary>
     public partial class MappingWindow : Page
     {
+        private Matrix initialMat;
+        private Point firstPoint = new Point();
+
         public MappingWindow()
         {
             InitializeComponent();
+
+            initialMat = cavRoot.RenderTransform.Value;
             BitmapImage img = DB.GetMap(1).LoadImage();
             imgSource.Source = img;
             imgSource2.Source = img;
             init();
         }
-
-        private Point firstPoint = new Point();
 
         public void init()
         {
@@ -40,23 +43,33 @@ namespace NotetakingApp
                 cavRoot.CaptureMouse();
             };
 
+            imgSource.MouseRightButtonDown += (ss, ee) =>
+            {
+                Console.WriteLine("Right Click X: " + ee.GetPosition(imgSource).X +" Right Click Y: "+ ee.GetPosition(imgSource).Y);
+                ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
+                cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+                cm.IsOpen = true;
+            };
+
             cavRoot.MouseWheel += (ss, ee) => {
                 Matrix mat = cavRoot.RenderTransform.Value;
                 Point mouse = ee.GetPosition(cavRoot);
 
-                if (ee.Delta > 0)
-                    mat.ScaleAtPrepend(1.15, 1.15, mouse.X, mouse.Y);
-                else
-                    mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
-                MatrixTransform mtf = new MatrixTransform(mat);
 
-                cavRoot.RenderTransform = mtf;
+                    if (ee.Delta > 0)
+                        mat.ScaleAtPrepend(1.15, 1.15, mouse.X, mouse.Y);
+                    else if (mat.M11 > initialMat.M11 * 0.5)
+                        mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
+                    MatrixTransform mtf = new MatrixTransform(mat);
+                    cavRoot.RenderTransform = mtf;
+                     
             };
 
 
             cavRoot.MouseMove += (ss, ee) =>
             {
-                if (ee.LeftButton == MouseButtonState.Pressed)
+                if (ee.LeftButton == MouseButtonState.Pressed &&
+                    !firstPoint.Equals(new Point(-9999,-9999)))
                 {
                     Point temp = ee.GetPosition(this);
                     Point res = new Point(firstPoint.X - temp.X, firstPoint.Y - temp.Y);
@@ -64,20 +77,15 @@ namespace NotetakingApp
                     double tentativeLeft = Canvas.GetLeft(cavRoot) - res.X;
                     double tentativeTop = Canvas.GetTop(cavRoot) - res.Y;
 
-                    /*
-                    if (tentativeLeft > 0 && tentativeTop < imgSource.ActualWidth)
-                        
-
-                    if (tentativeTop > 0 && tentativeTop < imgSource.ActualHeight)
-                        */
                     Canvas.SetLeft(cavRoot, tentativeLeft);
                     Canvas.SetTop(cavRoot, tentativeTop);
-                    //Console.WriteLine("Mouse movement is being registered. Left: "+ relativePoint.X + " Top: "+ relativePoint.Y);
                     firstPoint = temp;
                 }
             };
 
-            cavRoot.MouseUp += (ss, ee) => { cavRoot.ReleaseMouseCapture(); };
+            cavRoot.MouseUp += (ss, ee) => {
+                firstPoint = new Point(-9999,-9999);
+                cavRoot.ReleaseMouseCapture(); };
         }
     }
 }
