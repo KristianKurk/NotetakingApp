@@ -122,9 +122,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Downloads\RTFEditor\RTFEditor\ColorPicker\ColorPicker.csproj">
+    <ProjectReference Include="..\..\..\..\Downloads\RTFEditor\RTFEditor\ColorPicker\ColorPicker2.csproj">
       <Project>{6813ecb1-b6b3-49f4-9070-9e4dfef34fae}</Project>
-      <Name>ColorPicker</Name>
+      <Name>ColorPicker2</Name>
     </ProjectReference>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{b3175873-6ef6-4619-9685-0ba24d78d5db}</Project>
