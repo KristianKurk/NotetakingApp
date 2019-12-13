@@ -60,29 +60,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Scenes\MainMenu\MainMenu.xaml.cs">
+    <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenes\Notetaking\Note-takingWindow.xaml.cs">
+    <Compile Include="Note-takingWindow.xaml.cs">
       <DependentUpon>Note-takingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenes\RNG\RNGAdd.xaml.cs">
+    <Compile Include="RNGAdd.xaml.cs">
       <DependentUpon>RNGAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenes\RNG\RNGGenerate.xaml.cs">
+    <Compile Include="RNGGenerate.xaml.cs">
       <DependentUpon>RNGGenerate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenes\RNG\RNGWindow.xaml.cs">
+    <Compile Include="RNGWindow.xaml.cs">
       <DependentUpon>RNGWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scenes\Settings\SettingsWindow.xaml.cs">
+    <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Scenes\MainMenu\MainMenu.xaml">
+    <Page Include="MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scenes\MainMenu\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -90,37 +90,37 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Scenes\MainMenu\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Scenes\Mapping\MappingWindow.xaml">
+    <Page Include="MappingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scenes\Notetaking\Note-takingWindow.xaml">
+    <Page Include="Note-takingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scenes\RNG\RNGAdd.xaml">
+    <Page Include="RNGAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scenes\RNG\RNGGenerate.xaml">
+    <Page Include="RNGGenerate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scenes\RNG\RNGWindow.xaml">
+    <Page Include="RNGWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scenes\Settings\SettingsWindow.xaml">
+    <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scenes\Mapping\MappingWindow.xaml.cs">
+    <Compile Include="MappingWindow.xaml.cs">
       <DependentUpon>MappingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -147,7 +147,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

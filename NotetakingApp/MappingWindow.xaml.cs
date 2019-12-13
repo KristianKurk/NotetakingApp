@@ -108,7 +108,6 @@ namespace NotetakingApp
             Canvas.SetLeft(pin, rightClickPoint.X - pin_size/1.8);
 
             cavRoot.Children.Add(pin);
-            pinList.Add(pin);
         }
 
         private void Create_Map_Click(object sender, RoutedEventArgs e)
