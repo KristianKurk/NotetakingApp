@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Database;
 using BLL;
 
+
 namespace NotetakingApp
 {
     /// <summary>
@@ -31,8 +32,11 @@ namespace NotetakingApp
             DB.DeleteNote(6);
             DB.Add(new Note() { note_title = "New Note 2", note_content = "New Content 2" });
             */
+            Connection.CreateNewCampaign("newTest");
 
-            Connection.CreateNewCampaign("newTest2");
+
+
+
         }
         private void BtnClickSettings(object sender, RoutedEventArgs e)
         {
@@ -107,5 +111,14 @@ namespace NotetakingApp
             navb5.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
         }
 
+        //Top Nav Bar / Custom Window
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+       
+        
     }
 }
