@@ -55,7 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="campaigns.xml" />
+    <Content Include="campaigns.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
