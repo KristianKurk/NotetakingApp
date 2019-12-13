@@ -10,7 +10,10 @@
        
         >
     
-    <!--Remove White Resize Bar-->
+    <!-- Change Beige to Lighter Beige/White-->
+    
+    
+    <!--Removes White Resize Bar-->
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" GlassFrameThickness="0,0,0,1" CornerRadius="0" />
     </WindowChrome.WindowChrome>
@@ -138,7 +141,7 @@
             </Setter>
 
         </Style>
-
+        
         <!-- Top Buttons -->
         <Style x:Key="TopButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
