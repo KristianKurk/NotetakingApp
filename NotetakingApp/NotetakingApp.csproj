@@ -60,29 +60,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MainMenu.xaml.cs">
+    <Compile Include="Scenes\MainMenu\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Note-takingWindow.xaml.cs">
+    <Compile Include="Scenes\Notetaking\Note-takingWindow.xaml.cs">
       <DependentUpon>Note-takingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RNGAdd.xaml.cs">
+    <Compile Include="Scenes\RNG\RNGAdd.xaml.cs">
       <DependentUpon>RNGAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RNGGenerate.xaml.cs">
+    <Compile Include="Scenes\RNG\RNGGenerate.xaml.cs">
       <DependentUpon>RNGGenerate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RNGWindow.xaml.cs">
+    <Compile Include="Scenes\RNG\RNGWindow.xaml.cs">
       <DependentUpon>RNGWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsWindow.xaml.cs">
+    <Compile Include="Scenes\Settings\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainMenu.xaml">
+    <Page Include="Scenes\MainMenu\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Scenes\MainMenu\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -90,37 +90,37 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Scenes\MainMenu\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MappingWindow.xaml">
+    <Page Include="Scenes\Mapping\MappingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Note-takingWindow.xaml">
+    <Page Include="Scenes\Notetaking\Note-takingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RNGAdd.xaml">
+    <Page Include="Scenes\RNG\RNGAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RNGGenerate.xaml">
+    <Page Include="Scenes\RNG\RNGGenerate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RNGWindow.xaml">
+    <Page Include="Scenes\RNG\RNGWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsWindow.xaml">
+    <Page Include="Scenes\Settings\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MappingWindow.xaml.cs">
+    <Compile Include="Scenes\Mapping\MappingWindow.xaml.cs">
       <DependentUpon>MappingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -193,6 +193,7 @@
   <ItemGroup>
     <Resource Include="Assets\Pins\pin.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

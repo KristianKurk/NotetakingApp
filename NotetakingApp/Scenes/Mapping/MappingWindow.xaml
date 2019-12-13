@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
-      Title="MappingWindow"
-      
+      Title="MappingWindow"   
       >
     <!--ShowsNavigationUI="false" can go in the page oject-->
     <Page.Resources>
@@ -36,7 +35,7 @@
                   >
 
             <!--Map Goes Here-->
-            <Canvas Name="daddyCanvas" Background="White" ClipToBounds="True">
+            <Canvas Name="daddyCanvas" Background="Black" ClipToBounds="True">
                 <Canvas Name="cavRoot" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
                     <Image Name="imgSource"
                          Width="1625" Height="1070" Focusable="False">

@@ -56,14 +56,12 @@ namespace NotetakingApp
                 Matrix mat = cavRoot.RenderTransform.Value;
                 Point mouse = ee.GetPosition(cavRoot);
 
-
                     if (ee.Delta > 0)
                         mat.ScaleAtPrepend(1.15, 1.15, mouse.X, mouse.Y);
                     else if (mat.M11 > initialMat.M11 * 0.5)
                         mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
                     MatrixTransform mtf = new MatrixTransform(mat);
                     cavRoot.RenderTransform = mtf;
-                     
             };
 
 
@@ -103,12 +101,14 @@ namespace NotetakingApp
             pin.Source = bitmap;
             pin.Width = pin_size;
             pin.Height = pin_size;
+            pin.MaxHeight = pin_size;
+            pin.MaxWidth = pin_size;
 
             Canvas.SetTop(pin,rightClickPoint.Y - pin_size/1.2);
             Canvas.SetLeft(pin, rightClickPoint.X - pin_size/1.8);
 
             cavRoot.Children.Add(pin);
-
+            pinList.Add(pin);
         }
 
         private void Create_Map_Click(object sender, RoutedEventArgs e)
