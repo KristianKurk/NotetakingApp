@@ -27,12 +27,12 @@ namespace NotetakingApp
         
         private void BtnAddRNG(object sender, RoutedEventArgs e)
         {
-            DisableButton("settingsNavButton");
+            DisableButton("addData");
             rng.Content = new RNGAdd();
         }
         private void BtnGenerate(object sender, RoutedEventArgs e)
         {
-            DisableButton("mainNavButton");
+            DisableButton("generateRNG");
             rng.Content = new RNGGenerate();
         }
         private void DisableButton(string btn)
@@ -58,29 +58,21 @@ namespace NotetakingApp
 
             //Enable all buttons
 
-            object button1 = rngGrid.FindName("noteNavButton");
-            object button2 = rngGrid.FindName("rngNavButton");
-            object button3 = rngGrid.FindName("mapNavButton");
-            object button4 = rngGrid.FindName("mainNavButton");
-            object button5 = rngGrid.FindName("settingsNavButton");
+            object button1 = rngGrid.FindName("addData");
+            object button2 = rngGrid.FindName("generateRNG");
+          
 
             Button navb1 = (Button)button1;
             Button navb2 = (Button)button2;
-            Button navb3 = (Button)button3;
-            Button navb4 = (Button)button4;
-            Button navb5 = (Button)button5;
+          
 
             navb1.IsEnabled = true;
             navb2.IsEnabled = true;
-            navb3.IsEnabled = true;
-            navb4.IsEnabled = true;
-            navb5.IsEnabled = true;
+     
 
             navb1.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
             navb2.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb3.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb4.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb5.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
+      
         }
     }
 }

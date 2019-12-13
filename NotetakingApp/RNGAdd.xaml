@@ -9,6 +9,8 @@
       Title="RNGAdd">
 
     <Grid>
-        
+        <TextBox Name="rngTB" Height="90" >
+
+        </TextBox>
     </Grid>
 </Page>
