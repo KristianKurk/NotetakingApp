@@ -97,7 +97,12 @@ namespace NotetakingApp
 
         private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
         {
+            try { 
             rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
+        }
+            catch (Exception ee) {
+                rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, "12");
+            }
         }
 
         private void ToolStripButtonTextcolor_Click

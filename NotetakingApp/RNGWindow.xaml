@@ -150,7 +150,7 @@
                 FontSize="35"
                 Height="50"
                 Name="dataTitle"
-                Background="#84240c" 
+                Background="#5e4d4d" 
                 Text="Data Lists" 
                 TextAlignment="Center"></TextBlock>
 
