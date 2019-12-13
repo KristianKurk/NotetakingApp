@@ -16,7 +16,7 @@
     
     <!--Remove White Resize Bar-->
     <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="0" />
+        <WindowChrome CaptionHeight="0" GlassFrameThickness="0,0,0,1" CornerRadius="0" />
     </WindowChrome.WindowChrome>
 
     <!--   ResizeMode="NoResize"
@@ -129,7 +129,26 @@
 
     <StackPanel Background="#563232">
         <!-- Top Navigation -->
-        <Grid Name="resizeGrid" Background="Black" Height="50" MouseDown="Window_MouseDown">
+        <!-- MouseDown="Window_MouseDown" -->
+        
+        <Grid Name="topNav" Background="WhiteSmoke" Height="20" >
+
+           
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button  Grid.Column="0" >
+               
+                    <Image Source="Assets/Navigation/back.png" />
+                
+            </Button>
+
 
 
         </Grid>
