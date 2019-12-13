@@ -24,16 +24,16 @@ namespace NotetakingApp
         {
             InitializeComponent();
         }
-        /*
-        private void BtnClickSettings(object sender, RoutedEventArgs e)
+        
+        private void BtnAddRNG(object sender, RoutedEventArgs e)
         {
             DisableButton("settingsNavButton");
-            main.Content = new SettingsWindow();
+            rng.Content = new RNGAdd();
         }
-        private void BtnClickMain(object sender, RoutedEventArgs e)
+        private void BtnGenerate(object sender, RoutedEventArgs e)
         {
             DisableButton("mainNavButton");
-            main.Content = new MainMenu();
+            rng.Content = new RNGGenerate();
         }
         private void DisableButton(string btn)
         {
@@ -42,7 +42,7 @@ namespace NotetakingApp
 
             //Disable Selected button
 
-            object button = grid.FindName(btn);
+            object button = rngGrid.FindName(btn);
             Button button1 = (Button)button;
             button1.Background = new SolidColorBrush(Color.FromArgb(255, 86, 50, 50));
 
@@ -58,11 +58,11 @@ namespace NotetakingApp
 
             //Enable all buttons
 
-            object button1 = grid.FindName("noteNavButton");
-            object button2 = grid.FindName("rngNavButton");
-            object button3 = grid.FindName("mapNavButton");
-            object button4 = grid.FindName("mainNavButton");
-            object button5 = grid.FindName("settingsNavButton");
+            object button1 = rngGrid.FindName("noteNavButton");
+            object button2 = rngGrid.FindName("rngNavButton");
+            object button3 = rngGrid.FindName("mapNavButton");
+            object button4 = rngGrid.FindName("mainNavButton");
+            object button5 = rngGrid.FindName("settingsNavButton");
 
             Button navb1 = (Button)button1;
             Button navb2 = (Button)button2;
@@ -81,6 +81,6 @@ namespace NotetakingApp
             navb3.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
             navb4.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
             navb5.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-        }*/
+        }
     }
 }

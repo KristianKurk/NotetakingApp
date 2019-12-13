@@ -16,7 +16,7 @@
 
     <!--Content-->
 
-    <Grid DockPanel.Dock="Top"  >
+    <Grid DockPanel.Dock="Top" Name="rngGrid" >
 
         <Grid.RowDefinitions>
             
