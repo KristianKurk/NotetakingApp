@@ -66,6 +66,12 @@
     <Compile Include="Note-takingWindow.xaml.cs">
       <DependentUpon>Note-takingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RNGAdd.xaml.cs">
+      <DependentUpon>RNGAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RNGGenerate.xaml.cs">
+      <DependentUpon>RNGGenerate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RNGWindow.xaml.cs">
       <DependentUpon>RNGWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +99,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Note-takingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RNGAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RNGGenerate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
