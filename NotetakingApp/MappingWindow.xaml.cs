@@ -34,6 +34,7 @@ namespace NotetakingApp
             BitmapImage img = DB.GetMap(1).LoadImage();
             imgSource.Source = img;
             init();
+            Properties.Settings.Default.Campaign = "joe";
         }
 
         public void init()
