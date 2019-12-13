@@ -24,5 +24,10 @@ namespace NotetakingApp
         {
             InitializeComponent();
         }
+        private void SaveText(object sender, RoutedEventArgs e)
+        {
+            
+           
+        }
     }
 }
