@@ -43,13 +43,13 @@ namespace NotetakingApp
                 cavRoot.CaptureMouse();
             };
 
-            imgSource.MouseRightButtonDown += (ss, ee) =>
+            cavRoot.MouseRightButtonDown += (ss, ee) =>
             {
                 //Console.WriteLine("Right Click X: " + ee.GetPosition(imgSource).X +" Right Click Y: "+ ee.GetPosition(imgSource).Y);
                 ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
                 cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
                 cm.IsOpen = true;
-                rightClickPoint = ee.GetPosition(imgSource);
+                rightClickPoint = ee.GetPosition(cavRoot);
             };
 
             cavRoot.MouseWheel += (ss, ee) => {
@@ -94,19 +94,21 @@ namespace NotetakingApp
             int pin_size = 50;
 
             Console.WriteLine("Created a pin");
+
             Image pin = new Image();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("Assets/Pins/pin.png", UriKind.Relative);
+            bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
             bitmap.EndInit();
             pin.Source = bitmap;
             pin.Width = pin_size;
             pin.Height = pin_size;
 
-            Canvas.SetTop(pin,rightClickPoint.Y);
-            Canvas.SetLeft(pin, rightClickPoint.X);
+            Canvas.SetTop(pin,rightClickPoint.Y - pin_size/1.2);
+            Canvas.SetLeft(pin, rightClickPoint.X - pin_size/1.8);
 
             cavRoot.Children.Add(pin);
+
         }
 
         private void Create_Map_Click(object sender, RoutedEventArgs e)

@@ -173,7 +173,9 @@
   <ItemGroup>
     <Resource Include="Assets\NotetakingRTF\undo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Pins\personpin.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Pins\pin.png" />
   </ItemGroup>
