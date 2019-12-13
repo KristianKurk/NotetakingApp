@@ -5,17 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotetakingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1280"
-    
+        Title="MainWindow" Height="700" Width="1200"
+            
         
         
+       
         
-        
+       
         >
-    <!-- ResizeMode="NoResize"-->
-    <!--Ressources for Custom Button-->
+    
+    <!--Remove White Resize Bar-->
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0,0,0,1" CornerRadius="0" />
+    </WindowChrome.WindowChrome>
+
+    <!--   ResizeMode="NoResize"
+     AllowsTransparency="True"
+    -->
+    
+    <!--Ressources for Custom Button
+   
+    -->
 
     <Window.Resources>
+       
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -115,8 +128,18 @@
 
 
     <StackPanel Background="#563232">
+        <!-- Top Navigation -->
+        <Grid Name="resizeGrid" Background="Black" Height="50" MouseDown="Window_MouseDown">
 
-        <!--Navigation-->
+
+        </Grid>
+       
+            
+        
+
+       
+        
+        <!--Navigation 2-->
 
         <Grid Name="grid" Background="#ffc18c">
 
@@ -139,6 +162,7 @@
 
         <!--Frame-->
         <Frame NavigationUIVisibility="Hidden" Name="main"></Frame>
-
+            
+     
     </StackPanel>
 </Window>

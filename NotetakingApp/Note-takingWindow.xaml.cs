@@ -102,6 +102,7 @@ namespace NotetakingApp
         }
             catch (Exception ee) {
                 rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, "12");
+                
             }
         }
 
