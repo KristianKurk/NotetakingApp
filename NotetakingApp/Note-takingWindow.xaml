@@ -29,7 +29,7 @@
 
 
         <!--Left Content-->
-        <StackPanel Background="#563232" Grid.Column="0" 
+        <StackPanel  Grid.Column="0" 
                   
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
