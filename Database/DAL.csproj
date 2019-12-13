@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="campaigns.xml" />
     <Content Include="DB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -11,7 +11,7 @@ namespace Database
     public class Connection
     {
         public static string LoadConnectionString(string id)
-        { 
+        {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
         public static string LoadConnectionString()
@@ -19,7 +19,6 @@ namespace Database
             //string id = Util.getCurrentCampaign();
             return ConfigurationManager.ConnectionStrings["jkdasd"].ConnectionString;
         }
-
 
         public static void CreateNewCampaign(string campaignName)
         {
