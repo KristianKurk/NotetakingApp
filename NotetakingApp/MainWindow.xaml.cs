@@ -32,7 +32,7 @@ namespace NotetakingApp
             DB.DeleteNote(6);
             DB.Add(new Note() { note_title = "New Note 2", note_content = "New Content 2" });
             */
-            Connection.CreateNewCampaign("newTest");
+            //Connection.CreateNewCampaign("AwesomeLand");
 
 
 

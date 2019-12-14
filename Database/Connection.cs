@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Database
 {
     public class Connection
     {
         private static string xmlPath = "./campaigns.xml";
-        XmlDocument xmlDoc;
 
         public static string LoadConnectionString(string id)
         {
@@ -20,21 +20,14 @@ namespace Database
         }
         public static string LoadConnectionString()
         {
-            //string id = Util.getCurrentCampaign();
             return ConfigurationManager.ConnectionStrings[GetActiveCampaignDirectory()].ConnectionString;
         }
 
         public static void CreateNewCampaign(string campaignName)
         {
             CreateXmlCampaign(campaignName);
-            //setCampaignAsActive(GetActiveCampaignDirectory());
+            CreateConnectionString();
 
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            ConnectionStringsSection csSection = config.ConnectionStrings;
-            ConnectionStringSettings connection = new ConnectionStringSettings(GetActiveCampaignDirectory(), "Data Source=.\\DB" + GetActiveCampaignDirectory() + ".db;Version=3", "System.Data.SqlClient");
-            csSection.ConnectionStrings.Add(connection);
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("connectionStrings");
 
             using (SQLiteConnection source = new SQLiteConnection(LoadConnectionString("default")))
             using (SQLiteConnection destination = new SQLiteConnection(LoadConnectionString(GetActiveCampaignDirectory())))
@@ -44,6 +37,15 @@ namespace Database
                 source.BackupDatabase(destination, "main", "main", -1, null, -1);
             }
 
+        }
+
+        private static void CreateConnectionString() {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            ConnectionStringsSection csSection = config.ConnectionStrings;
+            ConnectionStringSettings connection = new ConnectionStringSettings(GetActiveCampaignDirectory(), "Data Source=.\\DB" + GetActiveCampaignDirectory() + ".db;Version=3", "System.Data.SqlClient");
+            csSection.ConnectionStrings.Add(connection);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("connectionStrings");
         }
 
         private static void CreateXmlCampaign(string campaignName)
@@ -65,8 +67,13 @@ namespace Database
             newCampaign.Attributes.Append(statusAttr);
 
             xmlDoc.GetElementsByTagName("campaigns").Item(0).AppendChild(newCampaign);
+
+            XmlNodeList campaigns = xmlDoc.GetElementsByTagName("campaign");
+            foreach (XmlNode campaign in campaigns)
+                campaign.Attributes["status"].Value = "inactive";
+
+            campaigns.Item(campaigns.Count - 1).Attributes["status"].Value = "active";
             xmlDoc.Save(xmlPath);
-            xmlDoc = null;
         }
 
         public static string GetActiveCampaignDirectory()
@@ -130,28 +137,6 @@ namespace Database
                 }
             }
             return nodeCount;
-        }
-
-        public static void setCampaignAsActive(string campaignDirectory)
-        {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(xmlPath);
-
-            XmlNodeList campaigns = xmlDoc.GetElementsByTagName("campaign");
-
-            for (int i = 0; i < campaigns.Count; i++)
-                if (campaigns.Item(i).Attributes["directory"].Value == campaignDirectory)
-                {
-                    campaigns.Item(i).Attributes["status"].Value = "active";
-                }
-                else
-                {
-                    campaigns.Item(i).Attributes["status"].Value = "inactive";
-                }
-            {
-                xmlDoc.Save(xmlPath);
-
-            }
         }
     }
 }
