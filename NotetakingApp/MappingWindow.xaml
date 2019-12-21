@@ -36,10 +36,12 @@
 
             <!--Map Goes Here-->
             <Canvas Name="daddyCanvas" Background="Black" ClipToBounds="True">
-                <Canvas Name="cavRoot" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
+                <Canvas Name="mapCanvas" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
                     <Image Name="imgSource"
                          Width="1625" Height="1070" Focusable="False">
                     </Image>
+                    <Canvas Name="pinCanvas" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
+                    </Canvas>
                 </Canvas>
             </Canvas>
         </DockPanel>

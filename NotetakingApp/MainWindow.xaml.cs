@@ -85,30 +85,17 @@ namespace NotetakingApp
         private void EnableAll() {
 
             //Enable all buttons
-
-            object button1 = grid.FindName("noteNavButton");
-            object button2 = grid.FindName("rngNavButton");
-            object button3 = grid.FindName("mapNavButton");
-            object button4 = grid.FindName("mainNavButton");
-            object button5 = grid.FindName("settingsNavButton");
-
-            Button navb1 = (Button)button1;
-            Button navb2 = (Button)button2;
-            Button navb3 = (Button)button3;
-            Button navb4 = (Button)button4;
-            Button navb5 = (Button)button5;
-
-            navb1.IsEnabled = true;
-            navb2.IsEnabled = true;
-            navb3.IsEnabled = true;
-            navb4.IsEnabled = true;
-            navb5.IsEnabled = true;
-
-            navb1.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb3.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb4.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb5.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
+            Button[] buttons = {
+                (Button)grid.FindName("noteNavButton"),
+                (Button)grid.FindName("rngNavButton"),
+                (Button)grid.FindName("mapNavButton"),
+                (Button)grid.FindName("mainNavButton"),
+                (Button)grid.FindName("settingsNavButton")
+                };
+            foreach (Button b in buttons) {
+                b.IsEnabled = true;
+                b.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
+            }
         }
 
         //Top Nav Bar / Custom Window

@@ -17,20 +17,21 @@ using BLL;
 
 namespace NotetakingApp
 {
-    /// <summary>
-    /// Interaction logic for MappingWindow.xaml
-    /// </summary>
     public partial class MappingWindow : Page
     {
         private Matrix initialMat;
         private Point firstPoint = new Point();
         private Point rightClickPoint = new Point();
+        List<Image> pins = new List<Image>();
+        List<Point> rightClickPoints = new List<Point>();
+        private double zoomPercentage = 1;
+        private const int MAX_PIN_SIZE = 50;
 
         public MappingWindow()
         {
             InitializeComponent();
 
-            initialMat = cavRoot.RenderTransform.Value;
+            initialMat = mapCanvas.RenderTransform.Value;
             BitmapImage img = DB.GetMap(1).LoadImage();
             imgSource.Source = img;
             init();
@@ -39,59 +40,68 @@ namespace NotetakingApp
 
         public void init()
         {
-            cavRoot.MouseLeftButtonDown += (ss, ee) => {
+            mapCanvas.MouseLeftButtonDown += (ss, ee) =>
+            {
                 firstPoint = ee.GetPosition(this);
-                cavRoot.CaptureMouse();
+                mapCanvas.CaptureMouse();
             };
 
-            cavRoot.MouseRightButtonDown += (ss, ee) =>
+            mapCanvas.MouseRightButtonDown += (ss, ee) =>
             {
-                //Console.WriteLine("Right Click X: " + ee.GetPosition(imgSource).X +" Right Click Y: "+ ee.GetPosition(imgSource).Y);
                 ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
                 cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
                 cm.IsOpen = true;
-                rightClickPoint = ee.GetPosition(cavRoot);
+                rightClickPoint = ee.GetPosition(mapCanvas);
             };
 
-            cavRoot.MouseWheel += (ss, ee) => {
-                Matrix mat = cavRoot.RenderTransform.Value;
-                Point mouse = ee.GetPosition(cavRoot);
+            mapCanvas.MouseWheel += (ss, ee) =>
+            {
+                Matrix mat = mapCanvas.RenderTransform.Value;
+                Point mouse = ee.GetPosition(mapCanvas);
+                zoomPercentage = mat.M11 / initialMat.M11;
 
-                    if (ee.Delta > 0)
-                        mat.ScaleAtPrepend(1.15, 1.15, mouse.X, mouse.Y);
-                    else if (mat.M11 > initialMat.M11 * 0.5)
-                        mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
-                    MatrixTransform mtf = new MatrixTransform(mat);
-                    cavRoot.RenderTransform = mtf;
+                if (ee.Delta > 0)
+                {
+                    mat.ScaleAtPrepend(1.15, 1.15, mouse.X, mouse.Y);
+                    ResizePins();
+                }
+                else if (zoomPercentage > 0.5)
+                {
+                    mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
+                    ResizePins();
+                }
+
+                MatrixTransform mtf = new MatrixTransform(mat);
+                mapCanvas.RenderTransform = mtf;
             };
 
 
-            cavRoot.MouseMove += (ss, ee) =>
+            mapCanvas.MouseMove += (ss, ee) =>
             {
                 if (ee.LeftButton == MouseButtonState.Pressed &&
-                    !firstPoint.Equals(new Point(-9999,-9999)))
+                    !firstPoint.Equals(new Point(-9999, -9999)))
                 {
                     Point temp = ee.GetPosition(this);
                     Point res = new Point(firstPoint.X - temp.X, firstPoint.Y - temp.Y);
 
-                    double tentativeLeft = Canvas.GetLeft(cavRoot) - res.X;
-                    double tentativeTop = Canvas.GetTop(cavRoot) - res.Y;
+                    double tentativeLeft = Canvas.GetLeft(mapCanvas) - res.X;
+                    double tentativeTop = Canvas.GetTop(mapCanvas) - res.Y;
 
-                    Canvas.SetLeft(cavRoot, tentativeLeft);
-                    Canvas.SetTop(cavRoot, tentativeTop);
+                    Canvas.SetLeft(mapCanvas, tentativeLeft);
+                    Canvas.SetTop(mapCanvas, tentativeTop);
                     firstPoint = temp;
                 }
             };
 
-            cavRoot.MouseUp += (ss, ee) => {
-                firstPoint = new Point(-9999,-9999);
-                cavRoot.ReleaseMouseCapture(); };
+            mapCanvas.MouseUp += (ss, ee) =>
+            {
+                firstPoint = new Point(-9999, -9999);
+                mapCanvas.ReleaseMouseCapture();
+            };
         }
 
         private void Create_Pin_Click(object sender, RoutedEventArgs e)
         {
-            int pin_size = 50;
-
             Console.WriteLine("Created a pin");
 
             Image pin = new Image();
@@ -100,20 +110,46 @@ namespace NotetakingApp
             bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
             bitmap.EndInit();
             pin.Source = bitmap;
-            pin.Width = pin_size;
-            pin.Height = pin_size;
-            pin.MaxHeight = pin_size;
-            pin.MaxWidth = pin_size;
+            pin.Width = MAX_PIN_SIZE;
+            pin.Height = MAX_PIN_SIZE;
 
-            Canvas.SetTop(pin,rightClickPoint.Y - pin_size/1.2);
-            Canvas.SetLeft(pin, rightClickPoint.X - pin_size/1.8);
+            Canvas.SetTop(pin, rightClickPoint.Y - MAX_PIN_SIZE / 1.2);
+            Canvas.SetLeft(pin, rightClickPoint.X - MAX_PIN_SIZE / 1.8);
 
-            cavRoot.Children.Add(pin);
+            pins.Add(pin);
+            rightClickPoints.Add(rightClickPoint);
+
+            ResizePins();
+            pinCanvas.Children.Add(pin);
         }
 
         private void Create_Map_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Created a map");
+        }
+
+        private void ResizePins() {
+            if (zoomPercentage > 1)
+            {
+                foreach (Image pin in pins)
+                {
+                    pin.Width = MAX_PIN_SIZE / zoomPercentage;
+                    pin.Height = MAX_PIN_SIZE / zoomPercentage;
+                }
+            }
+            else
+            {
+                foreach (Image pin in pins)
+                {
+                    pin.Width = MAX_PIN_SIZE;
+                    pin.Height = MAX_PIN_SIZE;
+                }
+            }
+            for (int i = 0; i < pins.Count; i++)
+            {
+                Canvas.SetLeft(pins[i], rightClickPoints[i].X - pins[i].Width / 1.8);
+                Canvas.SetTop(pins[i], rightClickPoints[i].Y - pins[i].Height / 1.2);
+            }
         }
     }
 }
