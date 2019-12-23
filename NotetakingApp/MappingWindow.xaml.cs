@@ -22,7 +22,7 @@ namespace NotetakingApp
         private Matrix initialMat;
         private Point firstPoint = new Point();
         private Point rightClickPoint = new Point();
-        List<Image> pins = new List<Image>();
+        List<Button> pins = new List<Button>();
         List<Point> rightClickPoints = new List<Point>();
         private double zoomPercentage = 1;
         private const int MAX_PIN_SIZE = 50;
@@ -35,7 +35,6 @@ namespace NotetakingApp
             BitmapImage img = DB.GetMap(1).LoadImage();
             imgSource.Source = img;
             init();
-            Properties.Settings.Default.Campaign = "joe";
         }
 
         public void init()
@@ -110,17 +109,24 @@ namespace NotetakingApp
             bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
             bitmap.EndInit();
             pin.Source = bitmap;
-            pin.Width = MAX_PIN_SIZE;
-            pin.Height = MAX_PIN_SIZE;
+            //pin.Width = MAX_PIN_SIZE;
+            //pin.Height = MAX_PIN_SIZE;
+            pin.Stretch = Stretch.UniformToFill;
 
-            Canvas.SetTop(pin, rightClickPoint.Y - MAX_PIN_SIZE / 1.2);
-            Canvas.SetLeft(pin, rightClickPoint.X - MAX_PIN_SIZE / 1.8);
+            Button button = new Button();
+            button.Click += new RoutedEventHandler(Click_Pin);
+            button.Background = Brushes.Transparent;
+            button.BorderThickness = new Thickness(0);
 
-            pins.Add(pin);
+            button.Content = pin;
+            Canvas.SetTop(button, rightClickPoint.Y - MAX_PIN_SIZE / 1.2);
+            Canvas.SetLeft(button, rightClickPoint.X - MAX_PIN_SIZE / 1.8);
+            
+            pins.Add(button);
             rightClickPoints.Add(rightClickPoint);
-
             ResizePins();
-            pinCanvas.Children.Add(pin);
+
+            pinCanvas.Children.Add(button);
         }
 
         private void Create_Map_Click(object sender, RoutedEventArgs e)
@@ -128,10 +134,11 @@ namespace NotetakingApp
             Console.WriteLine("Created a map");
         }
 
-        private void ResizePins() {
+        private void ResizePins()
+        {
             if (zoomPercentage > 1)
             {
-                foreach (Image pin in pins)
+                foreach (Button pin in pins)
                 {
                     pin.Width = MAX_PIN_SIZE / zoomPercentage;
                     pin.Height = MAX_PIN_SIZE / zoomPercentage;
@@ -139,7 +146,7 @@ namespace NotetakingApp
             }
             else
             {
-                foreach (Image pin in pins)
+                foreach (Button pin in pins)
                 {
                     pin.Width = MAX_PIN_SIZE;
                     pin.Height = MAX_PIN_SIZE;
@@ -150,6 +157,10 @@ namespace NotetakingApp
                 Canvas.SetLeft(pins[i], rightClickPoints[i].X - pins[i].Width / 1.8);
                 Canvas.SetTop(pins[i], rightClickPoints[i].Y - pins[i].Height / 1.2);
             }
+        }
+
+        private void Click_Pin(object sender, RoutedEventArgs e) {
+            Console.WriteLine("pin clicked");
         }
     }
 }
