@@ -12,8 +12,8 @@ namespace BLL
         public int map_id { get; set; }
         public string map_name { get; set; }
         public byte[] map_file { get; set; }
-        public int map_x { get; set; }
-        public int map_y { get; set; }
+        public double map_x { get; set; }
+        public double map_y { get; set; }
         public int parent_map_id { get; set; }
 
         public BitmapImage LoadImage()

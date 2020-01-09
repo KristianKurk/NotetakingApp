@@ -19,13 +19,19 @@ namespace NotetakingApp
 {
     public partial class MappingWindow : Page
     {
+        private const int MAX_PIN_SIZE = 50;
+        private const int MAX_PIN_ZOOM_IN = 3;
+        private const float MAX_MAP_ZOOM_OUT = 0.5f;
+
+        private Map currentMap = DB.GetMap(1);
+
         private Matrix initialMat;
         private Point firstPoint = new Point();
         private Point rightClickPoint = new Point();
         List<Button> pins = new List<Button>();
         List<Point> rightClickPoints = new List<Point>();
         private double zoomPercentage = 1;
-        private const int MAX_PIN_SIZE = 50;
+        
 
         public MappingWindow()
         {
@@ -34,6 +40,7 @@ namespace NotetakingApp
             initialMat = mapCanvas.RenderTransform.Value;
             BitmapImage img = DB.GetMap(1).LoadImage();
             imgSource.Source = img;
+            dbInit();
             init();
         }
 
@@ -64,7 +71,7 @@ namespace NotetakingApp
                     mat.ScaleAtPrepend(1.15, 1.15, mouse.X, mouse.Y);
                     ResizePins();
                 }
-                else if (zoomPercentage > 0.5)
+                else if (zoomPercentage > MAX_MAP_ZOOM_OUT)
                 {
                     mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
                     ResizePins();
@@ -99,6 +106,35 @@ namespace NotetakingApp
             };
         }
 
+        private void dbInit() {
+            List<Pin> dbPins = DB.getPins();
+            foreach (Pin dbPin in dbPins) {
+
+                Image pin = new Image();
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
+                bitmap.EndInit();
+                pin.Source = bitmap;
+                pin.Stretch = Stretch.UniformToFill;
+
+                Button button = new Button();
+                button.Click += new RoutedEventHandler(Click_Pin);
+                button.Background = Brushes.Transparent;
+                button.BorderThickness = new Thickness(0);
+
+                button.Name = "id" + dbPin.pin_id;
+                button.Content = pin;
+                Canvas.SetLeft(button, dbPin.pin_x);
+                Canvas.SetTop(button, dbPin.pin_y);
+
+                pins.Add(button); 
+
+                pinCanvas.Children.Add(button);
+            }
+            ResizePins();
+        }
+
         private void Create_Pin_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Created a pin");
@@ -109,8 +145,6 @@ namespace NotetakingApp
             bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
             bitmap.EndInit();
             pin.Source = bitmap;
-            //pin.Width = MAX_PIN_SIZE;
-            //pin.Height = MAX_PIN_SIZE;
             pin.Stretch = Stretch.UniformToFill;
 
             Button button = new Button();
@@ -118,10 +152,17 @@ namespace NotetakingApp
             button.Background = Brushes.Transparent;
             button.BorderThickness = new Thickness(0);
 
+            Pin dbPin = new Pin();
+            dbPin.pin_title = "Untitled";
+            dbPin.pin_content = "";
+            dbPin.pin_x = rightClickPoint.X;
+            dbPin.pin_y = rightClickPoint.Y;
+            dbPin.parent_map_id = currentMap.map_id;
+            DB.Add(dbPin);
+
+            button.Name = "id"+DB.getPins().Last().pin_id;
             button.Content = pin;
-            Canvas.SetTop(button, rightClickPoint.Y - MAX_PIN_SIZE / 1.2);
-            Canvas.SetLeft(button, rightClickPoint.X - MAX_PIN_SIZE / 1.8);
-            
+
             pins.Add(button);
             rightClickPoints.Add(rightClickPoint);
             ResizePins();
@@ -138,10 +179,13 @@ namespace NotetakingApp
         {
             if (zoomPercentage > 1)
             {
-                foreach (Button pin in pins)
+                if (zoomPercentage < MAX_PIN_ZOOM_IN)
                 {
-                    pin.Width = MAX_PIN_SIZE / zoomPercentage;
-                    pin.Height = MAX_PIN_SIZE / zoomPercentage;
+                    foreach (Button pin in pins)
+                    {
+                        pin.Width = MAX_PIN_SIZE / zoomPercentage;
+                        pin.Height = MAX_PIN_SIZE / zoomPercentage;
+                    }
                 }
             }
             else
@@ -152,15 +196,33 @@ namespace NotetakingApp
                     pin.Height = MAX_PIN_SIZE;
                 }
             }
+            List<Pin> dbPins = DB.getPins();
             for (int i = 0; i < pins.Count; i++)
             {
-                Canvas.SetLeft(pins[i], rightClickPoints[i].X - pins[i].Width / 1.8);
-                Canvas.SetTop(pins[i], rightClickPoints[i].Y - pins[i].Height / 1.2);
+                Canvas.SetLeft(pins[i], dbPins[i].pin_x - pins[i].Width / 1.8);
+                Canvas.SetTop(pins[i], dbPins[i].pin_y - pins[i].Height / 1.2);
+                Console.WriteLine(dbPins.Count + " " + pins.Count);
             }
         }
 
         private void Click_Pin(object sender, RoutedEventArgs e) {
             Console.WriteLine("pin clicked");
+            Button button = sender as Button;
+
+            TextBox myText = new TextBox();
+            myText.Name = "pinText";
+            myText.Text = "Hello World!";
+            myText.AcceptsReturn = true;
+            myText.TextWrapping = TextWrapping.Wrap;
+            myText.MaxWidth = 200;
+            myText.Width = 200;
+            myText.MinLines = 3;
+            myText.MaxLines = 10;
+            myText.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            Pin attachedPin = DB.GetPin(Int32.Parse(button.Name.Substring(2)));
+            Canvas.SetLeft(myText, attachedPin.pin_x);
+            Canvas.SetTop(myText, attachedPin.pin_y);
+            pinCanvas.Children.Add(myText);
         }
     }
 }
