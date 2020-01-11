@@ -31,7 +31,7 @@ namespace NotetakingApp
         List<Button> pins = new List<Button>();
         List<Point> rightClickPoints = new List<Point>();
         private double zoomPercentage = 1;
-        
+        private Canvas displayCanvas;
 
         public MappingWindow()
         {
@@ -50,6 +50,8 @@ namespace NotetakingApp
             {
                 firstPoint = ee.GetPosition(this);
                 mapCanvas.CaptureMouse();
+                if (displayCanvas != null)
+                    SaveAndClosePin();
             };
 
             mapCanvas.MouseRightButtonDown += (ss, ee) =>
@@ -208,21 +210,63 @@ namespace NotetakingApp
         private void Click_Pin(object sender, RoutedEventArgs e) {
             Console.WriteLine("pin clicked");
             Button button = sender as Button;
-
-            TextBox myText = new TextBox();
-            myText.Name = "pinText";
-            myText.Text = "Hello World!";
-            myText.AcceptsReturn = true;
-            myText.TextWrapping = TextWrapping.Wrap;
-            myText.MaxWidth = 200;
-            myText.Width = 200;
-            myText.MinLines = 3;
-            myText.MaxLines = 10;
-            myText.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
             Pin attachedPin = DB.GetPin(Int32.Parse(button.Name.Substring(2)));
-            Canvas.SetLeft(myText, attachedPin.pin_x);
-            Canvas.SetTop(myText, attachedPin.pin_y);
-            pinCanvas.Children.Add(myText);
+
+            TextBox pinText = new TextBox();
+            TextBox pinTitle = new TextBox();
+            if (attachedPin.pin_content != null)
+                pinText.Text = attachedPin.pin_content;
+            else
+                pinText.Text = "";
+            pinText.AcceptsReturn = true;
+            pinText.TextWrapping = TextWrapping.Wrap;
+            pinText.MaxWidth = 200;
+            pinText.Width = 200;
+            pinText.MinLines = 3;
+            pinText.MaxLines = 10;
+            pinText.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            pinTitle.Width = 200;
+            if (attachedPin.pin_title != null)
+                pinTitle.Text = attachedPin.pin_title;
+            else
+                pinTitle.Text = "Enter a title";
+            pinTitle.MinLines = 1;
+            pinTitle.MaxLines = 1;
+            pinTitle.Height = 23;
+            Canvas textCanvas = new Canvas();
+            textCanvas.Children.Add(pinTitle);
+            textCanvas.Children.Add(pinText);
+            textCanvas.Height = 70;
+            textCanvas.Width = 200;
+            Canvas.SetTop(pinText,23);
+            textCanvas.Name = button.Name;
+            
+            Canvas.SetLeft(textCanvas, attachedPin.pin_x);
+            Canvas.SetTop(textCanvas, attachedPin.pin_y);
+            pinCanvas.Children.Add(textCanvas);
+
+            if (displayCanvas == null)
+                displayCanvas = textCanvas;
+            else
+            {
+                SaveAndClosePin();
+                displayCanvas = textCanvas;
+            }
+        }
+
+        private void SaveAndClosePin() {
+            Pin attachedPin = DB.GetPin(Int32.Parse(displayCanvas.Name.Substring(2)));
+
+            TextBox titlebox = displayCanvas.Children[0] as TextBox;
+            string title = titlebox.Text;
+            attachedPin.pin_title = title;
+
+            TextBox textbox = displayCanvas.Children[1] as TextBox;
+            string text = textbox.Text;
+            attachedPin.pin_content = text;
+
+            DB.Update(attachedPin);
+            pinCanvas.Children.Remove(displayCanvas);
         }
     }
 }
