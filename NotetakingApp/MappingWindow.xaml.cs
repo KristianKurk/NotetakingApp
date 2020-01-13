@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Database;
 using BLL;
+using Microsoft.Win32;
+using System.IO;
 
 namespace NotetakingApp
 {
@@ -29,7 +31,8 @@ namespace NotetakingApp
         private Point firstPoint = new Point();
         private Point rightClickPoint = new Point();
         List<Button> pins = new List<Button>();
-        List<Point> rightClickPoints = new List<Point>();
+        List<Button> maps = new List<Button>();
+        //List<Point> rightClickPoints = new List<Point>();
         private double zoomPercentage = 1;
         private Canvas displayCanvas;
 
@@ -77,6 +80,24 @@ namespace NotetakingApp
                 {
                     mat.ScaleAtPrepend(1 / 1.15, 1 / 1.15, mouse.X, mouse.Y);
                     ResizePins();
+
+                }
+                else
+                {
+                    if (currentMap.parent_map_id != 0)
+                    {
+                        Map attachedMap = DB.GetMap(currentMap.parent_map_id);
+                        BitmapImage img = attachedMap.LoadImage();
+                        imgSource.Source = img;
+                        currentMap = attachedMap;
+                        foreach (Button map in maps)
+                            pinCanvas.Children.Remove(map);
+                        foreach (Button pin in pins)
+                            pinCanvas.Children.Remove(pin);
+                        maps.Clear();
+                        pins.Clear();
+                        dbInit();
+                    }
                 }
 
                 MatrixTransform mtf = new MatrixTransform(mat);
@@ -111,28 +132,59 @@ namespace NotetakingApp
         private void dbInit() {
             List<Pin> dbPins = DB.getPins();
             foreach (Pin dbPin in dbPins) {
+                if (dbPin.parent_map_id == currentMap.map_id)
+                {
+                    Image pin = new Image();
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
+                    bitmap.EndInit();
+                    pin.Source = bitmap;
+                    pin.Stretch = Stretch.UniformToFill;
 
-                Image pin = new Image();
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
-                bitmap.EndInit();
-                pin.Source = bitmap;
-                pin.Stretch = Stretch.UniformToFill;
+                    Button button = new Button();
+                    button.Click += new RoutedEventHandler(Click_Pin);
+                    button.Background = Brushes.Transparent;
+                    button.BorderThickness = new Thickness(0);
 
-                Button button = new Button();
-                button.Click += new RoutedEventHandler(Click_Pin);
-                button.Background = Brushes.Transparent;
-                button.BorderThickness = new Thickness(0);
+                    button.Name = "id" + dbPin.pin_id;
+                    button.Content = pin;
+                    Canvas.SetLeft(button, dbPin.pin_x);
+                    Canvas.SetTop(button, dbPin.pin_y);
 
-                button.Name = "id" + dbPin.pin_id;
-                button.Content = pin;
-                Canvas.SetLeft(button, dbPin.pin_x);
-                Canvas.SetTop(button, dbPin.pin_y);
+                    pins.Add(button);
 
-                pins.Add(button); 
+                    pinCanvas.Children.Add(button);
+                }
+            }
 
-                pinCanvas.Children.Add(button);
+            List<Map> dbMaps = DB.GetMaps();
+            foreach (Map dbMap in dbMaps)
+            {
+                if (currentMap.map_id == dbMap.parent_map_id)
+                {
+                    Image map = new Image();
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri("Assets/Pins/map.png", UriKind.Relative);
+                    bitmap.EndInit();
+                    map.Source = bitmap;
+                    map.Stretch = Stretch.UniformToFill;
+
+                    Button button = new Button();
+                    button.Click += new RoutedEventHandler(Click_Map);
+                    button.Background = Brushes.Transparent;
+                    button.BorderThickness = new Thickness(0);
+
+                    button.Name = "mid" + dbMap.map_id;
+                    button.Content = map;
+                    Canvas.SetLeft(button, dbMap.map_x);
+                    Canvas.SetTop(button, dbMap.map_y);
+
+                    maps.Add(button);
+
+                    pinCanvas.Children.Add(button);
+                }
             }
             ResizePins();
         }
@@ -166,7 +218,7 @@ namespace NotetakingApp
             button.Content = pin;
 
             pins.Add(button);
-            rightClickPoints.Add(rightClickPoint);
+            //rightClickPoints.Add(rightClickPoint);
             ResizePins();
 
             pinCanvas.Children.Add(button);
@@ -175,6 +227,41 @@ namespace NotetakingApp
         private void Create_Map_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Created a map");
+
+            Image map = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Pins/map.png", UriKind.Relative);
+            bitmap.EndInit();
+            map.Source = bitmap;
+            map.Stretch = Stretch.UniformToFill;
+
+            Button button = new Button();
+            button.Click += new RoutedEventHandler(Click_Map);
+            button.Background = Brushes.Transparent;
+            button.BorderThickness = new Thickness(0);
+
+            Map dbMap = new Map();
+            dbMap.map_name = "Untitled";
+            dbMap.map_x = rightClickPoint.X;
+            dbMap.map_y = rightClickPoint.Y;
+            dbMap.parent_map_id = currentMap.map_id;
+            
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            var result = openFileDialog.ShowDialog();
+            byte[] buffer = File.ReadAllBytes(openFileDialog.FileName);
+            dbMap.map_file = buffer;
+
+            DB.Add(dbMap);
+            button.Name = "mid" + DB.GetMaps().Last().map_id;
+            button.Content = map;
+
+            maps.Add(button);
+            //rightClickPoints.Add(rightClickPoint);
+            
+            pinCanvas.Children.Add(button);
+            ResizePins();
         }
 
         private void ResizePins()
@@ -183,10 +270,16 @@ namespace NotetakingApp
             {
                 if (zoomPercentage < MAX_PIN_ZOOM_IN)
                 {
+
                     foreach (Button pin in pins)
                     {
                         pin.Width = MAX_PIN_SIZE / zoomPercentage;
                         pin.Height = MAX_PIN_SIZE / zoomPercentage;
+                    }
+
+                    foreach (Button map in maps) {
+                        map.Width = MAX_PIN_SIZE / zoomPercentage;
+                        map.Height = MAX_PIN_SIZE / zoomPercentage;
                     }
                 }
             }
@@ -197,20 +290,69 @@ namespace NotetakingApp
                     pin.Width = MAX_PIN_SIZE;
                     pin.Height = MAX_PIN_SIZE;
                 }
+
+                foreach (Button map in maps)
+                {
+                    map.Width = MAX_PIN_SIZE;
+                    map.Height = MAX_PIN_SIZE;
+                }
             }
             List<Pin> dbPins = DB.getPins();
-            for (int i = 0; i < pins.Count; i++)
+            for (int i = 0; i < dbPins.Count; i++)
             {
-                Canvas.SetLeft(pins[i], dbPins[i].pin_x - pins[i].Width / 1.8);
-                Canvas.SetTop(pins[i], dbPins[i].pin_y - pins[i].Height / 1.2);
-                Console.WriteLine(dbPins.Count + " " + pins.Count);
+                if (dbPins[i].parent_map_id == currentMap.map_id)
+                {
+                    Button pin = null;
+
+                    foreach (Button mypin in pins)
+                        if (int.Parse(mypin.Name.Substring(2)) == dbPins[i].pin_id)
+                            pin = mypin;
+
+                    Canvas.SetLeft(pin, dbPins[i].pin_x - pin.Width / 1.8);
+                    Canvas.SetTop(pin, dbPins[i].pin_y - pin.Height / 1.2);
+                }
+            }
+            List<Map> dbMaps = DB.GetMaps();
+
+            for (int i = 0; i < dbMaps.Count; i++)
+            {
+                Console.WriteLine("count: "+maps.Count);
+                Console.WriteLine(dbMaps[i].parent_map_id + " "+ currentMap.map_id);
+
+                if (dbMaps[i].parent_map_id == currentMap.map_id)
+                {
+                    Button map = null;
+
+                    foreach (Button mymap in maps)
+                        if (int.Parse(mymap.Name.Substring(3)) == dbMaps[i].map_id)
+                            map = mymap;
+
+                    Canvas.SetLeft(map, dbMaps[i].map_x - map.Width / 1.8);
+                    Canvas.SetTop(map, dbMaps[i].map_y - map.Height / 1.2);
+                }
             }
         }
 
-        private void Click_Pin(object sender, RoutedEventArgs e) {
+        private void Click_Map(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
+            BitmapImage img = attachedMap.LoadImage();
+            imgSource.Source = img;
+            currentMap = attachedMap;
+            foreach (Button map in maps)
+                pinCanvas.Children.Remove(map);
+            foreach (Button pin in pins)
+                pinCanvas.Children.Remove(pin);
+            maps.Clear();
+            pins.Clear();
+            dbInit();
+        }
+
+            private void Click_Pin(object sender, RoutedEventArgs e) {
             Console.WriteLine("pin clicked");
             Button button = sender as Button;
-            Pin attachedPin = DB.GetPin(Int32.Parse(button.Name.Substring(2)));
+            Pin attachedPin = DB.GetPin(int.Parse(button.Name.Substring(2)));
 
             TextBox pinText = new TextBox();
             TextBox pinTitle = new TextBox();
