@@ -128,9 +128,11 @@ namespace NotetakingApp
             };
         }
 
-        private void dbInit() {
+        private void dbInit()
+        {
             List<Pin> dbPins = DB.getPins();
-            foreach (Pin dbPin in dbPins) {
+            foreach (Pin dbPin in dbPins)
+            {
                 if (dbPin.parent_map_id == currentMap.map_id)
                 {
                     Image pin = new Image();
@@ -213,7 +215,7 @@ namespace NotetakingApp
             dbPin.parent_map_id = currentMap.map_id;
             DB.Add(dbPin);
 
-            button.Name = "id"+DB.getPins().Last().pin_id;
+            button.Name = "id" + DB.getPins().Last().pin_id;
             button.Content = pin;
 
             pins.Add(button);
@@ -244,7 +246,7 @@ namespace NotetakingApp
             dbMap.map_x = rightClickPoint.X;
             dbMap.map_y = rightClickPoint.Y;
             dbMap.parent_map_id = currentMap.map_id;
-            
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a Map Image File";
             openFileDialog.CheckFileExists = true;
@@ -282,7 +284,8 @@ namespace NotetakingApp
                         pin.Height = MAX_PIN_SIZE / zoomPercentage;
                     }
 
-                    foreach (Button map in maps) {
+                    foreach (Button map in maps)
+                    {
                         map.Width = MAX_PIN_SIZE / zoomPercentage;
                         map.Height = MAX_PIN_SIZE / zoomPercentage;
                     }
@@ -321,8 +324,8 @@ namespace NotetakingApp
 
             for (int i = 0; i < dbMaps.Count; i++)
             {
-                Console.WriteLine("count: "+maps.Count);
-                Console.WriteLine(dbMaps[i].parent_map_id + " "+ currentMap.map_id);
+                Console.WriteLine("count: " + maps.Count);
+                Console.WriteLine(dbMaps[i].parent_map_id + " " + currentMap.map_id);
 
                 if (dbMaps[i].parent_map_id == currentMap.map_id)
                 {
@@ -340,22 +343,23 @@ namespace NotetakingApp
 
         private void Click_Map(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
-            BitmapImage img = attachedMap.LoadImage();
-            imgSource.Source = img;
-            currentMap = attachedMap;
-            foreach (Button map in maps)
-                pinCanvas.Children.Remove(map);
-            foreach (Button pin in pins)
-                pinCanvas.Children.Remove(pin);
-            maps.Clear();
-            pins.Clear();
-            dbInit();
-            mapCanvas.RenderTransform.Value.Scale(1, 1);
+                Button button = sender as Button;
+                Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
+                BitmapImage img = attachedMap.LoadImage();
+                imgSource.Source = img;
+                currentMap = attachedMap;
+                foreach (Button map in maps)
+                    pinCanvas.Children.Remove(map);
+                foreach (Button pin in pins)
+                    pinCanvas.Children.Remove(pin);
+                maps.Clear();
+                pins.Clear();
+                dbInit();
+                mapCanvas.RenderTransform.Value.Scale(1, 1);
         }
 
-            private void Click_Pin(object sender, RoutedEventArgs e) {
+        private void Click_Pin(object sender, RoutedEventArgs e)
+        {
             Console.WriteLine("pin clicked");
 
             Button button = sender as Button;
@@ -417,12 +421,12 @@ namespace NotetakingApp
             textCanvas.Children.Add(closeButton);
             textCanvas.Height = 75;
             textCanvas.Width = 200;
-            Canvas.SetTop(pinText,25);
+            Canvas.SetTop(pinText, 25);
             Canvas.SetTop(pinTitle, 0);
             Canvas.SetLeft(closeButton, 178);
             Canvas.SetLeft(deleteButton, 153);
             textCanvas.Name = button.Name;
-            
+
             Canvas.SetLeft(textCanvas, attachedPin.pin_x);
             Canvas.SetTop(textCanvas, attachedPin.pin_y);
             pinCanvas.Children.Add(textCanvas);
@@ -436,7 +440,8 @@ namespace NotetakingApp
             }
         }
 
-        private void SaveAndClosePin() {
+        private void SaveAndClosePin()
+        {
             Pin attachedPin = DB.GetPin(Int32.Parse(displayCanvas.Name.Substring(2)));
 
             TextBox titlebox = displayCanvas.Children[0] as TextBox;
@@ -469,5 +474,6 @@ namespace NotetakingApp
 
             pinCanvas.Children.Remove(pin);
         }
+
     }
 }
