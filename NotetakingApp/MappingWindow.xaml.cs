@@ -32,7 +32,6 @@ namespace NotetakingApp
         private Point rightClickPoint = new Point();
         List<Button> pins = new List<Button>();
         List<Button> maps = new List<Button>();
-        //List<Point> rightClickPoints = new List<Point>();
         private double zoomPercentage = 1;
         private Canvas displayCanvas;
 
@@ -358,6 +357,7 @@ namespace NotetakingApp
 
             private void Click_Pin(object sender, RoutedEventArgs e) {
             Console.WriteLine("pin clicked");
+
             Button button = sender as Button;
             Pin attachedPin = DB.GetPin(int.Parse(button.Name.Substring(2)));
 
@@ -374,7 +374,8 @@ namespace NotetakingApp
             pinText.MinLines = 3;
             pinText.MaxLines = 10;
             pinText.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            pinTitle.Width = 200;
+
+            pinTitle.Width = 150;
             if (attachedPin.pin_title != null)
                 pinTitle.Text = attachedPin.pin_title;
             else
@@ -382,12 +383,44 @@ namespace NotetakingApp
             pinTitle.MinLines = 1;
             pinTitle.MaxLines = 1;
             pinTitle.Height = 23;
+
+            Button closeButton = new Button();
+            closeButton.Click += new RoutedEventHandler(SaveAndCloseButton);
+            closeButton.ClickMode = ClickMode.Press;
+            closeButton.ToolTip = "Close Pin";
+
+            Image closeImage = new Image();
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.UriSource = new Uri("Assets/Navigation/close.png", UriKind.Relative);
+            bmp.EndInit();
+            closeImage.Source = bmp;
+            closeButton.Content = closeImage;
+
+            Button deleteButton = new Button();
+            deleteButton.Click += new RoutedEventHandler(DeletePin);
+            deleteButton.ClickMode = ClickMode.Press;
+            deleteButton.ToolTip = "Delete Pin";
+
+            Image deleteImage = new Image();
+            BitmapImage bmp2 = new BitmapImage();
+            bmp2.BeginInit();
+            bmp2.UriSource = new Uri("Assets/Navigation/delete.png", UriKind.Relative);
+            bmp2.EndInit();
+            deleteImage.Source = bmp2;
+            deleteButton.Content = deleteImage;
+
             Canvas textCanvas = new Canvas();
             textCanvas.Children.Add(pinTitle);
             textCanvas.Children.Add(pinText);
-            textCanvas.Height = 70;
+            textCanvas.Children.Add(deleteButton);
+            textCanvas.Children.Add(closeButton);
+            textCanvas.Height = 75;
             textCanvas.Width = 200;
-            Canvas.SetTop(pinText,23);
+            Canvas.SetTop(pinText,25);
+            Canvas.SetTop(pinTitle, 0);
+            Canvas.SetLeft(closeButton, 178);
+            Canvas.SetLeft(deleteButton, 153);
             textCanvas.Name = button.Name;
             
             Canvas.SetLeft(textCanvas, attachedPin.pin_x);
@@ -416,6 +449,25 @@ namespace NotetakingApp
 
             DB.Update(attachedPin);
             pinCanvas.Children.Remove(displayCanvas);
+        }
+
+        private void SaveAndCloseButton(object sender, RoutedEventArgs e)
+        {
+            SaveAndClosePin();
+        }
+
+        private void DeletePin(object sender, RoutedEventArgs e)
+        {
+            Pin attachedPin = DB.GetPin(Int32.Parse(displayCanvas.Name.Substring(2)));
+            DB.DeletePin(attachedPin.pin_id);
+            pinCanvas.Children.Remove(displayCanvas);
+            Button pin = null;
+
+            foreach (Button mypin in pins)
+                if (int.Parse(mypin.Name.Substring(2)) == attachedPin.pin_id)
+                    pin = mypin;
+
+            pinCanvas.Children.Remove(pin);
         }
     }
 }
