@@ -151,6 +151,7 @@
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
             <Setter Property="Background" >
+                
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                         <GradientStop Color="Transparent" Offset="0.2"/>
@@ -180,6 +181,7 @@
                                     VerticalAlignment="Center" Name="content"/>
                             </Grid>
                         </Border>
+                        
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
 
@@ -198,7 +200,10 @@
 
                             </Trigger>
 
-
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#563232"/>
+                            </Trigger>
+                            
                             <Trigger Property="IsEnabled" Value="False">
 
 
@@ -242,22 +247,32 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Style="{StaticResource TopButton}"  Grid.Column="0" >
+            <Button Style="{StaticResource TopButton}"  Grid.Column="0" Click="BtnCampaign" ClickMode="Press"
+                    ToolTip="Campaign Selector"
+                    >
                 <Image Source="Assets/Navigation/back.png" />
             </Button>
 
             <Grid Name="movingArea" MouseDown="Window_MouseDown" Grid.Column="1"></Grid>
 
-            <Button Style="{StaticResource TopButton}" Grid.Column="2" >
+            <Button Style="{StaticResource TopButton}" Grid.Column="2" Click="BtnSettings" ClickMode="Press"
+                    ToolTip="Settings"
+                    >
                 <Image Source="Assets/Navigation/settings.png" />
             </Button>
-            <Button Style="{StaticResource TopButton}" Grid.Column="3" >
+            <Button Style="{StaticResource TopButton}" Grid.Column="3" Click="BtnMin" ClickMode="Press"
+                    ToolTip="Minimize"
+                    >
                 <Image Source="Assets/Navigation/min.png" />
             </Button>
-            <Button Style="{StaticResource TopButton}"   Grid.Column="4" >
+            <Button Style="{StaticResource TopButton}"   Grid.Column="4" Click="BtnMax" ClickMode="Press"
+                    ToolTip="Maximize"
+                    >
                 <Image Source="Assets/Navigation/max.png" />
             </Button>
-            <Button Style="{StaticResource TopButton}"   Grid.Column="5" >
+            <Button Style="{StaticResource TopButton}"   Grid.Column="5" Click="BtnClose" ClickMode="Press"
+                    ToolTip="Close"
+                    >
                 <Image Source="Assets/Navigation/close.png" />
             </Button>
 
@@ -283,7 +298,7 @@
             </Grid.ColumnDefinitions>
 
             
-            <Button Style="{StaticResource InformButton}" Name="mainNavButton" Grid.Column="0" Content="Main Menu" Click="BtnClickMain" ClickMode="Press" Background="#ffc18c" Height="50"/>
+            <Button Style="{StaticResource InformButton}" Name="mainNavButton" Grid.Column="0" Content="Dashboard" Click="BtnClickMain" ClickMode="Press" Background="#ffc18c" Height="50"/>
             <Button Style="{StaticResource InformButton}" Name="mapNavButton" Grid.Column="1" Content="Mapping" Click="BtnClickMap" ClickMode="Press" Background="#ffc18c" Height="50"/>
             <Button Style="{StaticResource InformButton}" Name="noteNavButton" Grid.Column="2" Content="Note-taking" ClickMode="Press" Click="BtnClickNote" Background="#ffc18c"/>
             <Button Style="{StaticResource InformButton}" Name="rngNavButton" Grid.Column="3" Content="RNG Utilities" ClickMode="Press" Click="BtnClickRNG" Background="#ffc18c"/>

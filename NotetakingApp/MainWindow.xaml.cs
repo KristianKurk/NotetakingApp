@@ -23,6 +23,7 @@ namespace NotetakingApp
     /// </summary>
     public partial class MainWindow : Window
     {
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -34,17 +35,19 @@ namespace NotetakingApp
             */
             //Connection.CreateNewCampaign("AwesomeLand");
 
-
-
+           
 
         }
         private void BtnClickSettings(object sender, RoutedEventArgs e)
         {
+
             DisableButton("settingsNavButton");
             main.Content = new SettingsWindow();
         }
         private void BtnClickMain(object sender, RoutedEventArgs e)
         {
+          
+
             DisableButton("mainNavButton");
             main.Content = new MainMenu();
         }
@@ -102,10 +105,56 @@ namespace NotetakingApp
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
+            {
+                this.WindowState = System.Windows.WindowState.Normal;
                 this.DragMove();
+            }
+
+                
         }
 
-       
-        
+        private void BtnSettings(object sender, RoutedEventArgs e)
+        {
+            
+
+            DisableButton("settingsNavButton");
+            main.Content = new SettingsWindow();
+           
+        }
+        private void BtnMin(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+        private void BtnMax(object sender, RoutedEventArgs e)
+        {
+            //Icon should change depending on window state
+
+            Button button = sender as Button;
+
+            //Maximize window or else turn back to normal
+
+            if (this.WindowState != WindowState.Maximized)
+            {
+                button.ToolTip = "Restore Down";
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                button.ToolTip = "Maximize";
+                this.WindowState = System.Windows.WindowState.Normal;
+            }
+
+        }
+        private void BtnClose(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void BtnCampaign(object sender, RoutedEventArgs e)
+        {
+           
+           // main.Content = new SettingsWindow();
+        }
+
+
     }
 }

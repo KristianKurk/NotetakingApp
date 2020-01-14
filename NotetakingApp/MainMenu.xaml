@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainMenu">
+      Title="MainMenu"
+  
+      >
 
     <Grid>
         
