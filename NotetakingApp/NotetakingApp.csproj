@@ -200,14 +200,17 @@
     <Resource Include="Assets\Pins\personpin.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Pins\pin.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Navigation\back.png" />
     <Resource Include="Assets\Navigation\close.png" />
     <Resource Include="Assets\Navigation\max.png" />
     <Resource Include="Assets\Navigation\min.png" />
     <Resource Include="Assets\Navigation\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Pins\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Navigation\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />

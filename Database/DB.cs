@@ -112,7 +112,10 @@ namespace Database
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("id", id, DbType.Int32, ParameterDirection.Input);
                 var output = cnn.Query<Pin>("select * from Pin where pin_id = :id", parameters);
-                return output.First();
+                if (output.Count() > 0)
+                    return output.First();
+                else
+                    return new Pin();
             }
         }
 
