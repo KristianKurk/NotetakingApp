@@ -129,7 +129,7 @@
         
          <!--
         <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
-                       Background="#ffc18c"
+                       Background="#ffe5cf"
                        Height="750"
                        >
 
@@ -180,7 +180,7 @@
 
         
         <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
-                       Background="#ffc18c"
+                       Background="#ffe5cf"
                MinHeight="250">
 
             <Grid.RowDefinitions>

@@ -242,7 +242,7 @@
                  Width="80"
                  ClickMode="Press" 
                  Click="GenerateData" 
-                 Background="#ffc18c" 
+                 Background="#ffe5cf" 
                  Margin="0,20,0,20"/>
 
         <StackPanel>

@@ -92,7 +92,7 @@ namespace NotetakingApp
                 };
             foreach (Button b in buttons) {
                 b.IsEnabled = true;
-                b.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
+                b.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
             }
         }
 
