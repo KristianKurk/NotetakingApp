@@ -44,7 +44,7 @@ namespace NotetakingApp
 
             object button = rngGrid.FindName(btn);
             Button button1 = (Button)button;
-            button1.Background = new SolidColorBrush(Color.FromArgb(255, 86, 50, 50));
+            button1.Background = new SolidColorBrush(Color.FromArgb(255, 86, 50, 50)) { Opacity = 0 };
 
             //  button1.IsEnabled = false;
             button1.Focusable = false;
@@ -69,8 +69,8 @@ namespace NotetakingApp
             navb1.IsEnabled = true;
             navb2.IsEnabled = true;
                  
-            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
-            navb1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)){ Opacity = 1 };
+            navb1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)){ Opacity = 1 };
 
         }
     }

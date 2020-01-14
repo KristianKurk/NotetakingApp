@@ -15,19 +15,33 @@
     <StackPanel >
             
         <!--Text Boxes-->
-        <StackPanel Background="#5e4d4d" Margin="0,20,0,20">
-            <TextBlock 
+       
+            <StackPanel Background="#5e4d4d" Margin="0,20,0,20">
+
+            <Border  Height="50" Margin="20"  BorderThickness="1" 
+                         
+                         CornerRadius="10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                        <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                        <GradientStop Color="#b38d6d" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <TextBlock 
             Margin="0,20,0,0"
             HorizontalAlignment="Center" 
              
             Text="Data should be seperated by commas."/>
-        <TextBlock 
+            </Border>
+            <TextBlock 
              Margin="0,0,0,20"
             HorizontalAlignment="Center" 
               
             Text="Example: John,Jane,Dad,1,3,5"/>
+          
         </StackPanel>
-
+       
         <TextBox Name="rngTitle"></TextBox>
         <!--Text Box-->
 
