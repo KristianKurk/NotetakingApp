@@ -1,4 +1,4 @@
-# NotetakingApp
+# Scribe
 Final project for Kristian Kurktchiev and Nami Pour Sabet Ali
 
 
