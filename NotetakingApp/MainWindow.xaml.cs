@@ -38,12 +38,7 @@ namespace NotetakingApp
            
 
         }
-        private void BtnClickSettings(object sender, RoutedEventArgs e)
-        {
-
-            DisableButton("settingsNavButton");
-            main.Content = new SettingsWindow();
-        }
+        
         private void BtnClickMain(object sender, RoutedEventArgs e)
         {
           
@@ -92,8 +87,8 @@ namespace NotetakingApp
                 (Button)grid.FindName("noteNavButton"),
                 (Button)grid.FindName("rngNavButton"),
                 (Button)grid.FindName("mapNavButton"),
-                (Button)grid.FindName("mainNavButton"),
-                (Button)grid.FindName("settingsNavButton")
+                (Button)grid.FindName("mainNavButton")
+                
                 };
             foreach (Button b in buttons) {
                 b.IsEnabled = true;
@@ -115,9 +110,8 @@ namespace NotetakingApp
 
         private void BtnSettings(object sender, RoutedEventArgs e)
         {
-            
 
-            DisableButton("settingsNavButton");
+            EnableAll();
             main.Content = new SettingsWindow();
            
         }
@@ -151,8 +145,8 @@ namespace NotetakingApp
         }
         private void BtnCampaign(object sender, RoutedEventArgs e)
         {
-           
-           // main.Content = new SettingsWindow();
+            EnableAll(); 
+            main.Content = new CampaignSelector();
         }
 
 
