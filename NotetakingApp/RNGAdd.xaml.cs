@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BLL;
+using Database;
 
 namespace NotetakingApp
 {
@@ -26,8 +28,13 @@ namespace NotetakingApp
         }
         private void SaveText(object sender, RoutedEventArgs e)
         {
-            
-           
+            string text = rngTB.Text;
+            string title = rngTitle.Text;
+
+            RandomGenerator rng = new RandomGenerator();
+            rng.rng_title = title;
+            rng.rng_content = text;
+            DB.Add(rng);
         }
     }
 }

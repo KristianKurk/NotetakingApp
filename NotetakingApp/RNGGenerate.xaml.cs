@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using Database;
+using BLL;
 
 namespace NotetakingApp
 {
@@ -25,6 +27,7 @@ namespace NotetakingApp
         {
             InitializeComponent();
             rngCombo.SelectedIndex = 0;
+            rngCombo.ItemsSource = DB.getRandomGenerators();
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -33,8 +36,33 @@ namespace NotetakingApp
         }
         private void GenerateData(object sender, RoutedEventArgs e)
         {
+            RandomGenerator rng = rngCombo.SelectedItem as RandomGenerator;
+            List<String> options = rng.rng_content.Split(',').ToList();
+            foreach (string s in options)
+                s.Trim();
 
+            int number = 0;
+            try
+            {
+                if (int.Parse(NumberTextBox.Text.Trim()) < options.Count)
+                    number = int.Parse(NumberTextBox.Text.Trim());
+                else
+                    number = options.Count;
+            }
+            catch (FormatException exc) {
+                Console.WriteLine(exc.Message);
+            }
+            Random random = new Random();
 
+            string answer = "";
+            for (int i = 0; i < number; i++) {
+                int index = random.Next(options.Count);
+                answer = answer + " " + options[index];
+                options.RemoveAt(index);
+            }
+
+            displayText.Text = answer;
+            Console.WriteLine(answer);
         }
     }
 }

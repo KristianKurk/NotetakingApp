@@ -218,7 +218,6 @@ namespace NotetakingApp
             button.Content = pin;
 
             pins.Add(button);
-            //rightClickPoints.Add(rightClickPoint);
             ResizePins();
 
             pinCanvas.Children.Add(button);
@@ -248,20 +247,27 @@ namespace NotetakingApp
             dbMap.parent_map_id = currentMap.map_id;
             
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a Map Image File";
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.ReadOnlyChecked = true;
+            openFileDialog.ShowReadOnly = true;
             openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
             var result = openFileDialog.ShowDialog();
-            byte[] buffer = File.ReadAllBytes(openFileDialog.FileName);
-            dbMap.map_file = buffer;
+            if (openFileDialog.FileName != "")
+            {
+                byte[] buffer = File.ReadAllBytes(openFileDialog.FileName);
+                dbMap.map_file = buffer;
 
-            DB.Add(dbMap);
-            button.Name = "mid" + DB.GetMaps().Last().map_id;
-            button.Content = map;
+                DB.Add(dbMap);
+                button.Name = "mid" + DB.GetMaps().Last().map_id;
+                button.Content = map;
 
-            maps.Add(button);
-            //rightClickPoints.Add(rightClickPoint);
-            
-            pinCanvas.Children.Add(button);
-            ResizePins();
+                maps.Add(button);
+
+                pinCanvas.Children.Add(button);
+                ResizePins();
+            }
         }
 
         private void ResizePins()
@@ -347,6 +353,7 @@ namespace NotetakingApp
             maps.Clear();
             pins.Clear();
             dbInit();
+            mapCanvas.RenderTransform.Value.Scale(1, 1);
         }
 
             private void Click_Pin(object sender, RoutedEventArgs e) {

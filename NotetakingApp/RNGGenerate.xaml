@@ -227,11 +227,6 @@
                 </Border>
                 <ComboBox Name="rngCombo" Margin="0,0,0,20" >
 
-                    <!-- RNG Data Lists go Here -->
-                    <ComboBoxItem>Test1</ComboBoxItem>
-                    <ComboBoxItem>Test</ComboBoxItem>
-                    <ComboBoxItem>Test</ComboBoxItem>
-
                 </ComboBox>
             </StackPanel>
         </Grid>
@@ -246,7 +241,7 @@
                  Margin="0,20,0,20"/>
 
         <StackPanel>
-            
+            <TextBlock  Name="displayText" Height="279"></TextBlock>
             <!-- Generate Data Goes Here -->
             
         </StackPanel>
