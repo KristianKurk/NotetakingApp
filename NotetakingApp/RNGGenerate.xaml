@@ -237,8 +237,28 @@
                  Width="80"
                  ClickMode="Press" 
                  Click="GenerateData" 
-                 Background="#ffe5cf" 
-                 Margin="0,20,0,20"/>
+                 
+                 Margin="0,20,0,20">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#ffe5cf"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#debb9e"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
         <StackPanel>
             <TextBlock  Name="displayText" Height="279"></TextBlock>

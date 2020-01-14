@@ -68,11 +68,10 @@ namespace NotetakingApp
 
             navb1.IsEnabled = true;
             navb2.IsEnabled = true;
-     
+                 
+            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+            navb1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
 
-            navb1.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 193, 140));
-      
         }
     }
 }

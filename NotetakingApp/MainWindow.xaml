@@ -10,12 +10,12 @@
        
         >
     
-    <!-- Change Beige to Lighter Beige/White-->
-    
+
     
     <!--Removes White Resize Bar-->
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" GlassFrameThickness="0,0,0,1" CornerRadius="0" />
+        
     </WindowChrome.WindowChrome>
 
     <!--   ResizeMode="NoResize"
@@ -28,13 +28,19 @@
 
     <Window.Resources>
        
+        
+        
+        
+        
         <Style x:Key="MyFocusVisual">
+           
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Control}">
                         <Grid>
                            <!-- <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/> -->
                             <!--  <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="0" />-->
+                            
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -130,6 +136,8 @@
         </Style>
         <!--Gradient Back-->
         <Style x:Key="stackGradient" TargetType="StackPanel">
+            <Setter Property="Margin" Value="0" />
+            
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
@@ -139,6 +147,11 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                    <Setter Property="Margin" Value="5" />
+                </DataTrigger>
+            </Style.Triggers>
 
         </Style>
         
@@ -230,6 +243,12 @@
 
 
     <StackPanel Style="{StaticResource stackGradient}" >
+
+
+      
+
+
+
         <!-- Top Navigation -->
         <!-- MouseDown="Window_MouseDown" -->
 
