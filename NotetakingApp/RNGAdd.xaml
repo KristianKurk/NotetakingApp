@@ -14,44 +14,73 @@
 
     <StackPanel >
             
-        <!--Text Boxes-->
+        <!--Guiding Text Box-->
        
-            <StackPanel Background="#5e4d4d" Margin="0,20,0,20">
+            <StackPanel Background="Transparent" Margin="0,40,0,20">
 
-            <Border  Height="50" Margin="20"  BorderThickness="1" 
+            <Border Width="300" Height="50" Margin="0"  BorderThickness="1" 
                          
                          CornerRadius="10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                         <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                        <GradientStop Color="#ffe5cf" Offset="0.1"/>
                         <GradientStop Color="#b38d6d" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
 
                 <TextBlock 
-            Margin="0,20,0,0"
-            HorizontalAlignment="Center" 
-             
-            Text="Data should be seperated by commas."/>
+                  Margin="0,8,0,0"
+                  HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    >
+                    
+                    Data should be seperated by commas. 
+                    <LineBreak/> 
+                    Example: John,Jane,Dad,1,3,5
+                    
+                </TextBlock>
             </Border>
-            <TextBlock 
-             Margin="0,0,0,20"
-            HorizontalAlignment="Center" 
-              
-            Text="Example: John,Jane,Dad,1,3,5"/>
+            
           
         </StackPanel>
-       
-        <TextBox Name="rngTitle"></TextBox>
-        <!--Text Box-->
+        
+        <!--Text Box List Title-->
 
-        <TextBox HorizontalContentAlignment="Center" Name="rngTB" Height="70">
+        <TextBox HorizontalContentAlignment="Center" Name="rngTitle" Height="30" Width="300" FontSize="20" Margin="0,0,0,20">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
-                                <Label Content="Start Typing Here!" Foreground="LightGray" />
+                                <Label Content="List title goes Here!" Foreground="LightGray" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Null}">
+                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Background" Value="#f5d2b5" />
+                        </Trigger>
+
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <!--Text Box-->
+
+        <TextBox HorizontalContentAlignment="Center" Name="rngTB" Height="30" Width="300" FontSize="20">
+            <TextBox.Style>
+                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <Style.Resources>
+                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
+                            <VisualBrush.Visual>
+                                <Label Content="Data list goes Here!" Foreground="LightGray" />
                             </VisualBrush.Visual>
                         </VisualBrush>
                     </Style.Resources>

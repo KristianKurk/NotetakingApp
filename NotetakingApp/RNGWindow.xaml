@@ -52,10 +52,17 @@
                         <Border Name="border" 
         				BorderThickness="1,1,1,0"
         				CornerRadius="8,8,0,0"
-        				BorderBrush="Black" 
-        				
         				Background="{TemplateBinding Background}">
-                            <Grid >
+                            
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
+                                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                    <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                                    <GradientStop Color="#563232" Offset="0.85"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            
+                                    <Grid >
                                 <ContentPresenter HorizontalAlignment="Center" 
         	                           VerticalAlignment="Center" Name="contentShadow" 
         					Style="{StaticResource ShadowStyle}">
@@ -105,8 +112,17 @@
 
 
     <!--Content-->
+    <Border  BorderThickness="5,5,5,0" Grid.Row="0">
 
-    <Grid DockPanel.Dock="Top" Name="rngGrid" >
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
+                <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                <GradientStop Color="#563232" Offset="0.4"/>
+                <GradientStop Color="#332323" Offset="0.65"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        
+        <Grid DockPanel.Dock="Top" Name="rngGrid" >
 
         <Grid.RowDefinitions>
             
@@ -119,20 +135,25 @@
        
         <!--Top Action/Nav Bar-->
 
-        <Border BorderBrush="#563232" BorderThickness="1" Grid.Row="0">
+        
+           
+            
             <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Row="0"
                        Background="Transparent">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Style="{StaticResource InformButton}" Name="addData" Content="Add Data List" Grid.Column="0" Height="40"  ClickMode="Press" Click="BtnAddRNG" Background="#ffe5cf" Margin="0,20,0,0"/>
-                <Button Style="{StaticResource InformButton}" Name="generateRNG" Content="Generate Randomized Data" Grid.Column="1"  Height="40"  ClickMode="Press" Click="BtnGenerate" Background="#ffe5cf" Margin="0,20,0,0"/>
+                <Button Style="{StaticResource InformButton}" Name="addData" Content="Add Data List" Grid.Column="1" Height="40"  ClickMode="Press" Click="BtnAddRNG" Background="#ffe5cf" Margin="0,20,0,0"/>
+                <Button Style="{StaticResource InformButton}" Name="generateRNG" Content="Generate Randomized Data" Grid.Column="3"  Height="40"  ClickMode="Press" Click="BtnGenerate" Background="#ffe5cf" Margin="0,20,0,0"/>
 
             </Grid>
-        </Border>
+       
 
         <!-- Text Box to Add or Randomly Generated Data-->
         <Frame NavigationUIVisibility="Hidden" Name="rng" Grid.Row="1"></Frame>
@@ -174,7 +195,7 @@
         
         
     </Grid>
-
+    </Border>
 
 
 
