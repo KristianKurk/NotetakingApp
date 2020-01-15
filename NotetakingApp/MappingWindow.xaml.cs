@@ -173,7 +173,9 @@ namespace NotetakingApp
                     map.Stretch = Stretch.UniformToFill;
 
                     Button button = new Button();
-                    button.Click += new RoutedEventHandler(Click_Map);
+                    //button.Click += new RoutedEventHandler(Click_Map);
+                    button.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(Click_Map);
+                    button.MouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
                     button.Background = Brushes.Transparent;
                     button.BorderThickness = new Thickness(0);
 
@@ -237,7 +239,9 @@ namespace NotetakingApp
             map.Stretch = Stretch.UniformToFill;
 
             Button button = new Button();
-            button.Click += new RoutedEventHandler(Click_Map);
+            //button.Click += new RoutedEventHandler(Click_Map);
+            button.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(Click_Map);
+            button.MouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
             button.Background = Brushes.Transparent;
             button.BorderThickness = new Thickness(0);
 
@@ -341,8 +345,9 @@ namespace NotetakingApp
             }
         }
 
-        private void Click_Map(object sender, RoutedEventArgs e)
+        private void Click_Map(object sender, MouseButtonEventArgs e)
         {
+            Console.WriteLine("the button was clicked");
                 Button button = sender as Button;
                 Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
                 BitmapImage img = attachedMap.LoadImage();
@@ -356,6 +361,10 @@ namespace NotetakingApp
                 pins.Clear();
                 dbInit();
                 mapCanvas.RenderTransform.Value.Scale(1, 1);
+        }
+        private void Right_Click_Map(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("the button was clicked");
         }
 
         private void Click_Pin(object sender, RoutedEventArgs e)
