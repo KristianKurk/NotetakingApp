@@ -28,7 +28,15 @@ namespace NotetakingApp
         }
         private void SaveText(object sender, RoutedEventArgs e)
         {
-            string text = rngTB.Text;
+
+            TextRange textRange = new TextRange(
+                 // TextPointer to the start of content in the RichTextBox.
+                rngTB.Document.ContentStart,
+                // TextPointer to the end of content in the RichTextBox.
+                rngTB.Document.ContentEnd
+            );       
+
+            string text = textRange.Text;
             string title = rngTitle.Text;
 
             if (text != "" && title != "")

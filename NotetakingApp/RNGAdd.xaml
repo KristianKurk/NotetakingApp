@@ -30,9 +30,10 @@
                 </Border.Background>
 
                 <TextBlock 
-                  Margin="0,8,0,0"
+                  Margin="0,0,0,0"
                   HorizontalAlignment="Center"
                     TextAlignment="Center"
+                    VerticalAlignment="Center"
                     >
                     
                     Data should be seperated by commas. 
@@ -74,9 +75,15 @@
         </TextBox>
         <!--Text Box-->
 
-        <TextBox HorizontalContentAlignment="Center" Name="rngTB" Height="30" Width="300" FontSize="20">
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+        <!-- Reference RichTextBox from NoteTaking
+        <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" >
+
+        </RichTextBox>
+        -->
+
+        <RichTextBox HorizontalContentAlignment="Center" Name="rngTB" MaxHeight="200" MinHeight="30" Width="300" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+            <RichTextBox.Style>
+                <Style TargetType="RichTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>
                         <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
                             <VisualBrush.Visual>
@@ -85,20 +92,15 @@
                         </VisualBrush>
                     </Style.Resources>
                     <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
+                        
                         <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter Property="Background" Value="#f5d2b5" />
                         </Trigger>
                         
                     </Style.Triggers>
                 </Style>
-            </TextBox.Style>
-        </TextBox>
+            </RichTextBox.Style>
+        </RichTextBox>
 
         <!--Save Button-->
         <Button  
