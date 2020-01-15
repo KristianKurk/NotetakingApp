@@ -115,7 +115,7 @@
 
 
 
-                <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" >
+                <RichTextBox MinHeight="200" Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" >
                     
                 </RichTextBox>
             </DockPanel>

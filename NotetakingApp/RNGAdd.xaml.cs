@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BLL;
 using Database;
+using Microsoft.Win32;
 
 namespace NotetakingApp
 {
@@ -25,6 +27,22 @@ namespace NotetakingApp
         public RNGAdd()
         {
             InitializeComponent();
+        }
+
+        //Open file
+        private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+            if (dlg.ShowDialog() == true)
+            {
+                //Crash if file being used by something
+                //Can't open same file twice in a row, crashes
+
+                FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
+                TextRange range = new TextRange(rngTB.Document.ContentStart, rngTB.Document.ContentEnd);
+                range.Load(fileStream, DataFormats.Rtf);
+            }
         }
         private void SaveText(object sender, RoutedEventArgs e)
         {
