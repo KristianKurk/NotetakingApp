@@ -23,7 +23,7 @@ namespace NotetakingApp
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+        bool normalSize = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -99,16 +99,41 @@ namespace NotetakingApp
         //Top Nav Bar / Custom Window
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left && this.WindowState == System.Windows.WindowState.Normal)
+            {
+                this.DragMove();
+            }
+            /*
+            else if (System.Windows.Input.Mouse.LeftButton == MouseButtonState.Pressed && this.WindowState == WindowState.Maximized)
             {
                 this.WindowState = System.Windows.WindowState.Normal;
                 this.DragMove();
+
+            }
+            */
+            if (e.ClickCount == 2 && this.WindowState != WindowState.Maximized && normalSize == true)
+            {
+                this.WindowState = WindowState.Maximized;
+                
+            }
+            else if (e.ClickCount == 2 && this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = System.Windows.WindowState.Normal;
+                this.DragMove();
+               
             }
 
-                
-        }
 
-        private void BtnSettings(object sender, RoutedEventArgs e)
+        }
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.WindowState=System.Windows.WindowState.Normal;
+                this.DragMove();
+            }
+        }
+            private void BtnSettings(object sender, RoutedEventArgs e)
         {
 
             EnableAll();
