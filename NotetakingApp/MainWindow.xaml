@@ -253,7 +253,9 @@
         <!-- MouseDown="Window_MouseDown" -->
 
         <Grid Style="{StaticResource navTop}" 
-            MouseDown="Window_MouseDown" Name="topNav"  Height="20" >
+            MouseDown="Window_MouseDown" Name="topNav"  Height="20" 
+               MouseMove="Window_MouseMove"
+              >
 
            
 
