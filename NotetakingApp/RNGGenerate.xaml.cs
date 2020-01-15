@@ -36,33 +36,35 @@ namespace NotetakingApp
         }
         private void GenerateData(object sender, RoutedEventArgs e)
         {
-            RandomGenerator rng = rngCombo.SelectedItem as RandomGenerator;
-            List<String> options = rng.rng_content.Split(',').ToList();
-            foreach (string s in options)
-                s.Trim();
+            if (DB.getRandomGenerators().Count() > 0) {
+                RandomGenerator rng = rngCombo.SelectedItem as RandomGenerator;
+                List<String> options = rng.rng_content.Split(',').ToList();
+                foreach (string s in options)
+                    s.Trim();
 
-            int number = 0;
-            try
-            {
-                if (int.Parse(NumberTextBox.Text.Trim()) < options.Count)
-                    number = int.Parse(NumberTextBox.Text.Trim());
-                else
-                    number = options.Count;
-            }
-            catch (FormatException exc) {
-                Console.WriteLine(exc.Message);
-            }
-            Random random = new Random();
+                int number = 0;
+                try
+                {
+                    if (int.Parse(NumberTextBox.Text.Trim()) < options.Count)
+                        number = int.Parse(NumberTextBox.Text.Trim());
+                    else
+                        number = options.Count;
+                }
+                catch (FormatException exc) {
+                    Console.WriteLine(exc.Message);
+                }
+                Random random = new Random();
 
-            string answer = "";
-            for (int i = 0; i < number; i++) {
-                int index = random.Next(options.Count);
-                answer = answer + " " + options[index];
-                options.RemoveAt(index);
-            }
+                string answer = "";
+                for (int i = 0; i < number; i++) {
+                    int index = random.Next(options.Count);
+                    answer = answer + " " + options[index];
+                    options.RemoveAt(index);
+                }
 
-            displayText.Text = answer;
-            Console.WriteLine(answer);
+                displayText.Text = answer;
+                Console.WriteLine(answer);
+            }
         }
     }
 }

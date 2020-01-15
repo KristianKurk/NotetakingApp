@@ -31,10 +31,13 @@ namespace NotetakingApp
             string text = rngTB.Text;
             string title = rngTitle.Text;
 
-            RandomGenerator rng = new RandomGenerator();
-            rng.rng_title = title;
-            rng.rng_content = text;
-            DB.Add(rng);
+            if (text != "" && title != "")
+            {
+                RandomGenerator rng = new RandomGenerator();
+                rng.rng_title = title;
+                rng.rng_content = text;
+                DB.Add(rng);
+            }
         }
     }
 }
