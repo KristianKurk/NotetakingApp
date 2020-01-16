@@ -12,5 +12,10 @@ namespace BLL
         public string note_title { get; set; }
         public string note_content { get; set; }
         public int category_id { get; set; }
+
+        public override string ToString()
+        {
+            return note_title;
+        }
     }
 }
