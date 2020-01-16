@@ -48,7 +48,27 @@
             </Style.Triggers>
         </Style>
         <!--Note border Style-->
+        <Style x:Key="TreeViewHover">
+
+            <Setter Property="TreeView.Background" Value="#ffe5cf"/>
+            <Style.Triggers>
+                <Trigger Property="Border.IsMouseOver" Value="True">
+                    <Setter Property="Border.Background" Value="#d6c0ae" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Note border Style-->
         <Style x:Key="CategoryHover">
+
+            <Setter Property="Border.Background" Value="#b38d6d"/>
+            <Style.Triggers>
+                <Trigger Property="Border.IsMouseOver" Value="True">
+                    <Setter Property="Border.Background" Value="#876b54" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Tree View Style-->
+        <Style x:Key="TreeViewHover2">
 
             <Setter Property="Border.Background" Value="#b38d6d"/>
             <Style.Triggers>
@@ -256,35 +276,65 @@
                  - New Categories add StackPanel with Name Tag + TextBlock
                  - Notes go in the designated Category as TextBlocks      
                 -->
-                
-                <!-- Example Category-->
-                <StackPanel Name="defaultCat">
-                    
-                    <!-- Category -->
-                    <Border Style="{StaticResource CategoryHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,10,10,0" CornerRadius="12,12,0,0"  >
-                        <TextBlock 
-                        
-                        HorizontalAlignment="Center" 
-                        Foreground="White">
-                        Default
-                        </TextBlock>
-                    </Border>
-                    
-                    <!--Note 1-->
-                    <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
-                        <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote</TextBlock>
-                        
-                    </Border>
-                    <!--Note 2-->
-                    <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
-                        <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote2</TextBlock>
 
-                    </Border>
-                </StackPanel>
-                <!-- End of Example-->
+                    
 
-                
-                <!-- End of Categories and Notes-->
+                  
+                    <TreeView Background="Transparent">
+                        <TreeViewItem IsExpanded="True">
+                            
+                            <TreeViewItem.Header>
+                                    <!-- Category -->
+                                <Border Style="{StaticResource CategoryHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,10,10,0" CornerRadius="12,12,0,12" Width="200" >
+                                    <TextBlock HorizontalAlignment="Center" Foreground="White">
+                                         Default
+                                    </TextBlock>
+                                </Border>
+                            </TreeViewItem.Header>
+                            
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="12,12,12,12" Width="200" >
+                                        <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote</TextBlock>
+                                    </Border>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem IsExpanded="True">
+                                <TreeViewItem.Header>
+                                    <!-- Category -->
+                                    <Border Style="{StaticResource CategoryHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,10,10,0" CornerRadius="12,12,0,0" Width="100" >
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White">
+                                         Default2
+                                        </TextBlock>
+                                    </Border>
+                                </TreeViewItem.Header>
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
+                                            <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote2</TextBlock>
+                                        </Border>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
+                                            <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote2</TextBlock>
+                                        </Border>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+                            </TreeViewItem>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
+                                        <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote</TextBlock>
+                                    </Border>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+
+
+                    <!-- End of Categories and Notes-->
             </StackPanel>
 
         </Grid>
