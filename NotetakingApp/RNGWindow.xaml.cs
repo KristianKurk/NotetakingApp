@@ -15,11 +15,13 @@ using System.Windows.Shapes;
 
 namespace NotetakingApp
 {
+
     /// <summary>
     /// Interaction logic for RNGWindow.xaml
     /// </summary>
     public partial class RNGWindow : Page
     {
+        String disabledButton;
         public RNGWindow()
         {
             InitializeComponent();
@@ -27,16 +29,19 @@ namespace NotetakingApp
         
         private void BtnAddRNG(object sender, RoutedEventArgs e)
         {
+            disabledButton = "addData";
             DisableButton("addData");
             rng.Content = new RNGAdd();
         }
         private void BtnGenerate(object sender, RoutedEventArgs e)
         {
+            disabledButton = "generateRNG";
             DisableButton("generateRNG");
             rng.Content = new RNGGenerate();
         }
         private void BtnDice(object sender, RoutedEventArgs e)
         {
+            disabledButton = "rngDice";
             DisableButton("rngDice");
             rng.Content = new RNGDice();
         }
@@ -78,6 +83,27 @@ namespace NotetakingApp
             navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)){ Opacity = 1 };
             navb3.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
 
+        }
+        //Set button hover color
+        private void rngNavButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            Button button1 = (Button)sender;
+            if (disabledButton != button1.Name)
+            {
+                button1.Background = new SolidColorBrush(Color.FromRgb(250, 238, 227));
+            }
+        }
+
+        //Reset button hover color on mouse leave
+        private void rngNavButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button button1 = (Button)sender;
+
+            if (disabledButton != button1.Name)
+            {
+                button1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+            }
         }
     }
 }
