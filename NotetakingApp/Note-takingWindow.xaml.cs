@@ -30,9 +30,11 @@ namespace NotetakingApp
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
         }
+
+        //private members being used
         private bool dataChanged = false;
-        
         private string privateText = null;
+
         public string text
         {
             get
@@ -102,7 +104,6 @@ namespace NotetakingApp
         }
             catch (Exception ee) {
                 rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, "12");
-                
             }
         }
 

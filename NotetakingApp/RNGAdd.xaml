@@ -86,23 +86,26 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="1.25*"/>
+                <ColumnDefinition Width="300"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-                <Button Grid.Column="0"
+            
+            <!-- Import Button-->
+                <Button Grid.Column="1"
                         HorizontalAlignment="Right"
-            Margin="0,0,-10,0"
+            Margin="0,0,0,0"
             Width="30"
-            Command="ApplicationCommands.Open" VerticalAlignment="Bottom">
+            Command="ApplicationCommands.Open" VerticalAlignment="Top">
                     <Image Source="/Assets/NotetakingRTF/open.png" Width="16" Height="30" />
                 </Button>
 
-            <RichTextBox Grid.Column="1" HorizontalContentAlignment="Center" Name="rngTB" MaxHeight="200" MinHeight="30" Width="300" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+            <!-- Rich Text box-->
+            <RichTextBox Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Name="rngTB" MaxHeight="200" MinHeight="30" Width="270" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
                 <RichTextBox.Style>
                     <Style TargetType="RichTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
-                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
                                     <Label Content="Data list goes Here!" Foreground="LightGray" />
                                 </VisualBrush.Visual>
@@ -152,5 +155,11 @@
                 </Style>
             </Button.Style>
         </Button>
+
+
+        
+        <TextBlock><!-- Display Confirmation Message in here!!--></TextBlock>
+        
+        
     </StackPanel>
 </Page>

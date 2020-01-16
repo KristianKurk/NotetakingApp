@@ -24,6 +24,8 @@ namespace NotetakingApp
     public partial class MainWindow : Window
     {
         bool normalSize = true;
+    
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace NotetakingApp
             //Connection.CreateNewCampaign("AwesomeLand");
 
            
+
 
         }
         
@@ -97,8 +100,12 @@ namespace NotetakingApp
         }
 
         //Top Nav Bar / Custom Window
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+       
+            private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
+          
+
             if (e.ChangedButton == MouseButton.Left && this.WindowState == System.Windows.WindowState.Normal)
             {
                 this.DragMove();
@@ -115,10 +122,13 @@ namespace NotetakingApp
             {
                 this.WindowState = WindowState.Maximized;
                 
+                SetRestoreDownIcon();
+
             }
             else if (e.ClickCount == 2 && this.WindowState == WindowState.Maximized)
             {
                 this.WindowState = System.Windows.WindowState.Normal;
+                SetMaximizeIcon();
                 this.DragMove();
                
             }
@@ -130,7 +140,9 @@ namespace NotetakingApp
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 this.WindowState=System.Windows.WindowState.Normal;
+                SetMaximizeIcon();
                 this.DragMove();
+
             }
         }
             private void BtnSettings(object sender, RoutedEventArgs e)
@@ -193,5 +205,18 @@ namespace NotetakingApp
             bitmap.EndInit();
             icon.Source = bitmap;
         }
+
+        //Change icon when window is dragged to the top to maximize
+        private void topNav_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Maximized)
+            {
+                SetRestoreDownIcon();
+            }
+        }
+       
     }
+
+    
+
 }

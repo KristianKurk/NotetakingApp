@@ -35,6 +35,11 @@ namespace NotetakingApp
             DisableButton("generateRNG");
             rng.Content = new RNGGenerate();
         }
+        private void BtnDice(object sender, RoutedEventArgs e)
+        {
+            DisableButton("rngDice");
+            rng.Content = new RNGDice();
+        }
         private void DisableButton(string btn)
         {
 
@@ -50,8 +55,6 @@ namespace NotetakingApp
             button1.Focusable = false;
             button1.IsEnabled = false;
 
-
-
         }
         private void EnableAll()
         {
@@ -60,17 +63,20 @@ namespace NotetakingApp
 
             object button1 = rngGrid.FindName("addData");
             object button2 = rngGrid.FindName("generateRNG");
-          
+            object button3 = rngGrid.FindName("rngDice");
 
             Button navb1 = (Button)button1;
             Button navb2 = (Button)button2;
-          
+            Button navb3 = (Button)button3;
+
 
             navb1.IsEnabled = true;
             navb2.IsEnabled = true;
-                 
-            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)){ Opacity = 1 };
+            navb3.IsEnabled = true;
+
             navb1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)){ Opacity = 1 };
+            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)){ Opacity = 1 };
+            navb3.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
 
         }
     }
