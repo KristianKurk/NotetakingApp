@@ -9,6 +9,85 @@
       Title="SettingsWindow">
 
     <Grid>
-        
+        <Button Margin="45,23,572,375" Click="Note_Report_Click">
+            <TextBlock Text="Note Report"></TextBlock>
+        </Button>
+        <Button Margin="45,89,572,309" Click="RNG_Report_Click">
+            <TextBlock Text="RNG Report"></TextBlock>
+        </Button>
+        <Button Margin="43,157,574,241" Click="Note_Category_Report_Click">
+            <TextBlock Text="Note Category Report"></TextBlock>
+        </Button>
+        <Button Margin="42,221,575,177" Click="Map_Report_Click">
+            <TextBlock Text="Map Report"></TextBlock>
+        </Button>
+        <Grid Name="RNGSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="RNGSearchBar" TextChanged="RNG_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
+            <ListBox Grid.Row="1" Name="RNGfilteredListBox" Width="200" Height="80"></ListBox>
+            <StackPanel Grid.Row="2"  Orientation="Horizontal">
+                <Button Click="RNGSaveFile" Margin="100 0 20 0">
+                <TextBlock Text="Print" FontSize="20"/>
+            </Button>
+                <Button Click="RNGCloseMenu" Margin="20 0 100 0">
+                    <TextBlock Text="Close" FontSize="20"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Name="NoteSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="NoteSearchBar" TextChanged="Note_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
+            <ListBox Grid.Row="1" Name="NoteFilteredListBox" Width="200" Height="80"></ListBox>
+            <StackPanel Grid.Row="2"  Orientation="Horizontal">
+                <Button Click="NoteSaveFile" Margin="100 0 20 0">
+                    <TextBlock Text="Print" FontSize="20"/>
+                </Button>
+                <Button Click="NoteCloseMenu" Margin="20 0 100 0">
+                    <TextBlock Text="Close" FontSize="20"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Name="NoteCategorySearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="NoteCategorySearchBar" TextChanged="NoteCategory_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
+            <ListBox Grid.Row="1" Name="NoteCategoryFilteredListBox" Width="200" Height="80"></ListBox>
+            <StackPanel Grid.Row="2"  Orientation="Horizontal">
+                <Button Click="NoteCategorySaveFile" Margin="100 0 20 0">
+                    <TextBlock Text="Print" FontSize="20"/>
+                </Button>
+                <Button Click="NoteCategoryCloseMenu" Margin="20 0 100 0">
+                    <TextBlock Text="Close" FontSize="20"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Name="MapSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Name="MapSearchBar" TextChanged="Map_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
+            <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200" Height="80"></ListBox>
+            <StackPanel Grid.Row="2"  Orientation="Horizontal">
+                <Button Click="MapSaveFile" Margin="100 0 20 0">
+                    <TextBlock Text="Print" FontSize="20"/>
+                </Button>
+                <Button Click="MapCloseMenu" Margin="20 0 100 0">
+                    <TextBlock Text="Close" FontSize="20"/>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -33,5 +33,10 @@ namespace BLL
             image.Freeze();
             return image;
         }
+
+        public override string ToString()
+        {
+            return map_name;
+        }
     }
 }
