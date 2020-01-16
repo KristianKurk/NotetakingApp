@@ -156,11 +156,13 @@ namespace NotetakingApp
             {
                 button.ToolTip = "Restore Down";
                 this.WindowState = WindowState.Maximized;
+                SetRestoreDownIcon();
             }
             else
             {
                 button.ToolTip = "Maximize";
                 this.WindowState = System.Windows.WindowState.Normal;
+                SetMaximizeIcon();
             }
 
         }
@@ -174,6 +176,22 @@ namespace NotetakingApp
             main.Content = new CampaignSelector();
         }
 
+        private void SetMaximizeIcon() {
+            Image icon = switchIcon;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Navigation/maximize.png", UriKind.Relative);
+            bitmap.EndInit();
+            icon.Source = bitmap;
+        }
 
+        private void SetRestoreDownIcon() {
+            Image icon = switchIcon;
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Navigation/restoredown.png", UriKind.Relative);
+            bitmap.EndInit();
+            icon.Source = bitmap;
+        }
     }
 }

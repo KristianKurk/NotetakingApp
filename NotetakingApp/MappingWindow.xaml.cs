@@ -34,6 +34,8 @@ namespace NotetakingApp
         List<Button> maps = new List<Button>();
         private double zoomPercentage = 1;
         private Canvas displayCanvas;
+        private bool isHover = false;
+        List<Map> tbd = new List<Map>();
 
         public MappingWindow()
         {
@@ -54,14 +56,19 @@ namespace NotetakingApp
                 mapCanvas.CaptureMouse();
                 if (displayCanvas != null)
                     SaveAndClosePin();
+
+                AreYouSure.Visibility = Visibility.Hidden;
             };
 
-            mapCanvas.MouseRightButtonDown += (ss, ee) =>
+            mapCanvas.PreviewMouseRightButtonDown += (ss, ee) =>
             {
-                ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
-                cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-                cm.IsOpen = true;
-                rightClickPoint = ee.GetPosition(mapCanvas);
+                if (isHover == false) {
+                    ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
+                    cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+                    cm.IsOpen = true;
+                    rightClickPoint = ee.GetPosition(mapCanvas);
+                    Console.WriteLine("the button was clicked 1");
+                }
             };
 
             mapCanvas.MouseWheel += (ss, ee) =>
@@ -145,6 +152,9 @@ namespace NotetakingApp
 
                     Button button = new Button();
                     button.Click += new RoutedEventHandler(Click_Pin);
+                    button.MouseEnter += new MouseEventHandler(Mouse_Enter);
+                    button.MouseLeave += new MouseEventHandler(Mouse_Leave);
+                    button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Pin);
                     button.Background = Brushes.Transparent;
                     button.BorderThickness = new Thickness(0);
 
@@ -175,7 +185,9 @@ namespace NotetakingApp
                     Button button = new Button();
                     //button.Click += new RoutedEventHandler(Click_Map);
                     button.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(Click_Map);
-                    button.MouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
+                    button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
+                    button.MouseEnter += new MouseEventHandler(Mouse_Enter);
+                    button.MouseLeave += new MouseEventHandler(Mouse_Leave);
                     button.Background = Brushes.Transparent;
                     button.BorderThickness = new Thickness(0);
 
@@ -192,6 +204,16 @@ namespace NotetakingApp
             ResizePins();
         }
 
+        private void Mouse_Leave(object sender, MouseEventArgs e)
+        {
+            isHover = false;
+        }
+
+        private void Mouse_Enter(object sender, MouseEventArgs e)
+        {
+            isHover = true;
+        }
+
         private void Create_Pin_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Created a pin");
@@ -206,6 +228,9 @@ namespace NotetakingApp
 
             Button button = new Button();
             button.Click += new RoutedEventHandler(Click_Pin);
+            button.MouseEnter += new MouseEventHandler(Mouse_Enter);
+            button.MouseLeave += new MouseEventHandler(Mouse_Leave);
+            button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Pin);
             button.Background = Brushes.Transparent;
             button.BorderThickness = new Thickness(0);
 
@@ -241,7 +266,9 @@ namespace NotetakingApp
             Button button = new Button();
             //button.Click += new RoutedEventHandler(Click_Map);
             button.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(Click_Map);
-            button.MouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
+            button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
+            button.MouseEnter += new MouseEventHandler(Mouse_Enter);
+            button.MouseLeave += new MouseEventHandler(Mouse_Leave);
             button.Background = Brushes.Transparent;
             button.BorderThickness = new Thickness(0);
 
@@ -347,7 +374,6 @@ namespace NotetakingApp
 
         private void Click_Map(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("the button was clicked");
                 Button button = sender as Button;
                 Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
                 BitmapImage img = attachedMap.LoadImage();
@@ -362,9 +388,31 @@ namespace NotetakingApp
                 dbInit();
                 mapCanvas.RenderTransform.Value.Scale(1, 1);
         }
+
         private void Right_Click_Map(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("the button was clicked");
+            Button button = sender as Button;
+            Button child = AreYouSure.Children[1] as Button;
+            child.Name = button.Name;
+            TextBlock text = AreYouSure.Children[0] as TextBlock;
+            text.Text = "This action is irreversible. This will delete all inner maps and pins. Are you sure?";
+            child.Click -= DeletePin2;
+            child.Click += DeleteMap;
+            AreYouSure.Visibility = Visibility.Visible;
+        }
+
+        private void Right_Click_Pin(object sender, MouseButtonEventArgs e)
+        {
+            Button button = sender as Button;
+            Button child = AreYouSure.Children[1] as Button;
+            child.Name = button.Name;
+            TextBlock text = AreYouSure.Children[0] as TextBlock;
+            text.Text = "You are about to delete a pin. Are you sure?";
+            child.Click -= DeleteMap;
+            child.Click += DeletePin2;
+            AreYouSure.Visibility = Visibility.Visible;
+
+
         }
 
         private void Click_Pin(object sender, RoutedEventArgs e)
@@ -484,5 +532,63 @@ namespace NotetakingApp
             pinCanvas.Children.Remove(pin);
         }
 
+        private void DeletePin2(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Pin attachedPin = DB.GetPin(Int32.Parse(button.Name.Substring(2)));
+
+            Button pin = null;
+
+            foreach (Button mypin in pins)
+                if (int.Parse(mypin.Name.Substring(2)) == attachedPin.pin_id)
+                    pin = mypin;
+
+            pinCanvas.Children.Remove(pin);
+            AreYouSure.Visibility = Visibility.Hidden;
+        }
+
+        private void DeleteMap(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Map mapToBeDeleted = DB.GetMap(int.Parse(button.Name.Substring(3)));
+
+            tbd.Clear();
+            RecursiveGetMapChildren(mapToBeDeleted);
+            tbd.Add(mapToBeDeleted);
+
+            foreach (Pin pin in DB.getPins()) {
+                foreach (Map mymap in tbd) {
+                    if (pin.parent_map_id == mymap.map_id)
+                        DB.DeletePin(pin.pin_id);
+                }
+            }
+
+            foreach (Map mymap in tbd) {
+                DB.DeleteMap(mymap.map_id);
+            }
+
+            Button map = null;
+
+            foreach (Button mymap in maps)
+                if (int.Parse(mymap.Name.Substring(3)) == mapToBeDeleted.map_id)
+                    map = mymap;
+            pinCanvas.Children.Remove(map);
+            AreYouSure.Visibility = Visibility.Hidden;
+        }
+
+        private void RecursiveGetMapChildren(Map mapToBeDeleted)
+        {
+            foreach (Map map in DB.GetMaps()) {
+                if (map.parent_map_id == mapToBeDeleted.map_id) {
+                    tbd.Add(map);
+                    RecursiveGetMapChildren(map);
+                }
+            }
+        }
+
+        private void HidePanel(object sender, RoutedEventArgs e)
+        {
+            AreYouSure.Visibility = Visibility.Hidden;
+        }
     }
 }

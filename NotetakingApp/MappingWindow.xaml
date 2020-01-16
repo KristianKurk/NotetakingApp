@@ -41,12 +41,20 @@
                          Width="1625" Height="1070" Focusable="False">
                     </Image>
                     <Canvas Name="pinCanvas" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
-                       
+
                     </Canvas>
                 </Canvas>
             </Canvas>
         </DockPanel>
-
+        <Canvas Name="AreYouSure" Background="White" Focusable="True" Canvas.Left="350" Canvas.Top="400" Width="1000" Height="300" Visibility="Hidden">
+            <TextBlock Text="This action is irreversible. This will delete all inner maps and pins. Are you sure?" Canvas.Left="63" Canvas.Top="82" FontSize="25"></TextBlock>
+            <Button Canvas.Left="275" Canvas.Top="200" Height="54" Width="200" Click="DeleteMap">
+                <TextBlock Text="Yes, I'm sure!" FontSize="20"></TextBlock>
+            </Button>
+            <Button Canvas.Left="525" Canvas.Top="200" Height="54" Width="200" Click="HidePanel">
+                <TextBlock Text="No, take me back!" FontSize="20"></TextBlock>
+            </Button>
+        </Canvas>
         <!--Right Action/Nav Bar-->
 
 

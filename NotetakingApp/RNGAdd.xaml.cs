@@ -33,7 +33,7 @@ namespace NotetakingApp
         private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
+            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|Text Format (*.txt)|*.txt|All files (*.*)|*.*";
             if (dlg.ShowDialog() == true)
             {
                 //Crash if file being used by something
@@ -59,6 +59,7 @@ namespace NotetakingApp
 
             if (text != "" && title != "")
             {
+                text = text.Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
                 RandomGenerator rng = new RandomGenerator();
                 rng.rng_title = title;
                 rng.rng_content = text;

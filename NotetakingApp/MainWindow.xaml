@@ -279,22 +279,22 @@
             <Button Style="{StaticResource TopButton}" Grid.Column="2" Click="BtnSettings" ClickMode="Press"
                     ToolTip="Settings"
                     >
-                <Image Source="Assets/Navigation/settings.png" />
+                <Image Source="Assets/Navigation/settings.png" Margin="3"/>
             </Button>
             <Button Style="{StaticResource TopButton}" Grid.Column="3" Click="BtnMin" ClickMode="Press"
                     ToolTip="Minimize"
                     >
-                <Image Source="Assets/Navigation/min.png" />
+                <Image Source="Assets/Navigation/minimize.png" Margin="3"/>
             </Button>
             <Button Style="{StaticResource TopButton}"   Grid.Column="4" Click="BtnMax" ClickMode="Press"
                     ToolTip="Maximize"
                     >
-                <Image Source="Assets/Navigation/max.png" />
+                <Image Name="switchIcon" Source="Assets/Navigation/maximize.png" Margin="3"/>
             </Button>
             <Button Style="{StaticResource TopButton}"   Grid.Column="5" Click="BtnClose" ClickMode="Press"
                     ToolTip="Close"
                     >
-                <Image Source="Assets/Navigation/close.png" />
+                <Image Source="Assets/Navigation/close.png" Margin="3"/>
             </Button>
 
 
