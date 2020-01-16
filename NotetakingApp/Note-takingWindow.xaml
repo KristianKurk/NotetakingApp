@@ -15,8 +15,116 @@
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
     </Page.CommandBindings>
 
+    <!--Style-->
+    <Page.Resources>
+        
+        <Style x:Key="MyFocusVisual">
 
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid>
+                            <!-- <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/> -->
+                            <!--  <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="0" />-->
 
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ShadowStyle">
+            <Setter Property="Control.Foreground" Value="Black" />
+        </Style>
+        
+        <!--Note border Style-->
+        <Style x:Key="BorderHover">
+
+            <Setter Property="Border.Background" Value="#ffe5cf"/>
+            <Style.Triggers>
+                <Trigger Property="Border.IsMouseOver" Value="True">
+                    <Setter Property="Border.Background" Value="#d6c0ae" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--Note border Style-->
+        <Style x:Key="CategoryHover">
+
+            <Setter Property="Border.Background" Value="#b38d6d"/>
+            <Style.Triggers>
+                <Trigger Property="Border.IsMouseOver" Value="True">
+                    <Setter Property="Border.Background" Value="#876b54" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- Right Bar Button Style-->
+        <Style x:Key="InformButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
+                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
+                        <GradientStop Color="#ffe5cf" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+        				BorderThickness="1,1,1,0"
+        				CornerRadius="25,25,25,25"
+        				BorderBrush="#563232" 
+        				
+        				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+        	                           VerticalAlignment="Center" Name="contentShadow" 
+        					Style="{StaticResource ShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#d6bfab" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
+                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
+                                            <GradientStop Color="#ffe5cf" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="CornerRadius" Value="25,25,25,25" />
+                                <Setter Property="Foreground" Value="#ffe5cf" />
+                                <Setter Property="Background" Value="#563232" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+   
     <!--Content-->
 
     <Grid DockPanel.Dock="Top"  >
@@ -115,7 +223,7 @@
 
 
 
-                <RichTextBox MinHeight="200" Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" >
+                <RichTextBox MinHeight="400" Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" >
                     
                 </RichTextBox>
             </DockPanel>
@@ -123,93 +231,64 @@
 
         </StackPanel>
 
-         <!--Right Action/Nav Bar-->
+         
 
-         <!-- Old Action/Nav Bar-->
-        
-         <!--
-        <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
-                       Background="#ffe5cf"
-                       Height="750"
-                       >
+        <!-- New Right Action/Nav Bar-->
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-
-
-            </Grid.RowDefinitions>
-
-            <Button Name="addCategory" Content="Add Category" Grid.Row="0" Height="40" Margin="10,20,10,20"/>
-            <Button Name="addNote" Content="Add Note" Grid.Row="1"  Height="40" Margin="10,20,10,20"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1">
           
-            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.RowSpan="3" Margin="5">
-            </Border>
-
-            <Label 
-                           Name="noteName"
-                           Background="Gray"
-                           Content="Note Name"
-                           Grid.Row="2" 
-                           Margin="10,10,10,10" 
-                           HorizontalAlignment="Center" 
-                           Width="200" 
-                           Height="25"
-                           HorizontalContentAlignment="Center"/>
-
-            <Button Name="noteEdit" Content="Edit/View Note" Grid.Row="3" Margin="10,5,10,20" Height="25"/>
-            <Button Name="noteDelete"
-                            Content="Delete Note" 
-                            Grid.Row="4" 
-                            Margin="10,5,10,20"
-                            Height="25"
-                            Background="Red"/>
-
-            <Button Name="noteReport" Content="Report" Grid.Row="5"  Height="50" Margin="10,20,10,5"/>
-            <Button Name="notePopup" Content="Pop-up" Grid.Row="6"  Height="50" Margin="10,5,10,20"/>
-
-
-        </Grid>
-           -->
-        <!-- New Action/Nav Bar-->
-
-        
-        <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
-                       Background="#ffe5cf"
+        <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" 
+                       Background="Transparent"
                MinHeight="250">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="10*"/>
-                
-
-
             </Grid.RowDefinitions>
             
             <!-- Add Category Button-->
-            <Button Name="addCategory" Content="Add Category" Grid.Row="0" Height="80"/>
-            
-            <StackPanel>
+                <Button Style="{StaticResource InformButton}" Name="addCategory" Content="Add Category" Grid.Row="0" Height="40" Margin="30,20,30,0"/>
+
+            <StackPanel Grid.Row="1">
                 <!-- Categories and Notes go here-->
-                
-                <!--  Added Category
-                        
-                 - New Categories add StackPanel with Name + TextBlock
-                 - Notes go in the designated Category 
-           
+
+                <!--  Added Category                       
+                 - New Categories add StackPanel with Name Tag + TextBlock
+                 - Notes go in the designated Category as TextBlocks      
                 -->
                 
+                <!-- Example Category-->
+                <StackPanel Name="defaultCat">
+                    
+                    <!-- Category -->
+                    <Border Style="{StaticResource CategoryHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,10,10,0" CornerRadius="12,12,0,0"  >
+                        <TextBlock 
+                        
+                        HorizontalAlignment="Center" 
+                        Foreground="White">
+                        Default
+                        </TextBlock>
+                    </Border>
+                    
+                    <!--Note 1-->
+                    <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
+                        <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote</TextBlock>
+                        
+                    </Border>
+                    <!--Note 2-->
+                    <Border Style="{StaticResource BorderHover}" BorderThickness="1" BorderBrush="Transparent"  Margin="10,0,10,0" CornerRadius="0"  >
+                        <TextBlock HorizontalAlignment="Center" Foreground="Black">ExampleNote2</TextBlock>
+
+                    </Border>
+                </StackPanel>
+                <!-- End of Example-->
+
                 
-                
+                <!-- End of Categories and Notes-->
             </StackPanel>
 
         </Grid>
-           
+        </ScrollViewer>
     </Grid>
 
      
