@@ -24,7 +24,7 @@ namespace NotetakingApp
     public partial class MainWindow : Window
     {
         bool normalSize = true;
-    
+        String disabledButton;
 
         public MainWindow()
         {
@@ -44,24 +44,27 @@ namespace NotetakingApp
         
         private void BtnClickMain(object sender, RoutedEventArgs e)
         {
-          
 
+            disabledButton ="mainNavButton";
             DisableButton("mainNavButton");
             main.Content = new MainMenu();
         }
 
         private void BtnClickMap(object sender, RoutedEventArgs e)
         {
+            disabledButton = "mapNavButton";
             DisableButton("mapNavButton");
             main.Content = new MappingWindow();
         }
         private void BtnClickNote(object sender, RoutedEventArgs e)
         {
+            disabledButton = "noteNavButton";
             DisableButton("noteNavButton");
             main.Content = new Note_takingWindow();
         }
         private void BtnClickRNG(object sender, RoutedEventArgs e)
         {
+            disabledButton = "rngNavButton";
             DisableButton("rngNavButton");
             main.Content = new RNGWindow();
         }
@@ -214,7 +217,29 @@ namespace NotetakingApp
                 SetRestoreDownIcon();
             }
         }
-       
+
+        //Set button hover color
+        private void rngNavButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            
+            Button button1 = (Button)sender;
+            if (disabledButton != button1.Name)
+            {
+                button1.Background = new SolidColorBrush(Color.FromRgb(250, 238, 227));
+            }
+        }
+
+        //Reset button hover color on mouse leave
+        private void rngNavButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button button1 = (Button)sender;
+
+            if (disabledButton != button1.Name)
+            {
+                button1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+            }
+        }
+      
     }
 
     
