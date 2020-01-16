@@ -21,6 +21,9 @@
         <Button Margin="42,221,575,177" Click="Map_Report_Click">
             <TextBlock Text="Map Report"></TextBlock>
         </Button>
+        <Button Margin="43,287,574,111" Click="Export_Database">
+            <TextBlock Text="Export Database"></TextBlock>
+        </Button>
         <Grid Name="RNGSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>

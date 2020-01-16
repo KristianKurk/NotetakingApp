@@ -61,6 +61,26 @@ namespace NotetakingApp
             MapSearch.Visibility = Visibility.Visible;
         }
 
+        private void Export_Database(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Campaign File (*.*)|*.*";
+            saveFileDialog.Title = "Save campaign as:";
+            saveFileDialog.FileName = Connection.GetActiveCampaignName();
+            saveFileDialog.ShowDialog();
+
+            string path = saveFileDialog.FileName;
+            if (path != null && path != "") {
+                string myFile = Directory.GetCurrentDirectory() +"/DB" + Connection.GetActiveCampaignDirectory() + ".db";
+                string dest = System.IO.Path.Combine(path, "DB" + Connection.GetActiveCampaignDirectory() + ".db");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                File.Copy(myFile, dest);
+            }
+        }
+
         private void RNGSaveFile(object sender, RoutedEventArgs e)
         {
             if (RNGfilteredListBox.SelectedItem != null)
