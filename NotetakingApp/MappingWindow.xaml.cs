@@ -290,7 +290,7 @@ namespace NotetakingApp
             {
                 byte[] buffer = File.ReadAllBytes(openFileDialog.FileName);
                 dbMap.map_file = buffer;
-
+                dbMap.map_name = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                 DB.Add(dbMap);
                 button.Name = "mid" + DB.GetMaps().Last().map_id;
                 button.Content = map;

@@ -30,16 +30,7 @@ namespace NotetakingApp
         {
             InitializeComponent();
 
-            /*
-            DB.Add(new Note() {note_title="New Note",note_content="New Content"});
-            DB.DeleteNote(6);
-            DB.Add(new Note() { note_title = "New Note 2", note_content = "New Content 2" });
-            */
             //Connection.CreateNewCampaign("AwesomeLand");
-
-           
-
-
         }
         
         private void BtnClickMain(object sender, RoutedEventArgs e)
