@@ -8,6 +8,7 @@ CONTENTS OF THIS FILE
  * Requirements
  * Installation
  * Configuration
+ * Software
  * FAQ
  * Maintainers
 
@@ -32,6 +33,10 @@ to be done at a later time (TODO)
 CONFIGURATION
 ------------
 to be done at a later time (TODO)
+
+SOFTWARE
+------------
+Scribe is built with WPF C#. It uses SQLite to store user data on the client-side.
 
 FAQ
 ------------
