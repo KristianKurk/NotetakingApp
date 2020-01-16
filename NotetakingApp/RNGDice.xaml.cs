@@ -20,9 +20,20 @@ namespace NotetakingApp
     /// </summary>
     public partial class RNGDice : Page
     {
+        Random rnd;
+
         public RNGDice()
         {
             InitializeComponent();
+            rnd = new Random();
+        }
+
+        private void diceRoll(object sender, RoutedEventArgs e)
+        {
+            Button dicebtn = sender as Button;
+            int sides = int.Parse(dicebtn.Name.Substring(1));
+            int diceResult = rnd.Next(1, sides+1);
+            result.Text = diceResult.ToString();
         }
     }
 }
