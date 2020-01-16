@@ -151,9 +151,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Style="{StaticResource InformButton}" Name="addData" Content="Add Data List" Grid.Column="1" Height="40"  ClickMode="Press" Click="BtnAddRNG" Background="#ffe5cf" Margin="0,20,0,0"/>
-                <Button Style="{StaticResource InformButton}" Name="generateRNG" Content="Generate Randomized Data" Grid.Column="3"  Height="40"  ClickMode="Press" Click="BtnGenerate" Background="#ffe5cf" Margin="0,20,0,0"/>
-                <Button Style="{StaticResource InformButton}" Name="rngDice" Content="Generate Dice" Grid.Column="5"  Height="40"  ClickMode="Press" Click="BtnDice" Background="#ffe5cf" Margin="0,20,0,0"/>
+                <Button Style="{StaticResource InformButton}" Name="addData" Content="Add Data List" Grid.Column="1" Height="40"  ClickMode="Press" Click="BtnAddRNG" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+                <Button Style="{StaticResource InformButton}" Name="generateRNG" Content="Generate Randomized Data" Grid.Column="3"  Height="40"  ClickMode="Press" Click="BtnGenerate" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+                <Button Style="{StaticResource InformButton}" Name="rngDice" Content="Generate Dice" Grid.Column="5"  Height="40"  ClickMode="Press" Click="BtnDice" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
             </Grid>
        
 
