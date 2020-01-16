@@ -18,10 +18,10 @@ Scribe is a powerful mapping and notetaking application aimed at game masters an
 REQUIREMENTS
 ------------
 Minimum (Tested) System Requirements:
-*Windows 10
-*i5-5200u
-*Nvidia Geforce 840M
-*8gb of RAM
+* Windows 10
+* i5-5200u
+* Nvidia Geforce 840M
+* 8gb of RAM
 
 No special requirements.
 
