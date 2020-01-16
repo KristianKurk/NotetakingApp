@@ -40,4 +40,5 @@ to be done at a later time (TODO)
 MAINTAINERS
 ------------
 Kristian Kurktchiev - https://kristiankurk.com
+
 Nami Pour Sabet Ali - portfolio to be inserted
