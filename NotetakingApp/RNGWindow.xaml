@@ -160,39 +160,7 @@
         <!-- Text Box to Add or Randomly Generated Data-->
         <Frame NavigationUIVisibility="Hidden" Name="rng" Grid.Row="1"></Frame>
 
-        <Border BorderBrush="Transparent" BorderThickness="1" Grid.Row="3">
-            <!-- Content-->
-            <StackPanel Background="Transparent" Grid.Row="1" 
-                  MinHeight="700"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  >
-
-                <!--Content Goes Here-->
-
-                <Border  Height="50" Margin="20"  BorderThickness="1" 
-                         
-                         CornerRadius="10">
-                    
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                            <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                            <GradientStop Color="#b38d6d" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    
-                    <TextBlock 
-                     
-                        FontSize="35"
-                        Name="dataTitle"
-                        Text="Data Lists" 
-                        TextAlignment="Center">
-                        
-                    </TextBlock>
-                </Border>
-
-            </StackPanel>
-        </Border>
+        
 
         
         

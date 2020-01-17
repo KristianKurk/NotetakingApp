@@ -13,26 +13,42 @@
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
        
     </Page.CommandBindings>
+    
+    
+    <Page.Resources>
+        <!--Scroll Bar Style-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ScrollBar.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+     
+    </Page.Resources>
 
 
-    <StackPanel >
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
 
-        <!--Guiding Text Box-->
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Background="Transparent" Margin="0,40,0,20">
+            <!--Guiding Text Box-->
+            <StackPanel Background="Transparent" Margin="0,40,0,20" Grid.Column="0">
+                <StackPanel Background="Transparent" Margin="0,40,0,20">
 
-            <Border Width="300" Height="50" Margin="0"  BorderThickness="1" 
+                    <Border Width="300" Height="50" Margin="0"  BorderThickness="1" 
                          
                          CornerRadius="10">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                        <GradientStop Color="#ffe5cf" Offset="0.1"/>
-                        <GradientStop Color="#b38d6d" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                                <GradientStop Color="#b38d6d" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
 
-                <TextBlock 
+                        <TextBlock 
                   Margin="0,0,0,0"
                   HorizontalAlignment="Center"
                     TextAlignment="Center"
@@ -43,88 +59,88 @@
                     <LineBreak/> 
                     Example: John,Jane,Dad,1,3,5
 
-                </TextBlock>
-            </Border>
+                        </TextBlock>
+                    </Border>
 
 
-        </StackPanel>
+                </StackPanel>
 
-        <!--Text Box List Title-->
+                <!--Text Box List Title-->
 
-        <TextBox HorizontalContentAlignment="Center" Name="rngTitle" Height="30" Width="300" FontSize="20" Margin="0,0,0,20">
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="List title goes Here!" Foreground="LightGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="#f5d2b5" />
-                        </Trigger>
+                <TextBox HorizontalContentAlignment="Center" Name="rngTitle" Height="30" Width="300" FontSize="20" Margin="0,0,0,20">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <Style.Resources>
+                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <Label Content="List title goes Here!" Foreground="LightGray" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Style.Resources>
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                </Trigger>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter Property="Background" Value="#f5d2b5" />
+                                </Trigger>
 
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <!--Text Box-->
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <!--Text Box-->
 
-        <!-- Reference RichTextBox from NoteTaking
+                <!-- Reference RichTextBox from NoteTaking
         <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" >
 
         </RichTextBox>
         -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            
-            
-            <!-- Import Button-->
-                <Button Grid.Column="1"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- Import Button-->
+                    <Button Grid.Column="1"
                         HorizontalAlignment="Right"
             Margin="0,0,0,0"
             Width="30"
             Command="ApplicationCommands.Open" VerticalAlignment="Top">
-                    <Image Source="/Assets/NotetakingRTF/open.png" Width="16" Height="30" />
-                </Button>
+                        <Image Source="/Assets/NotetakingRTF/open.png" Width="16" Height="30" />
+                    </Button>
 
-            <!-- Rich Text box-->
-            <RichTextBox Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Name="rngTB" MaxHeight="200" MinHeight="30" Width="270" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
-                <RichTextBox.Style>
-                    <Style TargetType="RichTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                        <Style.Resources>
-                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                <VisualBrush.Visual>
-                                    <Label Content="Data list goes Here!" Foreground="LightGray" />
-                                </VisualBrush.Visual>
-                            </VisualBrush>
-                        </Style.Resources>
-                        <Style.Triggers>
+                    <!-- Rich Text box-->
+                    <RichTextBox Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Name="rngTB" MaxHeight="200" MinHeight="0" Width="270" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+                        <RichTextBox.Style>
+                            <Style TargetType="RichTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label Content="Data list goes Here!" Foreground="LightGray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
 
-                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                <Setter Property="Background" Value="#f5d2b5" />
-                            </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="#f5d2b5" />
+                                    </Trigger>
 
-                        </Style.Triggers>
-                    </Style>
-                </RichTextBox.Style>
-            </RichTextBox>
+                                </Style.Triggers>
+                            </Style>
+                        </RichTextBox.Style>
+                    </RichTextBox>
 
-        </Grid>
-        <!--Save Button-->
-        <Button  
+                </Grid>
+                <!--Save Button-->
+                <Button  
            
             Name="saveText"
                  Content="Save Data" 
@@ -135,31 +151,79 @@
                  
                  Margin="0,20,0,20">
 
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#ffe5cf"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#debb9e"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#ffe5cf"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#debb9e"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
 
-        
-        <TextBlock><!-- Display Confirmation Message in here!!--></TextBlock>
-        
-        
-    </StackPanel>
+
+                <TextBlock><!-- Display Confirmation Message in here!!--></TextBlock>
+            </StackPanel>
+
+
+
+        <StackPanel Grid.Column="1" Margin="0,40,0,0" HorizontalAlignment="Center">
+            <Border  Height="30" Margin="0"  BorderThickness="1" 
+                         Width="250"
+                         CornerRadius="10">
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                    <GradientStop Color="#b38d6d" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <TextBlock 
+                     
+                        FontSize="20"
+                        Name="dataTitle"
+                        Text="Data Lists" 
+                        TextAlignment="Center">
+
+            </TextBlock>
+        </Border>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="0,20,0,0" HorizontalAlignment="Stretch" MaxHeight="400">
+            <Border BorderBrush="Transparent" BorderThickness="1" >
+                <!-- Content-->
+                <StackPanel Background="Transparent" 
+                  MinHeight="300"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  >
+
+                    <!--Content Goes Here-->
+
+                   
+
+                    <!--Example Data List-->
+                    <Border Style="{StaticResource BorderHover}"  >
+                        <TextBlock HorizontalAlignment="Center">ExampleListTitle</TextBlock>
+                    </Border>
+
+                    
+
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+        </StackPanel>
+    </Grid>
+   
 </Page>
