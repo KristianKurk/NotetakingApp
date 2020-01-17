@@ -10,95 +10,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Database;
-using BLL;
-
 
 namespace NotetakingApp
 {
     /// <summary>
-    /// This is a test
+    /// Interaction logic for CampaignSelectWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CampaignSelectWindow : Window
     {
         bool normalSize = true;
-        String disabledButton;
-
-        public MainWindow()
+        public CampaignSelectWindow()
         {
+           
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            //Connection.CreateNewCampaign("AwesomeLand");
-        }
-        
-        private void BtnClickMain(object sender, RoutedEventArgs e)
-        {
-
-            disabledButton ="mainNavButton";
-            DisableButton("mainNavButton");
-            main.Content = new MainMenu();
-        }
-
-        private void BtnClickMap(object sender, RoutedEventArgs e)
-        {
-            disabledButton = "mapNavButton";
-            DisableButton("mapNavButton");
-            main.Content = new MappingWindow();
-        }
-        private void BtnClickNote(object sender, RoutedEventArgs e)
-        {
-            disabledButton = "noteNavButton";
-            DisableButton("noteNavButton");
-            main.Content = new Note_takingWindow();
-        }
-        private void BtnClickRNG(object sender, RoutedEventArgs e)
-        {
-            disabledButton = "rngNavButton";
-            DisableButton("rngNavButton");
-            main.Content = new RNGWindow();
-        }
-
-        private void DisableButton(string btn) {
-
-            EnableAll();
-
-            //Disable Selected button
-
-            object button = grid.FindName(btn);
-            Button button1 = (Button)button;
-             button1.Background = new SolidColorBrush(Color.FromArgb(255,86, 50, 50));
-
-            //  button1.IsEnabled = false;
-            button1.Focusable = false;
-            button1.IsEnabled = false;
-           
-            
+          //  var h = ((MainWindow)Application.Current.MainWindow).ActualHeight;
+           // var w = ((MainWindow)Application.Current.MainWindow).ActualWidth;
 
         }
-        private void EnableAll() {
-
-            //Enable all buttons
-            Button[] buttons = {
-                (Button)grid.FindName("noteNavButton"),
-                (Button)grid.FindName("rngNavButton"),
-                (Button)grid.FindName("mapNavButton"),
-                (Button)grid.FindName("mainNavButton")
-                
-                };
-            foreach (Button b in buttons) {
-                b.IsEnabled = true;
-                b.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
-            }
-        }
-
         //Top Nav Bar / Custom Window
-       
-            private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
-          
+
 
             if (e.ChangedButton == MouseButton.Left && this.WindowState == System.Windows.WindowState.Normal)
             {
@@ -115,7 +51,7 @@ namespace NotetakingApp
             if (e.ClickCount == 2 && this.WindowState != WindowState.Maximized && normalSize == true)
             {
                 this.WindowState = WindowState.Maximized;
-                
+
                 SetRestoreDownIcon();
 
             }
@@ -124,7 +60,7 @@ namespace NotetakingApp
                 this.WindowState = System.Windows.WindowState.Normal;
                 SetMaximizeIcon();
                 this.DragMove();
-               
+
             }
 
 
@@ -133,19 +69,13 @@ namespace NotetakingApp
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                this.WindowState=System.Windows.WindowState.Normal;
+                this.WindowState = System.Windows.WindowState.Normal;
                 SetMaximizeIcon();
                 this.DragMove();
 
             }
         }
-            private void BtnSettings(object sender, RoutedEventArgs e)
-        {
-
-            EnableAll();
-            main.Content = new SettingsWindow();
-           
-        }
+      
         private void BtnMin(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -178,15 +108,16 @@ namespace NotetakingApp
         }
         private void BtnCampaign(object sender, RoutedEventArgs e)
         {
-            EnableAll();
+            
             //main.Content = new CampaignSelector();
 
-            var newForm = new CampaignSelectWindow(); //create your new window.
+            var newForm = new MainWindow(); //create your new window.
             newForm.Show(); //show the new window.
             this.Close(); //close the current window.
         }
 
-        private void SetMaximizeIcon() {
+        private void SetMaximizeIcon()
+        {
             Image icon = switchIcon;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -195,7 +126,8 @@ namespace NotetakingApp
             icon.Source = bitmap;
         }
 
-        private void SetRestoreDownIcon() {
+        private void SetRestoreDownIcon()
+        {
             Image icon = switchIcon;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -212,31 +144,5 @@ namespace NotetakingApp
                 SetRestoreDownIcon();
             }
         }
-
-        //Set button hover color
-        private void rngNavButton_MouseEnter(object sender, MouseEventArgs e)
-        {
-            
-            Button button1 = (Button)sender;
-            if (disabledButton != button1.Name)
-            {
-                button1.Background = new SolidColorBrush(Color.FromRgb(250, 238, 227));
-            }
-        }
-
-        //Reset button hover color on mouse leave
-        private void rngNavButton_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Button button1 = (Button)sender;
-
-            if (disabledButton != button1.Name)
-            {
-                button1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
-            }
-        }
-      
     }
-
-    
-
 }
