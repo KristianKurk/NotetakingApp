@@ -210,7 +210,7 @@ namespace NotetakingApp
             DB.Update(openNote);
         }
 
-        MenuItem[] regularCM = { new MenuItem { Header = "New Category" }, new MenuItem { Header = "New Note" }, new MenuItem { Header="Delete" } };
+        MenuItem[] regularCM = { new MenuItem { Header = "New Category", }, new MenuItem { Header = "New Note" }, new MenuItem { Header="Delete" } };
         MenuItem[] uncategorisedCM = { new MenuItem { Header = "New Category" }, new MenuItem { Header = "New Note" } };
 
         private void OpenCMUncategorised(object sender, MouseButtonEventArgs e)
