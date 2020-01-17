@@ -29,21 +29,28 @@ namespace NotetakingApp
         public MainWindow()
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+           // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             //Connection.CreateNewCampaign("AwesomeLand");
+
+            //Set window size to previous window size
             this.Top = Properties.Settings.Default.Top;
             this.Left = Properties.Settings.Default.Left;
             this.Height = Properties.Settings.Default.Height;
             this.Width = Properties.Settings.Default.Width;
-            // Very quick and dirty - but it does the job
-            if (Properties.Settings.Default.Maximized)
+
+            Console.WriteLine("Main");
+            Console.WriteLine("Width:" + this.Width);
+            Console.WriteLine("Height:" + this.Height);
+            Console.WriteLine("Maximized?:" + Properties.Settings.Default.Maximized);
+
+            if (Properties.Settings.Default.Maximized==true)
             {
-                WindowState = WindowState.Maximized;
+                this.WindowState = WindowState.Maximized;
             }
         }
         private void Window_Closed(object sender, EventArgs e)
         {
-            if (WindowState == WindowState.Maximized)
+            if (this.WindowState == WindowState.Maximized)
             {
                 // Use the RestoreBounds as the current values will be 0, 0 and the size of the screen
                 Properties.Settings.Default.Top = RestoreBounds.Top;
@@ -211,6 +218,25 @@ namespace NotetakingApp
         {
             EnableAll();
             //main.Content = new CampaignSelector();
+            if (WindowState == WindowState.Maximized)
+            {
+                // Use the RestoreBounds as the current values will be 0, 0 and the size of the screen
+                Properties.Settings.Default.Top = RestoreBounds.Top;
+                Properties.Settings.Default.Left = RestoreBounds.Left;
+                Properties.Settings.Default.Height = RestoreBounds.Height;
+                Properties.Settings.Default.Width = RestoreBounds.Width;
+                Properties.Settings.Default.Maximized = true;
+            }
+            else
+            {
+                Properties.Settings.Default.Top = this.Top;
+                Properties.Settings.Default.Left = this.Left;
+                Properties.Settings.Default.Height = this.Height;
+                Properties.Settings.Default.Width = this.Width;
+                Properties.Settings.Default.Maximized = false;
+            }
+
+            Properties.Settings.Default.Save();
 
             var newForm = new CampaignSelectWindow(); //create your new window.
             newForm.Show(); //show the new window.
