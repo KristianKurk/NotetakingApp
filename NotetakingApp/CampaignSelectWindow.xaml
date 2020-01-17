@@ -8,7 +8,9 @@
         Title="CampaignSelectWindow" 
         Height="700" Width="1200"
         MinHeight="500"
-        MinWidth="900">
+        MinWidth="900"
+        Closing="Window_Closed"
+        >
 
     <!--Removes White Resize Bar-->
     <WindowChrome.WindowChrome>
