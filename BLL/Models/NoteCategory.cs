@@ -10,7 +10,7 @@ namespace BLL
     {
         public int category_id { get; set; }
         public string category_title { get; set; }
-        public string category_parent { get; set; }
+        public int category_parent { get; set; }
         public override string ToString()
         {
             return category_title;

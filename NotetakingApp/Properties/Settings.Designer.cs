@@ -22,5 +22,16 @@ namespace NotetakingApp.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::BLL.Note currentNote {
+            get {
+                return ((global::BLL.Note)(this["currentNote"]));
+            }
+            set {
+                this["currentNote"] = value;
+            }
+        }
     }
 }
