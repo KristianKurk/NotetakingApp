@@ -63,6 +63,9 @@
     <Compile Include="CampaignSelector.xaml.cs">
       <DependentUpon>CampaignSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CampaignSelectWindow.xaml.cs">
+      <DependentUpon>CampaignSelectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
     <Page Include="CampaignSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CampaignSelectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainMenu.xaml">
       <SubType>Designer</SubType>
