@@ -167,7 +167,7 @@
 
         <!-- New Right Action/Nav Bar-->
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" MouseRightButtonDown="OpenCMUncategorised">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch">
           
         
             
@@ -184,7 +184,7 @@
 
 
                 <TreeView Name ="treeView" Background="Transparent" BorderBrush="Transparent" >
-                        <TreeViewItem IsExpanded="True" Name="cate1">
+                        <TreeViewItem IsExpanded="True" Name="cate1" MouseRightButtonDown="OpenCM" Focusable="True">
                             
                             <TreeViewItem.Header>
                                     <!-- Category -->

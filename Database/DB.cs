@@ -151,7 +151,7 @@ namespace Database
         {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString("default")))
             {
-                cnn.Execute("insert into [Note Category](category_title,category_parent) values (category_title,category_parent)", noteCategory);
+                cnn.Execute("insert into [Note Category](category_title,category_parent) values (@category_title,@category_parent)", noteCategory);
             }
         }
 

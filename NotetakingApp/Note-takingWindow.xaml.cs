@@ -30,6 +30,7 @@ namespace NotetakingApp
         private string privateText = null;
 
         private Note openNote;
+        private NoteCategory openNC;
 
         public string text {
             get {
@@ -47,8 +48,7 @@ namespace NotetakingApp
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
-            AddCategories(DB.GetNoteCategories()[0]);
-            AddNotes();
+            UpdateNotes();
 
             if (Properties.Settings.Default.currentNote != null)
                 openNote = Properties.Settings.Default.currentNote;
@@ -210,39 +210,73 @@ namespace NotetakingApp
             DB.Update(openNote);
         }
 
-        MenuItem[] regularCM = { new MenuItem { Header = "New Category", }, new MenuItem { Header = "New Note" }, new MenuItem { Header="Delete" } };
-        MenuItem[] uncategorisedCM = { new MenuItem { Header = "New Category" }, new MenuItem { Header = "New Note" } };
+        
 
-        private void OpenCMUncategorised(object sender, MouseButtonEventArgs e)
+        /*private void OpenCMUncategorised(object sender, MouseButtonEventArgs e)
         {
+            MenuItem newCat = new MenuItem { Header = "New Category" };
+            newCat.Click += CreateNewCategoryClick;
+            MenuItem newNote = new MenuItem { Header = "New Note" };
+            newNote.Click += CreateNewNoteClick;
+            MenuItem[] uncategorisedCM = { newCat, newNote };
             ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
             cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-            SetUncategorisedCM();
-
-            cm.IsOpen = true;
-        }
-
-        private void OpenCMRegular(object sender, MouseButtonEventArgs e)
-        {
-            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
-            cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-            SetRegularCM();
-
-            cm.IsOpen = true;
-        }
-
-        private void SetRegularCM()
-        {
-            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
-            cm.ItemsSource = null;
-            cm.ItemsSource = regularCM;
-        }
-
-        private void SetUncategorisedCM()
-        {
-            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
             cm.ItemsSource = null;
             cm.ItemsSource = uncategorisedCM;
+
+            cm.IsOpen = true;
+        }*/
+
+        private void OpenCM(object sender, MouseButtonEventArgs e)
+        {
+            TreeViewItem tvi = sender as TreeViewItem;
+            Console.WriteLine(tvi.Name + " name of element clicked");
+            MenuItem newCat = new MenuItem { Header = "New Category" };
+            newCat.Click += CreateNewCategoryClick;
+            newCat.Name = "cm" + int.Parse(tvi.Name.Substring(4));
+            MenuItem newNote = new MenuItem { Header = "New Note" };
+            newNote.Name = "cm" + int.Parse(tvi.Name.Substring(4));
+            newNote.Click += CreateNewNoteClick;
+            MenuItem delete = new MenuItem { Header = "Delete" };
+            delete.Name = "cm" + int.Parse(tvi.Name.Substring(4));
+            delete.Click += DeleteClick;
+            MenuItem[] regularCM = { newCat, newNote, delete};
+
+            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
+            cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+            cm.ItemsSource = null;
+            cm.ItemsSource = regularCM;
+            cm.IsOpen = true;
+        }
+
+        private void CreateNewCategoryClick(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            MenuItem mi = sender as MenuItem;
+            NoteCategory nc = new NoteCategory();
+            nc.category_title = "New Category";
+            nc.category_parent = int.Parse(mi.Name.Substring(2));
+            Console.WriteLine(mi.Name + " name of element continued");
+            DB.Add(nc);
+            UpdateNotes();
+        }
+
+        private void CreateNewNoteClick(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            MenuItem mi = sender as MenuItem;
+            Note note = new Note();
+            note.note_title = "New Note";
+            note.category_id = int.Parse(mi.Name.Substring(2));
+            Console.WriteLine(mi.Name + " name of element continued");
+            note.note_content = "";
+            DB.Add(note);
+            UpdateNotes();
+        }
+
+        private void DeleteClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void CreateNewCategory(NoteCategory noteCategory) {
@@ -251,6 +285,8 @@ namespace NotetakingApp
             Border border = new Border() {Style= FindResource("CategoryHover") as Style };
             border.Child = new TextBlock() { Text = noteCategory.category_title };
             cateTV.Header = border;
+            cateTV.MouseRightButtonDown += OpenCM;
+            cateTV.Focusable = true;
 
             TreeViewItem parent = null;
             foreach (TreeViewItem tvi in treeView.Items)
@@ -266,8 +302,10 @@ namespace NotetakingApp
             Border border = new Border() { Style = FindResource("BorderHover") as Style };
             border.Child = new TextBlock() { Text = note.note_title };
             noteTV.Header = border;
-            noteTV.MouseLeftButtonDown += ClickNote;
-            noteTV.MouseRightButtonDown += OpenCMRegular;
+            noteTV.Name = "note" + note.note_id;
+            noteTV.PreviewMouseLeftButtonDown += ClickNote;
+            noteTV.MouseRightButtonDown += OpenCM;
+            noteTV.Focusable = true;
 
             TreeViewItem parent = null;
             foreach (TreeViewItem tvi in treeView.Items)
@@ -278,7 +316,10 @@ namespace NotetakingApp
 
         private void ClickNote(object sender, MouseButtonEventArgs e)
         {
+            e.Handled = true;
             TreeViewItem tv = sender as TreeViewItem;
+            Console.WriteLine("sugma " + tv.Name.Substring(4));
+            openNote = DB.GetNote(int.Parse(tv.Name.Substring(4)));
             string rtfText = DB.GetNote(int.Parse(tv.Name.Substring(4))).note_content;
             byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
             using (MemoryStream ms = new MemoryStream(byteArray))
@@ -303,6 +344,12 @@ namespace NotetakingApp
             foreach (Note n in nList) {
                 CreateNewNote(n);
             }
+        }
+
+        private void UpdateNotes() {
+            cate1.Items.Clear();
+            AddCategories(DB.GetNoteCategories()[0]);
+            AddNotes();
         }
     }
 }
