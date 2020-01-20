@@ -29,10 +29,13 @@
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid Margin="10,10,10,10"  MinHeight="450">
+            <!-- Mini Map -->
+            <Grid Margin="10,10,10,10"  MaxHeight="450">
 
                 <TextBlock>Test!!!!!</TextBlock>
                 
+                <!--Frame-->
+                <Frame NavigationUIVisibility="Hidden" Name="map"></Frame>
 
             </Grid>
         </Border>
@@ -44,8 +47,11 @@
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid Margin="10,10,10,10"  >
+            <!-- Favorite Notes -->
+            <Grid Margin="10,10,10,10"   MaxHeight="450">
 
+                <!--Frame-->
+                <Frame NavigationUIVisibility="Hidden" Name="notes"></Frame>
 
 
             </Grid>
@@ -59,11 +65,14 @@
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid Margin="10,10,10,10"  >
+            <!-- Music -->
+            <Grid Margin="10,10,10,10"   MaxHeight="450">
 
-        
+                <!--Frame-->
+                <Frame NavigationUIVisibility="Hidden" Name="music"></Frame>
 
-        </Grid>
+
+            </Grid>
         </Border>
 
 

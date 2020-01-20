@@ -18,307 +18,18 @@
         <WindowChrome CaptionHeight="0" GlassFrameThickness="0,0,0,1" CornerRadius="0" />
 
     </WindowChrome.WindowChrome>
-
+    
+    
+    
     <!--Style-->
     <Window.Resources>
-        
-        <Style TargetType="Grid" x:Key="GridStyle">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="MinHeight" Value="100"/>
-           <!-- <Setter Property="local:Application.GridColumns" Value="*,*,*"/> -->
-        </Style>
-        <Style TargetType="Border" x:Key="BorderStyle">
-            <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Margin" Value="10"/>
-                <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="MinHeight" Value="100"/>
-            <Setter Property="Border.Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                        <GradientStop Color="#b38d6d" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="Border.IsMouseOver" Value="True">
-                    <Setter Property="Border.Background">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                                <GradientStop Color="#cca17c" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-            
-        </Style>
+        <!--Scroll Bar Style-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CampaignSelectStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
-        <Style x:Key="MyFocusVisual">
-
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Control}">
-                        <Grid>
-                            <!-- <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/> -->
-                            <!--  <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="0" />-->
-
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="ShadowStyle">
-            <Setter Property="Control.Foreground" Value="Black" />
-        </Style>
-
-        <Style x:Key="InformButton" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="11px"/>
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Background" >
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
-                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
-                        <GradientStop Color="#ffe5cf" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" 
-        				BorderThickness="1,1,1,0"
-        				CornerRadius="25,25,0,0"
-        				BorderBrush="#563232" 
-        				
-        				Background="{TemplateBinding Background}">
-                            <Grid >
-                                <ContentPresenter HorizontalAlignment="Center" 
-        	                           VerticalAlignment="Center" Name="contentShadow" 
-        					Style="{StaticResource ShadowStyle}">
-                                    <ContentPresenter.RenderTransform>
-                                        <TranslateTransform X="0" Y="0" />
-                                    </ContentPresenter.RenderTransform>
-                                </ContentPresenter>
-                                <ContentPresenter HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" Name="content"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-
-                                <Setter Property="Foreground" Value="Black" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" >
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
-                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
-                                            <GradientStop Color="#ffe5cf" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-
-                            </Trigger>
-
-
-                            <Trigger Property="IsEnabled" Value="False">
-
-
-                                <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
-                                <Setter Property="Foreground" Value="#ffe5cf" />
-                                <Setter Property="Background" Value="#563232" />
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style TargetType="TextBlock" x:Key="CampaignTitle">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-
-        <!-- Campaign Button Style-->
-        <Style x:Key="CampaignButton" TargetType="Button">
-         
-            
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="ClickMode" Value="Press"/>
-          
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="11px"/>
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="MinHeight" Value="100"/>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Background" >
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                        <GradientStop Color="#b38d6d" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" 
-        				BorderThickness="1,1,1,1"
-        				CornerRadius="12,12,12,12"
-        				BorderBrush="#563232" 
-        				
-        				Background="{TemplateBinding Background}">
-                            <Grid >
-                                <ContentPresenter HorizontalAlignment="Center" 
-        	                           VerticalAlignment="Center" Name="contentShadow" 
-        					Style="{StaticResource ShadowStyle}">
-                                    <ContentPresenter.RenderTransform>
-                                        <TranslateTransform X="0" Y="0" />
-                                    </ContentPresenter.RenderTransform>
-                                </ContentPresenter>
-                                <ContentPresenter HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" Name="content"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" >
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                                            <GradientStop Color="#cca17c" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                         
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!--Gradient Nav-->
-        <Style x:Key="navTop" TargetType="Grid">
-            <Setter Property="Background" >
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
-                        <GradientStop Color="#563232" Offset="0.0" />
-                        <GradientStop Color="#755454" Offset="1.0" />
-
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-        <!--Gradient Back-->
-        <Style x:Key="stackGradient" TargetType="StackPanel">
-            <Setter Property="Margin" Value="0" />
-
-            <Setter Property="Background" >
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
-
-                        <GradientStop Color="#563232" Offset="0.0" />
-                        <GradientStop Color="#332323" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
-                    <Setter Property="Margin" Value="6" />
-                </DataTrigger>
-            </Style.Triggers>
-
-        </Style>
-
-        <!-- Top Buttons -->
-        <Style x:Key="TopButton" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="11px"/>
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Background" >
-
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="Transparent" Offset="0.2"/>
-                        <GradientStop Color="Transparent" Offset="0.85"/>
-                        <GradientStop Color="Transparent" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" 
-        				BorderThickness="0,0,0,0"
-        				CornerRadius="0,0,0,0"
-        				BorderBrush="Transparent" 
-        				
-        				Background="{TemplateBinding Background}">
-                            <Grid >
-                                <ContentPresenter HorizontalAlignment="Center" 
-        	                           VerticalAlignment="Center" Name="contentShadow" 
-        					Style="{StaticResource ShadowStyle}">
-                                    <ContentPresenter.RenderTransform>
-                                        <TranslateTransform X="0" Y="0" />
-                                    </ContentPresenter.RenderTransform>
-                                </ContentPresenter>
-                                <ContentPresenter HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" Name="content"/>
-                            </Grid>
-                        </Border>
-
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-
-                                <Setter Property="Foreground" Value="Black" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" >
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
-                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
-                                            <GradientStop Color="#ffe5cf" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-
-                            </Trigger>
-
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#563232"/>
-                            </Trigger>
-
-                            <Trigger Property="IsEnabled" Value="False">
-
-
-                                <Setter TargetName="border" Property="CornerRadius" Value="8,8,0,0" />
-                                <Setter Property="Foreground" Value="#ffe5cf" />
-                                <Setter Property="Background" Value="#563232" />
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Window.Resources>
 
 
@@ -378,7 +89,8 @@
         <Frame NavigationUIVisibility="Hidden" Name="main"></Frame>
 
         <!-- Container for Campaign StackPanels-->
-        <StackPanel Orientation="Vertical" Margin="50">
+        <ScrollViewer>
+            <StackPanel Orientation="Vertical" Margin="50">
 
             <Grid  Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
@@ -416,6 +128,8 @@
             </Grid>
 
         </StackPanel>
-        
+            
+        </ScrollViewer>
     </StackPanel>
+        
 </Window>
