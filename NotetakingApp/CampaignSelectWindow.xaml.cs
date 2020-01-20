@@ -20,14 +20,53 @@ namespace NotetakingApp
     public partial class CampaignSelectWindow : Window
     {
         bool normalSize = true;
+        
         public CampaignSelectWindow()
         {
-           
+          
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-          //  var h = ((MainWindow)Application.Current.MainWindow).ActualHeight;
-           // var w = ((MainWindow)Application.Current.MainWindow).ActualWidth;
+           
 
+            this.Top = Properties.Settings.Default.Top;
+            this.Left = Properties.Settings.Default.Left;
+            this.Height = Properties.Settings.Default.Height;
+            this.Width = Properties.Settings.Default.Width;
+
+            Console.WriteLine("CampaignSelect");
+            Console.WriteLine("Width:"+ this.Width);
+            Console.WriteLine("Height:" + this.Height);
+            Console.WriteLine("Maximized?:" + Properties.Settings.Default.Maximized);
+
+            if (Properties.Settings.Default.Maximized==true)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+
+            //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                // Use the RestoreBounds as the current values will be 0, 0 and the size of the screen
+                Properties.Settings.Default.Top = RestoreBounds.Top;
+                Properties.Settings.Default.Left = RestoreBounds.Left;
+                Properties.Settings.Default.Height = RestoreBounds.Height;
+                Properties.Settings.Default.Width = RestoreBounds.Width;
+                Properties.Settings.Default.Maximized = true;
+            }
+            else
+            {
+                Properties.Settings.Default.Top = this.Top;
+                Properties.Settings.Default.Left = this.Left;
+                Properties.Settings.Default.Height = this.Height;
+                Properties.Settings.Default.Width = this.Width;
+                Properties.Settings.Default.Maximized = false;
+            }
+
+            Properties.Settings.Default.Save();
         }
         //Top Nav Bar / Custom Window
 
@@ -108,7 +147,26 @@ namespace NotetakingApp
         }
         private void BtnCampaign(object sender, RoutedEventArgs e)
         {
-            
+            if (WindowState == WindowState.Maximized)
+            {
+                // Use the RestoreBounds as the current values will be 0, 0 and the size of the screen
+                Properties.Settings.Default.Top = RestoreBounds.Top;
+                Properties.Settings.Default.Left = RestoreBounds.Left;
+                Properties.Settings.Default.Height = RestoreBounds.Height;
+                Properties.Settings.Default.Width = RestoreBounds.Width;
+                Properties.Settings.Default.Maximized = true;
+            }
+            else
+            {
+                Properties.Settings.Default.Top = this.Top;
+                Properties.Settings.Default.Left = this.Left;
+                Properties.Settings.Default.Height = this.Height;
+                Properties.Settings.Default.Width = this.Width;
+                Properties.Settings.Default.Maximized = false;
+            }
+
+            Properties.Settings.Default.Save();
+
             //main.Content = new CampaignSelector();
 
             var newForm = new MainWindow(); //create your new window.
