@@ -30,7 +30,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <!-- Mini Map -->
-            <Grid Margin="10,10,10,10"  MaxHeight="450">
+            <Grid Margin="10,10,10,10"  MinHeight="450" MaxHeight="500">
 
                 <TextBlock>Test!!!!!</TextBlock>
                 
