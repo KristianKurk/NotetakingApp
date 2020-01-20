@@ -93,5 +93,17 @@ namespace NotetakingApp.Properties {
                 this["Maximized"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.WindowState MaxMin {
+            get {
+                return ((global::System.Windows.WindowState)(this["MaxMin"]));
+            }
+            set {
+                this["MaxMin"] = value;
+            }
+        }
     }
 }
