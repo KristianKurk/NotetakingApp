@@ -20,9 +20,38 @@ namespace NotetakingApp
     /// </summary>
     public partial class MainMenu : Page
     {
+       
         public MainMenu()
         {
+            
             InitializeComponent();
+          
+
+            //Load map
+            
+                StartMap();
+             
+            //Load favorite notes
+            //StartFavNotes();
+
+            //Load 
+            //StartMusic();
+        }
+        public void StartMap() {
+            //Load map
+            map.Content = new MappingWindow();
+        }
+        public void StartFavNotes()
+        {
+
+        }
+        public void StartMusic()
+        {
+
+        }
+        private void BtnClickMap(object sender, RoutedEventArgs e)
+        {
+            StartMap();
         }
     }
 }

@@ -32,15 +32,27 @@ namespace NotetakingApp
             this.Height = Properties.Settings.Default.Height;
             this.Width = Properties.Settings.Default.Width;
 
+            this.WindowState = Properties.Settings.Default.MaxMin;
+
             Console.WriteLine("CampaignSelect");
             Console.WriteLine("Width:"+ this.Width);
             Console.WriteLine("Height:" + this.Height);
             Console.WriteLine("Maximized?:" + Properties.Settings.Default.Maximized);
+            
 
             if (Properties.Settings.Default.Maximized==true)
-            {
-                this.WindowState = WindowState.Maximized;
+            {            
+                this.WindowState = System.Windows.WindowState.Maximized;   
             }
+
+
+
+            if (this.WindowState == System.Windows.WindowState.Maximized)
+            {
+                SetRestoreDownIcon();
+            }
+
+            Console.WriteLine("Maximized?:" + Properties.Settings.Default.Maximized);
 
             //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -56,6 +68,8 @@ namespace NotetakingApp
                 Properties.Settings.Default.Height = RestoreBounds.Height;
                 Properties.Settings.Default.Width = RestoreBounds.Width;
                 Properties.Settings.Default.Maximized = true;
+                Properties.Settings.Default.MaxMin = System.Windows.WindowState.Maximized;
+
             }
             else
             {
@@ -64,6 +78,7 @@ namespace NotetakingApp
                 Properties.Settings.Default.Height = this.Height;
                 Properties.Settings.Default.Width = this.Width;
                 Properties.Settings.Default.Maximized = false;
+                Properties.Settings.Default.MaxMin = System.Windows.WindowState.Normal;
             }
 
             Properties.Settings.Default.Save();
@@ -89,6 +104,7 @@ namespace NotetakingApp
             */
             if (e.ClickCount == 2 && this.WindowState != WindowState.Maximized && normalSize == true)
             {
+                Properties.Settings.Default.Maximized = true;
                 this.WindowState = WindowState.Maximized;
 
                 SetRestoreDownIcon();
@@ -155,6 +171,7 @@ namespace NotetakingApp
                 Properties.Settings.Default.Height = RestoreBounds.Height;
                 Properties.Settings.Default.Width = RestoreBounds.Width;
                 Properties.Settings.Default.Maximized = true;
+                Properties.Settings.Default.MaxMin = System.Windows.WindowState.Maximized;
             }
             else
             {
@@ -163,6 +180,7 @@ namespace NotetakingApp
                 Properties.Settings.Default.Height = this.Height;
                 Properties.Settings.Default.Width = this.Width;
                 Properties.Settings.Default.Maximized = false;
+                Properties.Settings.Default.MaxMin = System.Windows.WindowState.Normal;
             }
 
             Properties.Settings.Default.Save();
@@ -176,6 +194,7 @@ namespace NotetakingApp
 
         private void SetMaximizeIcon()
         {
+            Properties.Settings.Default.Maximized = false;
             Image icon = switchIcon;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -186,6 +205,7 @@ namespace NotetakingApp
 
         private void SetRestoreDownIcon()
         {
+            Properties.Settings.Default.Maximized = true;
             Image icon = switchIcon;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -202,5 +222,7 @@ namespace NotetakingApp
                 SetRestoreDownIcon();
             }
         }
+
+
     }
 }

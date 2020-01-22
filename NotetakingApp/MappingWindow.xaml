@@ -14,6 +14,28 @@
             <MenuItem Header="Create Pin" Click="Create_Pin_Click"/>
             <MenuItem Header="Create Map" Click="Create_Map_Click"/>
         </ContextMenu>
+
+        <!--Pin Style-->
+        <Style TargetType="Button" x:Key="PinStyle">
+
+            
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <RadialGradientBrush 
+                             GradientOrigin="0.5,0.5" Center="0.5,0.5" 
+                                RadiusX="0.2" RadiusY="0.5">
+                                <GradientStop Color="#ffdf5c" Offset="0" />
+                                <GradientStop Color="Transparent" Offset="1" />
+                            </RadialGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
     </Page.Resources>
 
     <!--Content-->
@@ -38,9 +60,9 @@
             <Canvas Name="daddyCanvas" Background="Black" ClipToBounds="True">
                 <Canvas Name="mapCanvas" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
                     <Image Name="imgSource"
-                         Width="1625" Height="1070" Focusable="False">
+                         Width="1625" MinHeight="1070" Focusable="False">
                     </Image>
-                    <Canvas Name="pinCanvas" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
+                    <Canvas Background="Transparent"  Name="pinCanvas"  Focusable="True" Canvas.Left="0" Canvas.Top="0">
 
                     </Canvas>
                 </Canvas>
@@ -61,7 +83,7 @@
 
         <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1"
                        Background="#ffe5cf"
-                       Height="750"
+                       MinHeight="2000"
                        >
 
             <Grid.RowDefinitions>
