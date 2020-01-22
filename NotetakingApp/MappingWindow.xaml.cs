@@ -212,6 +212,7 @@ namespace NotetakingApp
         private void Mouse_Enter(object sender, MouseEventArgs e)
         {
             isHover = true;
+            
         }
 
         private void Create_Pin_Click(object sender, RoutedEventArgs e)
@@ -226,13 +227,16 @@ namespace NotetakingApp
             pin.Source = bitmap;
             pin.Stretch = Stretch.UniformToFill;
 
-            Button button = new Button();
+
+            Button button = new Button() { Style = FindResource("PinStyle") as Style }; 
             button.Click += new RoutedEventHandler(Click_Pin);
             button.MouseEnter += new MouseEventHandler(Mouse_Enter);
             button.MouseLeave += new MouseEventHandler(Mouse_Leave);
             button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Pin);
             button.Background = Brushes.Transparent;
             button.BorderThickness = new Thickness(0);
+
+           
 
             Pin dbPin = new Pin();
             dbPin.pin_title = "Untitled";
@@ -263,7 +267,7 @@ namespace NotetakingApp
             map.Source = bitmap;
             map.Stretch = Stretch.UniformToFill;
 
-            Button button = new Button();
+            Button button = new Button() { Style = FindResource("PinStyle") as Style };
             //button.Click += new RoutedEventHandler(Click_Map);
             button.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(Click_Map);
             button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
@@ -418,7 +422,7 @@ namespace NotetakingApp
         private void Click_Pin(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("pin clicked");
-
+           
             Button button = sender as Button;
             Pin attachedPin = DB.GetPin(int.Parse(button.Name.Substring(2)));
 
