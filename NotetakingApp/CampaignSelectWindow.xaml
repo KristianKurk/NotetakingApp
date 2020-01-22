@@ -32,15 +32,7 @@
 
     </Window.Resources>
 
-
-
-
     <StackPanel Style="{StaticResource stackGradient}" >
-
-
-
-
-
 
         <!-- Top Navigation -->
         <Grid Style="{StaticResource navTop}" 
@@ -49,7 +41,6 @@
               
               IsMouseDirectlyOverChanged="topNav_IsMouseDirectlyOverChanged"         
               >
-
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -60,11 +51,13 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!--
             <Button Style="{StaticResource TopButton}"  Grid.Column="0" Click="BtnCampaign" ClickMode="Press"
                     ToolTip="MainWindow (Debug)"
                     >
                 <Image Source="Assets/Navigation/back.png" />
             </Button>
+            -->
 
             <Grid Name="movingArea" MouseDown="Window_MouseDown" Grid.Column="1"></Grid>
 
