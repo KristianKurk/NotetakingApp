@@ -31,16 +31,7 @@ namespace NotetakingApp
 
         private Note openNote;
         private NoteCategory openNC;
-
-        public string text {
-            get {
-                TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-                return range.Text;
-            }
-            set {
-                privateText = value;
-            }
-        }
+        int id;
 
         public Note_takingWindow()
         {
@@ -210,7 +201,7 @@ namespace NotetakingApp
             DB.Update(openNote);
         }
 
-        
+
 
         /*private void OpenCMUncategorised(object sender, MouseButtonEventArgs e)
         {
@@ -229,46 +220,38 @@ namespace NotetakingApp
 
         private void OpenCM(object sender, MouseButtonEventArgs e)
         {
-            TreeViewItem tvi = sender as TreeViewItem;
-            Console.WriteLine(tvi.Name + " name of element clicked");
-            MenuItem newCat = new MenuItem { Header = "New Category" };
-            newCat.Click += CreateNewCategoryClick;
-            newCat.Name = "cm" + int.Parse(tvi.Name.Substring(4));
-            MenuItem newNote = new MenuItem { Header = "New Note" };
-            newNote.Name = "cm" + int.Parse(tvi.Name.Substring(4));
-            newNote.Click += CreateNewNoteClick;
-            MenuItem delete = new MenuItem { Header = "Delete" };
-            delete.Name = "cm" + int.Parse(tvi.Name.Substring(4));
-            delete.Click += DeleteClick;
-            MenuItem[] regularCM = { newCat, newNote, delete};
+            if (e.OriginalSource is TextBlock)
+            {
+                TextBlock tb = e.OriginalSource as TextBlock;
+                id = int.Parse(tb.Name.Substring(4));
+                Console.WriteLine("monka"+id);
+            }
+            else {
+                id = 1;
+            }
 
             ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
             cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-            cm.ItemsSource = null;
-            cm.ItemsSource = regularCM;
             cm.IsOpen = true;
+
         }
+
 
         private void CreateNewCategoryClick(object sender, RoutedEventArgs e)
         {
-            e.Handled = true;
-            MenuItem mi = sender as MenuItem;
             NoteCategory nc = new NoteCategory();
             nc.category_title = "New Category";
-            nc.category_parent = int.Parse(mi.Name.Substring(2));
-            Console.WriteLine(mi.Name + " name of element continued");
+            nc.category_parent = id;
             DB.Add(nc);
             UpdateNotes();
         }
 
         private void CreateNewNoteClick(object sender, RoutedEventArgs e)
         {
-            e.Handled = true;
-            MenuItem mi = sender as MenuItem;
+            //e.Handled = true;
             Note note = new Note();
             note.note_title = "New Note";
-            note.category_id = int.Parse(mi.Name.Substring(2));
-            Console.WriteLine(mi.Name + " name of element continued");
+           // note.category_id = id;
             note.note_content = "";
             DB.Add(note);
             UpdateNotes();
@@ -280,24 +263,34 @@ namespace NotetakingApp
         }
 
         private void CreateNewCategory(NoteCategory noteCategory) {
-            TreeViewItem cateTV = new TreeViewItem();
-            cateTV.Name = "cate"+noteCategory.category_id;
-            Border border = new Border() {Style= FindResource("CategoryHover") as Style };
-            border.Child = new TextBlock() { Text = noteCategory.category_title };
-            cateTV.Header = border;
-            cateTV.MouseRightButtonDown += OpenCM;
-            cateTV.Focusable = true;
+            TextBlock tb = new TextBlock();
+            tb.Name = "cate"+noteCategory.category_id;
+            tb.Text = noteCategory.category_id+" meme";
+            tb.Focusable = true;
+            tb.Background = Brushes.Red;
+            
 
-            TreeViewItem parent = null;
-            foreach (TreeViewItem tvi in treeView.Items)
-                if (noteCategory.category_parent == int.Parse(tvi.Name.Substring(4)))
-                    parent = tvi;
+            TextBlock parent = null;
+            foreach (TextBlock tb1 in UnCategorised.Children)
+                if (tb1.Name == "cate" + noteCategory.category_parent)
+                    parent = tb1;
 
-            parent.Items.Add(cateTV);
+            if (UnCategorised.Children.Count > 0)
+            {
+                tb.Tag = UnCategorised.Children.IndexOf(parent)+1;
+                tb.Margin = new Thickness((int)tb.Tag * 10, 0, 0, 0);
+                UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
+            }
+            else
+            {
+                tb.Tag = 0;
+                UnCategorised.Children.Add(tb);
+            }
         }
 
         private void CreateNewNote(Note note)
         {
+            /*
             TreeViewItem noteTV = new TreeViewItem();
             Border border = new Border() { Style = FindResource("BorderHover") as Style };
             border.Child = new TextBlock() { Text = note.note_title };
@@ -311,7 +304,7 @@ namespace NotetakingApp
             foreach (TreeViewItem tvi in treeView.Items)
                 if (note.category_id == int.Parse(tvi.Name.Substring(4)))
                     parent = tvi;
-            parent.Items.Add(noteTV);
+            parent.Items.Add(noteTV);*/
         }
 
         private void ClickNote(object sender, MouseButtonEventArgs e)
@@ -347,7 +340,7 @@ namespace NotetakingApp
         }
 
         private void UpdateNotes() {
-            cate1.Items.Clear();
+            UnCategorised.Children.Clear();
             AddCategories(DB.GetNoteCategories()[0]);
             AddNotes();
         }

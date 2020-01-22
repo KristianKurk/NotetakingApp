@@ -19,6 +19,8 @@
     <Page.Resources>
 
         <ContextMenu x:Key="cmButton">
+            <MenuItem Header="Add Note" Click="CreateNewNoteClick"></MenuItem>
+            <MenuItem Header="Add Category" Click="CreateNewCategoryClick"></MenuItem>
         </ContextMenu>
 
         <!--Note border Style-->
@@ -172,34 +174,17 @@
         
             
             
-            <StackPanel  Name="treeContainer" Margin="0,30,0,0">
+            <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM" Orientation="Vertical" Background="Aqua">
                 <!-- Categories and Notes go here-->
 
                 <!--  Added Category                       
                  - New Categories add StackPanel with Name Tag + TextBlock
                  - Notes go in the designated Category as TextBlocks      
                 -->
-
-
-
-
-                <TreeView Name ="treeView" Background="Transparent" BorderBrush="Transparent" >
-                        <TreeViewItem IsExpanded="True" Name="cate1" MouseRightButtonDown="OpenCM" Focusable="True">
-                            
-                            <TreeViewItem.Header>
-                                    <!-- Category -->
-                                <Border Style="{StaticResource CategoryHover}">
-                                    <TextBlock HorizontalAlignment="Center" Foreground="White">
-                                         Default
-                                    </TextBlock>
-                                </Border>
-                            </TreeViewItem.Header>
-                            
-                        </TreeViewItem>
-                    </TreeView>
-
-
-                    <!-- End of Categories and Notes-->
+                <TextBlock Text="Example" Width="200"></TextBlock>
+                <TextBlock Text="Example" Width="200"></TextBlock>
+                <TextBlock Text="Example" Width="200"></TextBlock>
+                <!-- End of Categories and Notes-->
             </StackPanel>
 
         
