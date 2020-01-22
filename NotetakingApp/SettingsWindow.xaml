@@ -8,20 +8,127 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingsWindow">
 
-    <Grid>
-        <Button Margin="45,23,572,375" Click="Note_Report_Click">
+    <Page.Resources>
+
+
+        <Style x:Key="MyFocusVisual">
+
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid>
+                            <!-- <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/> -->
+                            <!--  <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="0" />-->
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ShadowStyle">
+            <Setter Property="Control.Foreground" Value="Black" />
+        </Style>
+
+        <Style x:Key="InformButton" TargetType="Button">
+            
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
+                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
+                        <GradientStop Color="#ffe5cf" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+        				BorderThickness="1,1,1,0"
+        				CornerRadius="25,25,25,25"
+        				BorderBrush="#563232" 
+        				
+        				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+        	                           VerticalAlignment="Center" Name="contentShadow" 
+        					Style="{StaticResource ShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
+                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
+                                            <GradientStop Color="#ffe5cf" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Trigger>
+
+
+                            <Trigger Property="IsEnabled" Value="False">
+
+
+                                <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
+                                <Setter Property="Foreground" Value="#ffe5cf" />
+                                <Setter Property="Background" Value="#563232" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        </Page.Resources>
+
+        <Grid >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Click="Note_Report_Click" Style="{StaticResource InformButton}">
             <TextBlock Text="Note Report"></TextBlock>
         </Button>
-        <Button Margin="45,89,572,309" Click="RNG_Report_Click">
+        <Button Grid.Row="1"  Click="RNG_Report_Click" Style="{StaticResource InformButton}">
             <TextBlock Text="RNG Report"></TextBlock>
         </Button>
-        <Button Margin="43,157,574,241" Click="Note_Category_Report_Click">
+        <Button Grid.Row="2"  Click="Note_Category_Report_Click" Style="{StaticResource InformButton}">
             <TextBlock Text="Note Category Report"></TextBlock>
         </Button>
-        <Button Margin="42,221,575,177" Click="Map_Report_Click">
+        <Button Grid.Row="3"  Click="Map_Report_Click" Style="{StaticResource InformButton}">
             <TextBlock Text="Map Report"></TextBlock>
         </Button>
-        <Button Margin="43,287,574,111" Click="Export_Database">
+        <Button Grid.Row="4"  Click="Export_Database" Style="{StaticResource InformButton}">
             <TextBlock Text="Export Database"></TextBlock>
         </Button>
         <Grid Name="RNGSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
