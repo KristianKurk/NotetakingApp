@@ -49,5 +49,9 @@ namespace NotetakingApp
         {
 
         }
+        private void BtnClickMap(object sender, RoutedEventArgs e)
+        {
+            StartMap();
+        }
     }
 }

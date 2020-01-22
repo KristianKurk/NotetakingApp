@@ -237,17 +237,7 @@
 
 
 
-
-
-
-
-
-
-
     <StackPanel Style="{StaticResource stackGradient}" >
-
-
-      
 
 
 
@@ -261,8 +251,6 @@
               IsMouseDirectlyOverChanged="topNav_IsMouseDirectlyOverChanged"
              
               >
-
-           
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
