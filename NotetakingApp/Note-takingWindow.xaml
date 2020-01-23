@@ -170,11 +170,11 @@
         <!-- New Right Action/Nav Bar-->
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch">
-          
-        
-            
-            
-            <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM" Orientation="Vertical" Background="Aqua">
+
+
+
+
+            <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Aqua">
                 <!-- Categories and Notes go here-->
 
                 <!--  Added Category                       
@@ -187,7 +187,6 @@
                 <!-- End of Categories and Notes-->
             </StackPanel>
 
-        
         </ScrollViewer>
     </Grid>
 

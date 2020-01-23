@@ -32,6 +32,7 @@ namespace NotetakingApp
         private Note openNote;
         private NoteCategory openNC;
         int id;
+        List<TextBlock> hiddenNotes;
 
         public Note_takingWindow()
         {
@@ -40,6 +41,7 @@ namespace NotetakingApp
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
             UpdateNotes();
+            hiddenNotes = new List<TextBlock>();
 
             if (Properties.Settings.Default.currentNote != null)
                 openNote = Properties.Settings.Default.currentNote;
@@ -268,23 +270,85 @@ namespace NotetakingApp
             tb.Text = noteCategory.category_id+" meme";
             tb.Focusable = true;
             tb.Background = Brushes.Red;
-            
+            tb.MouseLeftButtonDown += OpenCloseCategory;
 
             TextBlock parent = null;
             foreach (TextBlock tb1 in UnCategorised.Children)
                 if (tb1.Name == "cate" + noteCategory.category_parent)
                     parent = tb1;
+            tb.Tag = parent;
 
             if (UnCategorised.Children.Count > 0)
             {
-                tb.Tag = UnCategorised.Children.IndexOf(parent)+1;
-                tb.Margin = new Thickness((int)tb.Tag * 10, 0, 0, 0);
+                int count = 0;
+                TextBlock loopTB = tb;
+                while (loopTB.Tag != null) {
+                    count++;
+                    loopTB = loopTB.Tag as TextBlock;
+                }
+                tb.Margin = new Thickness(count * 10, 0, 0, 0);
                 UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
             }
             else
             {
-                tb.Tag = 0;
                 UnCategorised.Children.Add(tb);
+            }
+        }
+
+        private void OpenCloseCategory(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is TextBlock)
+            {
+                TextBlock tb = sender as TextBlock;
+                List<TextBlock> visibleChildren = new List<TextBlock>();
+                List<TextBlock> hiddenChildren = new List<TextBlock>();
+                GetVisibleChildren(tb, visibleChildren);
+                GetHiddenChildren(tb, hiddenChildren);
+
+                if (visibleChildren.Count > 0)
+                    MakeHidden(visibleChildren);
+                else if (hiddenChildren.Count > 0)
+                {
+                    hiddenChildren.Reverse();
+                    MakeVisible(hiddenChildren);
+                }
+            }
+        }
+
+        private void GetHiddenChildren(TextBlock tb, List<TextBlock> children)
+        {
+            foreach (TextBlock potentialChild in hiddenNotes)
+            {
+                if (potentialChild.Tag == tb)
+                {
+                    children.Add(potentialChild);
+                    GetVisibleChildren(potentialChild, children);
+                }
+            }
+        }
+
+        private void GetVisibleChildren(TextBlock tb, List<TextBlock> children)
+        {
+            foreach (TextBlock potentialChild in UnCategorised.Children)
+            {
+                if (potentialChild.Tag == tb) {
+                    children.Add(potentialChild);
+                    GetVisibleChildren(potentialChild, children);
+                }
+            }
+        }
+
+        private void MakeVisible(List<TextBlock> children)
+        {
+            foreach (TextBlock t in children) {
+                hiddenNotes.Remove(t);
+                UnCategorised.Children.Insert(UnCategorised.Children.IndexOf((TextBlock)t.Tag) + 1, t);
+            }
+        }
+        private void MakeHidden(List<TextBlock> children) {
+            foreach (TextBlock t in children) {
+                UnCategorised.Children.Remove(t);
+                hiddenNotes.Add(t);
             }
         }
 
