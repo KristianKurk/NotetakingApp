@@ -250,11 +250,11 @@ namespace NotetakingApp
 
         private void CreateNewNoteClick(object sender, RoutedEventArgs e)
         {
-            //e.Handled = true;
             Note note = new Note();
+            string rtfText = "{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql{\\f2 \\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}}}";
             note.note_title = "New Note";
-           // note.category_id = id;
-            note.note_content = "";
+            note.category_id = id;
+            note.note_content = rtfText;
             DB.Add(note);
             UpdateNotes();
         }
@@ -354,35 +354,50 @@ namespace NotetakingApp
 
         private void CreateNewNote(Note note)
         {
-            /*
-            TreeViewItem noteTV = new TreeViewItem();
-            Border border = new Border() { Style = FindResource("BorderHover") as Style };
-            border.Child = new TextBlock() { Text = note.note_title };
-            noteTV.Header = border;
-            noteTV.Name = "note" + note.note_id;
-            noteTV.PreviewMouseLeftButtonDown += ClickNote;
-            noteTV.MouseRightButtonDown += OpenCM;
-            noteTV.Focusable = true;
+            TextBlock tb = new TextBlock();
+            tb.Name = "note" + note.note_id;
+            tb.Text = note.note_id + " note";
+            tb.Focusable = true;
+            tb.Background = Brushes.Yellow;
+            tb.MouseLeftButtonDown += ClickNote;
 
-            TreeViewItem parent = null;
-            foreach (TreeViewItem tvi in treeView.Items)
-                if (note.category_id == int.Parse(tvi.Name.Substring(4)))
-                    parent = tvi;
-            parent.Items.Add(noteTV);*/
+            TextBlock parent = null;
+            foreach (TextBlock tb1 in UnCategorised.Children)
+                if (tb1.Name == "cate" + note.category_id)
+                    parent = tb1;
+            tb.Tag = parent;
+
+            if (UnCategorised.Children.Count > 0)
+            {
+                int count = 0;
+                TextBlock loopTB = tb;
+                while (loopTB.Tag != null)
+                {
+                    count++;
+                    loopTB = loopTB.Tag as TextBlock;
+                }
+                tb.Margin = new Thickness(count * 10, 0, 0, 0);
+                UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
+            }
+            else
+            {
+                UnCategorised.Children.Add(tb);
+            }
         }
 
         private void ClickNote(object sender, MouseButtonEventArgs e)
         {
-            e.Handled = true;
-            TreeViewItem tv = sender as TreeViewItem;
-            Console.WriteLine("sugma " + tv.Name.Substring(4));
-            openNote = DB.GetNote(int.Parse(tv.Name.Substring(4)));
-            string rtfText = DB.GetNote(int.Parse(tv.Name.Substring(4))).note_content;
-            byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
-            using (MemoryStream ms = new MemoryStream(byteArray))
+            if (sender is TextBlock)
             {
-                TextRange tr = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-                tr.Load(ms, DataFormats.Rtf);
+                int noteId = int.Parse(((TextBlock)sender).Name.Substring(4));
+                openNote = DB.GetNote(noteId);
+                string rtfText = openNote.note_content;
+                byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
+                using (MemoryStream ms = new MemoryStream(byteArray))
+                {
+                    TextRange tr = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+                    tr.Load(ms, DataFormats.Rtf);
+                }
             }
         }
 
