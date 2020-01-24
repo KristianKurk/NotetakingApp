@@ -115,8 +115,7 @@ namespace Database
                 if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
                 {
                     if (xmlReader.HasAttributes)
-                        if (xmlReader.GetAttribute("status") == "active")
-                            campaigns.Add(xmlReader.GetAttribute("name"));
+                        campaigns.Add(xmlReader.GetAttribute("name"));
                 }
             }
             return campaigns;

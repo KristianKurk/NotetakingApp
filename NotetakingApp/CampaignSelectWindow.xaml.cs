@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Database;
 
 namespace NotetakingApp
 {
@@ -25,7 +26,8 @@ namespace NotetakingApp
         {
           
             InitializeComponent();
-           
+            Console.WriteLine(Connection.GetCampaignNames().Count);
+            DisplayCampaigns();
 
             this.Top = Properties.Settings.Default.Top;
             this.Left = Properties.Settings.Default.Left;
@@ -223,6 +225,73 @@ namespace NotetakingApp
             }
         }
 
+        private void DisplayCampaigns() {
+            if (CampaignStack.Children.Count > 1)
+                CampaignStack.Children.RemoveRange(1, CampaignStack.Children.Count - 1);
 
+            List<String> campaignNames = Connection.GetCampaignNames();
+            campaignNames.RemoveAt(0);
+            int numberOfFullRows = (int)(campaignNames.Count / 3);
+            int remainder = campaignNames.Count % 3;
+
+            for (int i = 0; i < numberOfFullRows; i+= 3)
+                AddGridRow(campaignNames[i], campaignNames[i + 1], campaignNames[i+2]);
+
+            if (remainder == 1)
+                AddGridRow(campaignNames[campaignNames.Count - 1]);
+            else if (remainder == 2)
+                AddGridRow(campaignNames[campaignNames.Count - 2], campaignNames[campaignNames.Count - 1]);
+        }
+
+        private void AddGridRow(string name1, string name2, string name3)
+        {
+            Grid grid = new Grid();
+            grid.Style = this.FindResource("GridStyle") as Style;
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.Children.Add(GetGridElement(name1,0));
+            grid.Children.Add(GetGridElement(name2, 1));
+            grid.Children.Add(GetGridElement(name3, 2));
+            CampaignStack.Children.Add(grid);
+        }
+
+        private void AddGridRow(string name1, string name2)
+        {
+            Grid grid = new Grid();
+            grid.Style = this.FindResource("GridStyle") as Style;
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.Children.Add(GetGridElement(name1, 0));
+            grid.Children.Add(GetGridElement(name2, 1));
+            CampaignStack.Children.Add(grid);
+        }
+
+        private void AddGridRow(string name1)
+        {
+            Grid grid = new Grid();
+            grid.Style = this.FindResource("GridStyle") as Style;
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.Children.Add(GetGridElement(name1, 0));
+            CampaignStack.Children.Add(grid);
+        }
+
+        private Border GetGridElement(string name, int col) {
+            Border border = new Border();
+            border.Style = this.FindResource("BorderStyle") as Style;
+            Grid.SetColumn(border,col);
+
+            Button btn = new Button();
+            btn.Style = this.FindResource("CampaignButton") as Style;
+            btn.Click += BtnCampaign;
+            border.Child = btn;
+
+            TextBlock tb = new TextBlock();
+            tb.Style = this.FindResource("CampaignTitle") as Style;
+            tb.Text = name;
+            btn.Content = tb;
+
+            return border;
+        }
     }
 }

@@ -84,7 +84,7 @@
         <!-- Container for Campaign StackPanels-->
         <ScrollViewer>
             
-            <StackPanel Orientation="Vertical" Margin="50">
+            <StackPanel Name="CampaignStack" Orientation="Vertical" Margin="50">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -107,7 +107,7 @@
                 </Grid>
 
                 <!-- Campaign Example Row 1  -->
-                <Grid  Style="{StaticResource GridStyle}">
+                <Grid Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
