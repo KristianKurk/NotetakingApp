@@ -76,49 +76,68 @@ namespace Database
             xmlDoc.Save(xmlPath);
         }
 
+        public static void SetActiveCampaign(string name) {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlPath);
+            XmlNodeList campaigns = xmlDoc.GetElementsByTagName("campaign");
+            foreach (XmlNode campaign in campaigns)
+            {
+                if (campaign.Attributes["name"].Value != name)
+                    campaign.Attributes["status"].Value = "inactive";
+                else
+                    campaign.Attributes["status"].Value = "active";
+            }
+            xmlDoc.Save(xmlPath);
+        }
+
         public static string GetActiveCampaignDirectory()
         {
-            XmlReader xmlReader = XmlReader.Create(xmlPath);
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(xmlPath))
             {
-                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+                while (xmlReader.Read())
                 {
-                    if (xmlReader.HasAttributes)
-                        if (xmlReader.GetAttribute("status") == "active")
-                            return xmlReader.GetAttribute("directory");
+                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+                    {
+                        if (xmlReader.HasAttributes)
+                            if (xmlReader.GetAttribute("status") == "active")
+                                return xmlReader.GetAttribute("directory");
+                    }
                 }
+                return "";
             }
-            return "";
         }
 
         public static string GetActiveCampaignName()
         {
-            XmlReader xmlReader = XmlReader.Create(xmlPath);
-            while (xmlReader.Read())
-            {
-                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+            using (XmlReader xmlReader = XmlReader.Create(xmlPath)) {
+                while (xmlReader.Read())
                 {
-                    if (xmlReader.HasAttributes)
-                        if (xmlReader.GetAttribute("status") == "active")
-                            return xmlReader.GetAttribute("name");
+                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+                    {
+                        if (xmlReader.HasAttributes)
+                            if (xmlReader.GetAttribute("status") == "active")
+                                return xmlReader.GetAttribute("name");
+                    }
                 }
+                return "";
             }
-            return "";
         }
 
         public static List<string> GetCampaignNames()
         {
             List<string> campaigns = new List<string>();
-            XmlReader xmlReader = XmlReader.Create(xmlPath);
-            while (xmlReader.Read())
+            using (XmlReader xmlReader = XmlReader.Create(xmlPath))
             {
-                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+                while (xmlReader.Read())
                 {
-                    if (xmlReader.HasAttributes)
-                        campaigns.Add(xmlReader.GetAttribute("name"));
+                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+                    {
+                        if (xmlReader.HasAttributes)
+                            campaigns.Add(xmlReader.GetAttribute("name"));
+                    }
                 }
+                return campaigns;
             }
-            return campaigns;
         }
 
         public static int getDirectoryNum()

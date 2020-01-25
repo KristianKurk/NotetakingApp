@@ -29,8 +29,7 @@ namespace NotetakingApp
         public MainWindow()
         {
             InitializeComponent();
-           // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            //Connection.CreateNewCampaign("AwesomeLand");
+            // WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             //Set window size to previous window size
             this.Top = Properties.Settings.Default.Top;

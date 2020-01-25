@@ -94,7 +94,7 @@
 
                     <!-- Add Button -->
                     <Border Style="{StaticResource BorderStyle2}" Grid.Column="0" Width="200"  >
-                        <Button  Style="{StaticResource CampaignButton2}"   Content="Add Campaign">
+                        <Button  Style="{StaticResource CampaignButton2}" Click="NewCampaign"  Content="Add Campaign">
                         </Button>
                     </Border>
                     <!-- Import Button -->
@@ -131,23 +131,23 @@
             </Grid>
 
                 <!-- Campaign Example Row 2  -->
-            <Grid  Style="{StaticResource GridStyle}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid  Style="{StaticResource GridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Campaign Button Example 3  -->
-                <Border Style="{StaticResource BorderStyle}" >
-                    <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
-                        <TextBlock Style="{StaticResource CampaignTitle}">Campaign 3</TextBlock>
-                    </Button>
-                </Border>
+                    <!-- Campaign Button Example 3  -->
+                    <Border Style="{StaticResource BorderStyle}" >
+                        <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
+                            <TextBlock Style="{StaticResource CampaignTitle}">Campaign 3</TextBlock>
+                        </Button>
+                    </Border>
 
-            </Grid>
+                </Grid>
 
-        </StackPanel>
+            </StackPanel>
             
         </ScrollViewer>
     </StackPanel>

@@ -24,9 +24,9 @@ namespace NotetakingApp
         
         public CampaignSelectWindow()
         {
-          
+            
             InitializeComponent();
-            Console.WriteLine(Connection.GetCampaignNames().Count);
+            
             DisplayCampaigns();
 
             this.Top = Properties.Settings.Default.Top;
@@ -188,10 +188,23 @@ namespace NotetakingApp
             Properties.Settings.Default.Save();
 
             //main.Content = new CampaignSelector();
+            string name = (string)((Button)sender).Tag;
+            Connection.SetActiveCampaign(name);
 
             var newForm = new MainWindow(); //create your new window.
             newForm.Show(); //show the new window.
             this.Close(); //close the current window.
+        }
+
+        private void NewCampaign(object sender, RoutedEventArgs e)
+        {
+            Connection.CreateNewCampaign("Test");   //insert campaign name here.
+            DisplayCampaigns();
+        }
+
+        private void ImportCampaign(object sender, RoutedEventArgs e)
+        {
+            //To be implemented
         }
 
         private void SetMaximizeIcon()
@@ -234,8 +247,11 @@ namespace NotetakingApp
             int numberOfFullRows = (int)(campaignNames.Count / 3);
             int remainder = campaignNames.Count % 3;
 
-            for (int i = 0; i < numberOfFullRows; i+= 3)
-                AddGridRow(campaignNames[i], campaignNames[i + 1], campaignNames[i+2]);
+            for (int i = 0; i < numberOfFullRows; i += 3)
+            {
+                Console.WriteLine("It did a loop " + numberOfFullRows);
+                AddGridRow(campaignNames[i], campaignNames[i + 1], campaignNames[i + 2]);
+            }
 
             if (remainder == 1)
                 AddGridRow(campaignNames[campaignNames.Count - 1]);
@@ -262,6 +278,7 @@ namespace NotetakingApp
             grid.Style = this.FindResource("GridStyle") as Style;
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.Children.Add(GetGridElement(name1, 0));
             grid.Children.Add(GetGridElement(name2, 1));
             CampaignStack.Children.Add(grid);
@@ -271,6 +288,8 @@ namespace NotetakingApp
         {
             Grid grid = new Grid();
             grid.Style = this.FindResource("GridStyle") as Style;
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.Children.Add(GetGridElement(name1, 0));
             CampaignStack.Children.Add(grid);
@@ -283,6 +302,7 @@ namespace NotetakingApp
 
             Button btn = new Button();
             btn.Style = this.FindResource("CampaignButton") as Style;
+            btn.Tag = name;
             btn.Click += BtnCampaign;
             border.Child = btn;
 
