@@ -21,6 +21,7 @@
         <ContextMenu x:Key="cmButton">
             <MenuItem Header="Add Note" Click="CreateNewNoteClick"></MenuItem>
             <MenuItem Header="Add Category" Click="CreateNewCategoryClick"></MenuItem>
+            <MenuItem Header="Delete" Click="DeleteClick"></MenuItem>
         </ContextMenu>
 
         <!--Note border Style-->
@@ -181,7 +182,6 @@
                  - New Categories add StackPanel with Name Tag + TextBlock
                  - Notes go in the designated Category as TextBlocks      
                 -->
-                <TextBlock Text="Example" Width="200"></TextBlock>
                 <TextBlock Text="Example" Width="200"></TextBlock>
                 <TextBlock Text="Example" Width="200"></TextBlock>
                 <!-- End of Categories and Notes-->

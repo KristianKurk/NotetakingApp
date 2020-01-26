@@ -30,9 +30,10 @@ namespace NotetakingApp
         private string privateText = null;
 
         private Note openNote;
-        private NoteCategory openNC;
-        int id;
-        List<TextBlock> hiddenNotes;
+        private int id;
+        private string type;
+        List<TextBox> hiddenNotes;
+        private TextBox editedTitle; //Current Note or Category being edited
 
         public Note_takingWindow()
         {
@@ -40,11 +41,16 @@ namespace NotetakingApp
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
-            UpdateNotes();
-            hiddenNotes = new List<TextBlock>();
+            
+            hiddenNotes = new List<TextBox>();
 
+            
             if (Properties.Settings.Default.currentNote != null)
+            {
                 openNote = Properties.Settings.Default.currentNote;
+            }
+            UpdateNotes();
+            LoadNoteContent();
         }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -203,36 +209,24 @@ namespace NotetakingApp
             DB.Update(openNote);
         }
 
-
-
-        /*private void OpenCMUncategorised(object sender, MouseButtonEventArgs e)
-        {
-            MenuItem newCat = new MenuItem { Header = "New Category" };
-            newCat.Click += CreateNewCategoryClick;
-            MenuItem newNote = new MenuItem { Header = "New Note" };
-            newNote.Click += CreateNewNoteClick;
-            MenuItem[] uncategorisedCM = { newCat, newNote };
-            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
-            cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
-            cm.ItemsSource = null;
-            cm.ItemsSource = uncategorisedCM;
-
-            cm.IsOpen = true;
-        }*/
-
         private void OpenCM(object sender, MouseButtonEventArgs e)
         {
-            if (e.OriginalSource is TextBlock)
+            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
+            if (e.Source is TextBox)
             {
-                TextBlock tb = e.OriginalSource as TextBlock;
+                MenuItem menuItem = cm.Items[2] as MenuItem;
+                menuItem.IsEnabled = true;
+                TextBox tb = e.Source as TextBox;
                 id = int.Parse(tb.Name.Substring(4));
-                Console.WriteLine("monka"+id);
+                type = tb.Name.Substring(0, 4);
             }
             else {
+                MenuItem menuItem = cm.Items[2] as MenuItem;
+                menuItem.IsEnabled = false;
                 id = 1;
+                type = "base";
             }
 
-            ContextMenu cm = this.FindResource("cmButton") as ContextMenu;
             cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
             cm.IsOpen = true;
 
@@ -261,19 +255,45 @@ namespace NotetakingApp
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            TextBox target = null;
+            foreach (TextBox t in UnCategorised.Children)
+                if (t.Name == type + id)
+                    target = t;
+
+            if (type == "cate")
+            {
+                List<TextBox> ToRemove = new List<TextBox>();
+                GetVisibleChildren(target, ToRemove);
+                GetHiddenChildren(target, ToRemove);
+                ToRemove.Add(target);
+
+                foreach (TextBox t in ToRemove)
+                    if (t.Name.Substring(0, 4) == "cate")
+                        DB.DeleteNoteCategory(int.Parse(t.Name.Substring(4)));
+                    else if (t.Name.Substring(0, 4) == "note")
+                        DB.DeleteNote(int.Parse(t.Name.Substring(4)));
+            }
+            else if (type == "note")
+            {
+                DB.DeleteNote(id);
+            }
+            UpdateNotes();
         }
 
         private void CreateNewCategory(NoteCategory noteCategory) {
-            TextBlock tb = new TextBlock();
+            TextBox tb = new TextBox();
             tb.Name = "cate"+noteCategory.category_id;
-            tb.Text = noteCategory.category_id+" meme";
+            tb.Text = noteCategory.category_title;
             tb.Focusable = true;
             tb.Background = Brushes.Red;
-            tb.MouseLeftButtonDown += OpenCloseCategory;
+            tb.IsReadOnly = false;
+            tb.Cursor = Cursors.Arrow;
+            tb.PreviewMouseLeftButtonDown += OpenCloseCategory;
+            tb.PreviewMouseDoubleClick += SetEditable;
+            tb.LostFocus += SetUneditable;
 
-            TextBlock parent = null;
-            foreach (TextBlock tb1 in UnCategorised.Children)
+            TextBox parent = null;
+            foreach (TextBox tb1 in UnCategorised.Children)
                 if (tb1.Name == "cate" + noteCategory.category_parent)
                     parent = tb1;
             tb.Tag = parent;
@@ -281,10 +301,10 @@ namespace NotetakingApp
             if (UnCategorised.Children.Count > 0)
             {
                 int count = 0;
-                TextBlock loopTB = tb;
+                TextBox loopTB = tb;
                 while (loopTB.Tag != null) {
                     count++;
-                    loopTB = loopTB.Tag as TextBlock;
+                    loopTB = loopTB.Tag as TextBox;
                 }
                 tb.Margin = new Thickness(count * 10, 0, 0, 0);
                 UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
@@ -297,11 +317,11 @@ namespace NotetakingApp
 
         private void OpenCloseCategory(object sender, MouseButtonEventArgs e)
         {
-            if (sender is TextBlock)
+            if (sender is TextBox)
             {
-                TextBlock tb = sender as TextBlock;
-                List<TextBlock> visibleChildren = new List<TextBlock>();
-                List<TextBlock> hiddenChildren = new List<TextBlock>();
+                TextBox tb = sender as TextBox;
+                List<TextBox> visibleChildren = new List<TextBox>();
+                List<TextBox> hiddenChildren = new List<TextBox>();
                 GetVisibleChildren(tb, visibleChildren);
                 GetHiddenChildren(tb, hiddenChildren);
 
@@ -315,9 +335,9 @@ namespace NotetakingApp
             }
         }
 
-        private void GetHiddenChildren(TextBlock tb, List<TextBlock> children)
+        private void GetHiddenChildren(TextBox tb, List<TextBox> children)
         {
-            foreach (TextBlock potentialChild in hiddenNotes)
+            foreach (TextBox potentialChild in hiddenNotes)
             {
                 if (potentialChild.Tag == tb)
                 {
@@ -327,9 +347,9 @@ namespace NotetakingApp
             }
         }
 
-        private void GetVisibleChildren(TextBlock tb, List<TextBlock> children)
+        private void GetVisibleChildren(TextBox tb, List<TextBox> children)
         {
-            foreach (TextBlock potentialChild in UnCategorised.Children)
+            foreach (TextBox potentialChild in UnCategorised.Children)
             {
                 if (potentialChild.Tag == tb) {
                     children.Add(potentialChild);
@@ -338,15 +358,15 @@ namespace NotetakingApp
             }
         }
 
-        private void MakeVisible(List<TextBlock> children)
+        private void MakeVisible(List<TextBox> children)
         {
-            foreach (TextBlock t in children) {
+            foreach (TextBox t in children) {
                 hiddenNotes.Remove(t);
-                UnCategorised.Children.Insert(UnCategorised.Children.IndexOf((TextBlock)t.Tag) + 1, t);
+                UnCategorised.Children.Insert(UnCategorised.Children.IndexOf((TextBox)t.Tag) + 1, t);
             }
         }
-        private void MakeHidden(List<TextBlock> children) {
-            foreach (TextBlock t in children) {
+        private void MakeHidden(List<TextBox> children) {
+            foreach (TextBox t in children) {
                 UnCategorised.Children.Remove(t);
                 hiddenNotes.Add(t);
             }
@@ -354,15 +374,19 @@ namespace NotetakingApp
 
         private void CreateNewNote(Note note)
         {
-            TextBlock tb = new TextBlock();
+            TextBox tb = new TextBox();
             tb.Name = "note" + note.note_id;
-            tb.Text = note.note_id + " note";
+            tb.Text = note.note_title;
             tb.Focusable = true;
             tb.Background = Brushes.Yellow;
-            tb.MouseLeftButtonDown += ClickNote;
+            tb.IsReadOnly = false;
+            tb.Cursor = Cursors.Arrow;
+            tb.PreviewMouseLeftButtonDown += ClickNote;
+            tb.PreviewMouseDoubleClick += SetEditable;
+            tb.LostFocus += SetUneditable;
 
-            TextBlock parent = null;
-            foreach (TextBlock tb1 in UnCategorised.Children)
+            TextBox parent = null;
+            foreach (TextBox tb1 in UnCategorised.Children)
                 if (tb1.Name == "cate" + note.category_id)
                     parent = tb1;
             tb.Tag = parent;
@@ -370,11 +394,11 @@ namespace NotetakingApp
             if (UnCategorised.Children.Count > 0)
             {
                 int count = 0;
-                TextBlock loopTB = tb;
+                TextBox loopTB = tb;
                 while (loopTB.Tag != null)
                 {
                     count++;
-                    loopTB = loopTB.Tag as TextBlock;
+                    loopTB = loopTB.Tag as TextBox;
                 }
                 tb.Margin = new Thickness(count * 10, 0, 0, 0);
                 UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
@@ -385,19 +409,49 @@ namespace NotetakingApp
             }
         }
 
+        private void SetUneditable(object sender, RoutedEventArgs e)
+        {
+            editedTitle = sender as TextBox;
+            editedTitle.IsReadOnly = true;
+            editedTitle.Cursor = Cursors.Arrow;
+            if (editedTitle.Name.Substring(0, 4) == "cate")
+            {
+                NoteCategory nc = DB.GetNoteCategory(int.Parse(editedTitle.Name.Substring(4)));
+                nc.category_title = editedTitle.Text;
+                DB.Update(nc);
+            }
+            else if (editedTitle.Name.Substring(0, 4) == "note") {
+                Note n = DB.GetNote(int.Parse(editedTitle.Name.Substring(4)));
+                n.note_title = editedTitle.Text;
+                DB.Update(n);
+            }
+        }
+
+        private void SetEditable(object sender, MouseButtonEventArgs e)
+        {
+            editedTitle = sender as TextBox;
+            editedTitle.Cursor = Cursors.IBeam;
+            editedTitle.IsReadOnly = false;
+        }
+
         private void ClickNote(object sender, MouseButtonEventArgs e)
         {
-            if (sender is TextBlock)
+            if (sender is TextBox)
             {
-                int noteId = int.Parse(((TextBlock)sender).Name.Substring(4));
+                int noteId = int.Parse(((TextBox)sender).Name.Substring(4));
                 openNote = DB.GetNote(noteId);
-                string rtfText = openNote.note_content;
-                byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
-                using (MemoryStream ms = new MemoryStream(byteArray))
-                {
-                    TextRange tr = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-                    tr.Load(ms, DataFormats.Rtf);
-                }
+                Properties.Settings.Default.currentNote = openNote;
+                LoadNoteContent();
+            }
+        }
+
+        private void LoadNoteContent() {
+            string rtfText = openNote.note_content;
+            byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
+            using (MemoryStream ms = new MemoryStream(byteArray))
+            {
+                TextRange tr = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+                tr.Load(ms, DataFormats.Rtf);
             }
         }
 
