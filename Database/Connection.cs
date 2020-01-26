@@ -76,15 +76,15 @@ namespace Database
             xmlDoc.Save(xmlPath);
         }
 
-        public static void SetActiveCampaign(string name) {
+        public static void SetActiveCampaign(string directory) {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlPath);
             XmlNodeList campaigns = xmlDoc.GetElementsByTagName("campaign");
             foreach (XmlNode campaign in campaigns)
             {
-                if (campaign.Attributes["name"].Value != name)
-                    campaign.Attributes["status"].Value = "inactive";
-                else
+                campaign.Attributes["status"].Value = "inactive";
+
+                if (campaign.Attributes["directory"].Value == directory)
                     campaign.Attributes["status"].Value = "active";
             }
             xmlDoc.Save(xmlPath);
@@ -134,6 +134,22 @@ namespace Database
                     {
                         if (xmlReader.HasAttributes)
                             campaigns.Add(xmlReader.GetAttribute("name"));
+                    }
+                }
+                return campaigns;
+            }
+        }
+
+        public static List<string> GetCampaignDirectories() {
+            List<string> campaigns = new List<string>();
+            using (XmlReader xmlReader = XmlReader.Create(xmlPath))
+            {
+                while (xmlReader.Read())
+                {
+                    if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "campaign"))
+                    {
+                        if (xmlReader.HasAttributes)
+                            campaigns.Add(xmlReader.GetAttribute("directory"));
                     }
                 }
                 return campaigns;

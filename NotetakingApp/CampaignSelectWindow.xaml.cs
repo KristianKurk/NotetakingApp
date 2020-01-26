@@ -188,8 +188,8 @@ namespace NotetakingApp
             Properties.Settings.Default.Save();
 
             //main.Content = new CampaignSelector();
-            string name = (string)((Button)sender).Tag;
-            Connection.SetActiveCampaign(name);
+            string directory = (string)((Button)sender).Tag;
+            Connection.SetActiveCampaign(directory);
 
             var newForm = new MainWindow(); //create your new window.
             newForm.Show(); //show the new window.
@@ -250,60 +250,60 @@ namespace NotetakingApp
             int campaignCount = 0;
             for (int i = 0; i < numberOfFullRows; i ++)
             {
-                AddGridRow(campaignNames[campaignCount], campaignNames[campaignCount+1], campaignNames[campaignCount+2]);
+                AddGridRow(campaignNames[campaignCount], campaignNames[campaignCount+1], campaignNames[campaignCount+2],campaignCount);
                 campaignCount += 3;
             }
 
             if (remainder == 1)
-                AddGridRow(campaignNames[campaignNames.Count - 1]);
+                AddGridRow(campaignNames[campaignNames.Count - 1], campaignNames.Count - 1);
             else if (remainder == 2)
-                AddGridRow(campaignNames[campaignNames.Count - 2], campaignNames[campaignNames.Count - 1]);
+                AddGridRow(campaignNames[campaignNames.Count - 2], campaignNames[campaignNames.Count - 1], campaignNames.Count - 2);
         }
 
-        private void AddGridRow(string name1, string name2, string name3)
+        private void AddGridRow(string name1, string name2, string name3, int index)
         {
             Grid grid = new Grid();
             grid.Style = this.FindResource("GridStyle") as Style;
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
-            grid.Children.Add(GetGridElement(name1,0));
-            grid.Children.Add(GetGridElement(name2, 1));
-            grid.Children.Add(GetGridElement(name3, 2));
+            grid.Children.Add(GetGridElement(name1,0,index));
+            grid.Children.Add(GetGridElement(name2, 1, index+1));
+            grid.Children.Add(GetGridElement(name3, 2, index+2));
             CampaignStack.Children.Add(grid);
         }
 
-        private void AddGridRow(string name1, string name2)
+        private void AddGridRow(string name1, string name2, int index)
         {
             Grid grid = new Grid();
             grid.Style = this.FindResource("GridStyle") as Style;
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
-            grid.Children.Add(GetGridElement(name1, 0));
-            grid.Children.Add(GetGridElement(name2, 1));
+            grid.Children.Add(GetGridElement(name1, 0, index));
+            grid.Children.Add(GetGridElement(name2, 1, index+1));
             CampaignStack.Children.Add(grid);
         }
 
-        private void AddGridRow(string name1)
+        private void AddGridRow(string name1,int index)
         {
             Grid grid = new Grid();
             grid.Style = this.FindResource("GridStyle") as Style;
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition());
-            grid.Children.Add(GetGridElement(name1, 0));
+            grid.Children.Add(GetGridElement(name1, 0, index));
             CampaignStack.Children.Add(grid);
         }
 
-        private Border GetGridElement(string name, int col) {
+        private Border GetGridElement(string name, int col, int index) {
             Border border = new Border();
             border.Style = this.FindResource("BorderStyle") as Style;
             Grid.SetColumn(border,col);
 
             Button btn = new Button();
             btn.Style = this.FindResource("CampaignButton") as Style;
-            btn.Tag = name;
+            btn.Tag = Connection.GetCampaignDirectories()[index+1];
             btn.Click += BtnCampaign;
             border.Child = btn;
 
