@@ -245,12 +245,13 @@ namespace NotetakingApp
             List<String> campaignNames = Connection.GetCampaignNames();
             campaignNames.RemoveAt(0);
             int numberOfFullRows = (int)(campaignNames.Count / 3);
-            int remainder = campaignNames.Count % 3;
 
-            for (int i = 0; i < numberOfFullRows; i += 3)
+            int remainder = campaignNames.Count % 3;
+            int campaignCount = 0;
+            for (int i = 0; i < numberOfFullRows; i ++)
             {
-                Console.WriteLine("It did a loop " + numberOfFullRows);
-                AddGridRow(campaignNames[i], campaignNames[i + 1], campaignNames[i + 2]);
+                AddGridRow(campaignNames[campaignCount], campaignNames[campaignCount+1], campaignNames[campaignCount+2]);
+                campaignCount += 3;
             }
 
             if (remainder == 1)

@@ -106,7 +106,6 @@
                     
                 </Grid>
 
-                <!-- Campaign Example Row 1  -->
                 <Grid Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -114,14 +113,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                    <!-- Campaign Button Example 1  -->
+              
                 <Border Style="{StaticResource BorderStyle}" Grid.Column="0" >
                     <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
                         <TextBlock Style="{StaticResource CampaignTitle}">Campaign 1</TextBlock>
                     </Button>
                 </Border>
                     
-                    <!-- Campaign Button Example 2  -->
+                 
                 <Border Style="{StaticResource BorderStyle}" Grid.Column="1" >
                     <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
                         <TextBlock Style="{StaticResource CampaignTitle}">Campaign 2</TextBlock>
@@ -130,7 +129,7 @@
 
             </Grid>
 
-                <!-- Campaign Example Row 2  -->
+
                 <Grid  Style="{StaticResource GridStyle}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -138,7 +137,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Campaign Button Example 3  -->
+
                     <Border Style="{StaticResource BorderStyle}" >
                         <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
                             <TextBlock Style="{StaticResource CampaignTitle}">Campaign 3</TextBlock>
