@@ -58,6 +58,8 @@ namespace NotetakingApp
 
             //WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
+           
+
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -198,7 +200,11 @@ namespace NotetakingApp
 
         private void NewCampaign(object sender, RoutedEventArgs e)
         {
+            //Load form for campaign
+            camp.Content = new CampaignSelector();
+
             Connection.CreateNewCampaign("Test");   //insert campaign name here.
+
             DisplayCampaigns();
         }
 
