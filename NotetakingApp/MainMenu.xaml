@@ -121,8 +121,9 @@
 
         <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Margin="10" CornerRadius="12" >
             <Border.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
                     <GradientStop Color="#ffe5cf" Offset="0.0"/>
+
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>

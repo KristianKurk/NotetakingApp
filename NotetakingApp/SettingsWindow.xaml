@@ -8,103 +8,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SettingsWindow">
 
+   
+
+
     <Page.Resources>
+        <!--Scroll Bar Style + Rest-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SettingsStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
 
-
-        <Style x:Key="MyFocusVisual">
-
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Control}">
-                        <Grid>
-                            <!-- <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/> -->
-                            <!--  <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}" BorderThickness="0" />-->
-
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="ShadowStyle">
-            <Setter Property="Control.Foreground" Value="Black" />
-        </Style>
-
-        <Style x:Key="InformButton" TargetType="Button">
-            
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Width" Value="300"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="11px"/>
-            <Setter Property="FontWeight" Value="Normal"/>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Background" >
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
-                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
-                        <GradientStop Color="#ffe5cf" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" 
-        				BorderThickness="1,1,1,0"
-        				CornerRadius="25,25,25,25"
-        				BorderBrush="#563232" 
-        				
-        				Background="{TemplateBinding Background}">
-                            <Grid >
-                                <ContentPresenter HorizontalAlignment="Center" 
-        	                           VerticalAlignment="Center" Name="contentShadow" 
-        					Style="{StaticResource ShadowStyle}">
-                                    <ContentPresenter.RenderTransform>
-                                        <TranslateTransform X="0" Y="0" />
-                                    </ContentPresenter.RenderTransform>
-                                </ContentPresenter>
-                                <ContentPresenter HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" Name="content"/>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-
-                                <Setter Property="Foreground" Value="Black" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" >
-                                    <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
-                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
-                                            <GradientStop Color="#ffe5cf" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Setter.Value>
-                                </Setter>
-
-                            </Trigger>
-
-
-                            <Trigger Property="IsEnabled" Value="False">
-
-
-                                <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
-                                <Setter Property="Foreground" Value="#ffe5cf" />
-                                <Setter Property="Background" Value="#563232" />
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        </Page.Resources>
-
-        <Grid >
+    </Page.Resources>
+    <Grid Margin="0,20,0,0"> 
+        <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="40,0,40,0" HorizontalAlignment="Stretch" Height="auto" >
+        <Grid MaxHeight="2000" >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -112,92 +30,157 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Click="Note_Report_Click" Style="{StaticResource InformButton}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+            
+
+        <Button Grid.Row="0" Click="Note_Report_Click" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Note Report"></TextBlock>
         </Button>
-        <Button Grid.Row="1"  Click="RNG_Report_Click" Style="{StaticResource InformButton}">
+                <Button Grid.Row="1"  Click="RNG_Report_Click" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="RNG Report"></TextBlock>
         </Button>
-        <Button Grid.Row="2"  Click="Note_Category_Report_Click" Style="{StaticResource InformButton}">
+        <Button Grid.Row="2"  Click="Note_Category_Report_Click" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Note Category Report"></TextBlock>
         </Button>
-        <Button Grid.Row="3"  Click="Map_Report_Click" Style="{StaticResource InformButton}">
+        <Button Grid.Row="3"  Click="Map_Report_Click" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Map Report"></TextBlock>
         </Button>
-        <Button Grid.Row="4"  Click="Export_Database" Style="{StaticResource InformButton}">
+        <Button Grid.Row="4"  Click="Export_Database" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Export Database"></TextBlock>
         </Button>
-        <Grid Name="RNGSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+
+        <Button Grid.Row="0" Grid.Column="1"            Style="{StaticResource InformButton}" Width="200">
+            <TextBlock Text="Change Main Map"></TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="1"        Style="{StaticResource InformButton}" Width="200">
+            <TextBlock Text="Change Campaign Title"></TextBlock>
+        </Button>
+
+        <StackPanel  Grid.Row="2" Grid.Column="1">
+
+                    <Border Width="200" Height="30" Margin="0,20,0,0"  BorderThickness="1" 
+                        
+                         CornerRadius="10,10,0,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                                <GradientStop Color="#b38d6d" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" Content="Select Color Style" Margin="0,0,0,0"></Label>
+                    </Border>
+
+                    <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" >
+
+            </ComboBox>
+        </StackPanel>
+        
+
+
+
+
+
+        <Grid Name="RNGSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="RNGSearchBar" TextChanged="RNG_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="RNGfilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="RNGSaveFile" Margin="100 0 20 0">
-                <TextBlock Text="Print" FontSize="20"/>
-            </Button>
-                <Button Click="RNGCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+            <TextBox Grid.Row="0" Name="RNGSearchBar" TextChanged="RNG_TextChanged" Height="40" Width="200"></TextBox>
+            <ListBox Grid.Row="1" Name="RNGfilteredListBox" Width="200" MinHeight="200" MaxHeight="300"></ListBox>
+            
+            <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Click="RNGSaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                    <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
+                 </Button>
+
+                        <Button Click="RNGCloseMenu" Margin="20 0 100 0"  Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+                
+            </Grid>
         </Grid>
-        <Grid Name="NoteSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+
+            <Grid Name="NoteSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="NoteSearchBar" TextChanged="Note_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="NoteFilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="NoteSaveFile" Margin="100 0 20 0">
-                    <TextBlock Text="Print" FontSize="20"/>
+                    <TextBox Grid.Row="0" Name="NoteSearchBar" TextChanged="Note_TextChanged" Height="40" Width="200"></TextBox>
+                    <ListBox Grid.Row="1" Name="NoteFilteredListBox" Width="200" MinHeight="200" MaxHeight="300"></ListBox>
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="NoteSaveFile"  Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-                <Button Click="NoteCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+                        <Button Click="NoteCloseMenu"  Margin="20 0 100 0"  Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+            </Grid>
         </Grid>
-        <Grid Name="NoteCategorySearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+            <Grid Name="NoteCategorySearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="NoteCategorySearchBar" TextChanged="NoteCategory_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="NoteCategoryFilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="NoteCategorySaveFile" Margin="100 0 20 0">
-                    <TextBlock Text="Print" FontSize="20"/>
+                    <TextBox Grid.Row="0" Name="NoteCategorySearchBar" TextChanged="NoteCategory_TextChanged" Height="40" Width="200"></TextBox>
+                    <ListBox Grid.Row="1" Name="NoteCategoryFilteredListBox" Width="200"  MinHeight="200" MaxHeight="300"></ListBox>
+
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="NoteCategorySaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-                <Button Click="NoteCategoryCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+                        <Button Click="NoteCategoryCloseMenu" Margin="20 0 100 0" Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+            </Grid>
+                
         </Grid>
-        <Grid Name="MapSearch" Margin="40,46,396,278" Background="black" Visibility="Hidden">
+            <Grid Name="MapSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="MapSearchBar" TextChanged="Map_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="MapSaveFile" Margin="100 0 20 0">
-                    <TextBlock Text="Print" FontSize="20"/>
+
+                    <TextBox Grid.Row="0" Name="MapSearchBar" TextChanged="Map_TextChanged" Height="40" Width="200"></TextBox>
+                    <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200"  MinHeight="200" MaxHeight="300"></ListBox>
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="MapSaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-                <Button Click="MapCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+                        <Button Click="MapCloseMenu" Margin="20 0 100 0" Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+            </Grid>
         </Grid>
+    </Grid>
+    </ScrollViewer>
     </Grid>
 </Page>

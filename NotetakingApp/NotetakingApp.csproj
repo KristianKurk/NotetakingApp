@@ -66,6 +66,9 @@
     <Compile Include="CampaignSelectWindow.xaml.cs">
       <DependentUpon>CampaignSelectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FavoriteNotes.xaml.cs">
+      <DependentUpon>FavoriteNotes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,14 @@
     <Page Include="CampaignSelectWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FavoriteNotes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoriteNotesStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainMenu.xaml">
       <SubType>Designer</SubType>
@@ -142,6 +153,10 @@
     <Page Include="ScrollBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingsStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>

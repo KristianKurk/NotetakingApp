@@ -18,9 +18,9 @@
         <WindowChrome CaptionHeight="0" GlassFrameThickness="0,0,0,1" CornerRadius="0" />
 
     </WindowChrome.WindowChrome>
-    
-    
-    
+
+
+
     <!--Style-->
     <Window.Resources>
         <!--Scroll Bar Style-->
@@ -78,12 +78,11 @@
             </Button>
         </Grid>
 
-        <!--Frame (If needed)-->
-        <Frame NavigationUIVisibility="Hidden" Name="main"></Frame>
+    
 
         <!-- Container for Campaign StackPanels-->
         <ScrollViewer>
-            
+
             <StackPanel Name="CampaignStack" Orientation="Vertical" Margin="50">
 
                 <Grid>
@@ -91,43 +90,51 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
                     <!-- Add Button -->
-                    <Border Style="{StaticResource BorderStyle2}" Grid.Column="0" Width="200"  >
+                    <Border Style="{StaticResource BorderStyle2}" Grid.Column="0" Width="200" Grid.Row="0" >
                         <Button  Style="{StaticResource CampaignButton2}" Click="NewCampaign"  Content="Add Campaign">
                         </Button>
                     </Border>
                     <!-- Import Button -->
-                     <Border Style="{StaticResource BorderStyle2}" Grid.Column="1" Width="200"  >
+                    <Border Style="{StaticResource BorderStyle2}" Grid.Column="1" Width="200" Grid.Row="0" >
                         <Button  Style="{StaticResource CampaignButton2}"   Content="Import Existing Campaign">
                         </Button>
                     </Border>
-                    
-                    
+                 
+                        <!--Frame (If needed)-->
+                    <Frame Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" Name="camp"></Frame>
+                  
                 </Grid>
 
+
                 <Grid Style="{StaticResource GridStyle}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="316*"/>
+                        <ColumnDefinition Width="43*"/>
+                        <ColumnDefinition Width="358*"/>
+                        <ColumnDefinition Width="358*"/>
+                    </Grid.ColumnDefinitions>
 
-              
-                <Border Style="{StaticResource BorderStyle}" Grid.Column="0" >
-                    <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
-                        <TextBlock Style="{StaticResource CampaignTitle}">Campaign 1</TextBlock>
-                    </Button>
-                </Border>
-                    
-                 
-                <Border Style="{StaticResource BorderStyle}" Grid.Column="1" >
-                    <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
-                        <TextBlock Style="{StaticResource CampaignTitle}">Campaign 2</TextBlock>
-                    </Button>
-                </Border>
 
-            </Grid>
+                    <Border Style="{StaticResource BorderStyle}" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10.2,9.6" >
+                        <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
+                            <TextBlock Style="{StaticResource CampaignTitle}">Campaign 1</TextBlock>
+                        </Button>
+                    </Border>
+
+
+                    <Border Style="{StaticResource BorderStyle}" Grid.Column="2" Margin="9.8,10,9.6,9.6" >
+                        <Button  Style="{StaticResource CampaignButton}"  Click="BtnCampaign">
+                            <TextBlock Style="{StaticResource CampaignTitle}">Campaign 2</TextBlock>
+                        </Button>
+                    </Border>
+
+                </Grid>
 
 
                 <Grid  Style="{StaticResource GridStyle}">
@@ -147,8 +154,8 @@
                 </Grid>
 
             </StackPanel>
-            
+
         </ScrollViewer>
     </StackPanel>
-        
+
 </Window>

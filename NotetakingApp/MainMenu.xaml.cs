@@ -28,11 +28,10 @@ namespace NotetakingApp
           
 
             //Load map
-            
                 StartMap();
              
             //Load favorite notes
-            //StartFavNotes();
+                StartFavNotes();
 
             //Load 
             //StartMusic();
@@ -43,7 +42,8 @@ namespace NotetakingApp
         }
         public void StartFavNotes()
         {
-
+            //Load Favorite Notes
+            notes.Content = new FavoriteNotes();
         }
         public void StartMusic()
         {
