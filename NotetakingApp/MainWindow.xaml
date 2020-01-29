@@ -53,10 +53,11 @@
         <Style x:Key="InformButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontFamily" Value="Verdana"/>
-            <Setter Property="FontSize" Value="11px"/>
-            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontFamily" Value="Calisto MT"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Foreground" Value="#563232"/>
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
@@ -309,10 +310,10 @@
             </Grid.ColumnDefinitions>
 
 
-            <Button Style="{StaticResource InformButton}" Name="mainNavButton" Grid.Column="0" Content="Dashboard" Click="BtnClickMain" ClickMode="Press"  Height="50" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-            <Button Style="{StaticResource InformButton}" Name="mapNavButton" Grid.Column="1" Content="Mapping" Click="BtnClickMap" ClickMode="Press"  Height="50" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-            <Button Style="{StaticResource InformButton}" Name="noteNavButton" Grid.Column="2" Content="Note-taking" ClickMode="Press" Click="BtnClickNote" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-            <Button Style="{StaticResource InformButton}" Name="rngNavButton" Grid.Column="3" Content="RNG Utilities" ClickMode="Press" Click="BtnClickRNG" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+            <Button Style="{StaticResource InformButton}" Name="mainNavButton" Grid.Column="0" Content="DASHBOARD" Click="BtnClickMain" ClickMode="Press"  Height="50" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+            <Button Style="{StaticResource InformButton}" Name="mapNavButton" Grid.Column="1" Content="MAPPING" Click="BtnClickMap" ClickMode="Press"  Height="50" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+            <Button Style="{StaticResource InformButton}" Name="noteNavButton" Grid.Column="2" Content="NOTE-TAKING" ClickMode="Press" Click="BtnClickNote" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+            <Button Style="{StaticResource InformButton}" Name="rngNavButton" Grid.Column="3" Content="RNG UTILITIES" ClickMode="Press" Click="BtnClickRNG" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
             
             
         </Grid>
