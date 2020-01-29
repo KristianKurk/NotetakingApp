@@ -256,6 +256,11 @@ namespace NotetakingApp
         {
             MapSearch.Visibility = Visibility.Hidden;
         }
+
+        private void Change_Map(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 

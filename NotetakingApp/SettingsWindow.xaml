@@ -55,7 +55,7 @@
             <TextBlock Text="Export Database"></TextBlock>
         </Button>
 
-        <Button Grid.Row="0" Grid.Column="1"            Style="{StaticResource InformButton}" Width="200">
+        <Button Grid.Row="0" Grid.Column="1" Click="Change_Map" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Change Main Map"></TextBlock>
         </Button>
         <Button Grid.Row="1" Grid.Column="1"        Style="{StaticResource InformButton}" Width="200">

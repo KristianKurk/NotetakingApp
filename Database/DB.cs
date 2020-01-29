@@ -90,7 +90,10 @@ namespace Database
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("id", id, DbType.Int32, ParameterDirection.Input);
                 var output = cnn.Query<Map>("select * from Map where map_id = :id", parameters);
-                return output.First();
+                if (output.Count() > 0)
+                    return output.First();
+                else
+                    return null;
             }
         }
 
