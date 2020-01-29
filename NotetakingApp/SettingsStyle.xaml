@@ -240,9 +240,15 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger Property="Border.IsMouseOver" Value="True">
+                            <Setter Property="Border.Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                        <GradientStop Color="#fcf4ed" Offset="0.0"/>
 
-                            <Setter Property="Foreground" Value="Black" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" >

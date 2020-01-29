@@ -20,7 +20,7 @@
         </ResourceDictionary>
 
     </Page.Resources>
-    <Grid > 
+    <Grid Margin="0,20,0,0"> 
         <ScrollViewer VerticalScrollBarVisibility="auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="40,0,40,0" HorizontalAlignment="Stretch" Height="auto" >
         <Grid MaxHeight="2000" >
 
@@ -55,7 +55,7 @@
             <TextBlock Text="Export Database"></TextBlock>
         </Button>
 
-        <Button Grid.Row="0" Grid.Column="1"  Click="Map_Report_Click" Style="{StaticResource InformButton}" Width="200">
+        <Button Grid.Row="0" Grid.Column="1"            Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Change Main Map"></TextBlock>
         </Button>
         <Button Grid.Row="1" Grid.Column="1"        Style="{StaticResource InformButton}" Width="200">
@@ -63,8 +63,22 @@
         </Button>
 
         <StackPanel  Grid.Row="2" Grid.Column="1">
-            <TextBlock TextAlignment="Center">Select Color Style</TextBlock>
-            <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" >
+
+                    <Border Width="200" Height="30" Margin="0,20,0,0"  BorderThickness="1" 
+                        
+                         CornerRadius="10,10,0,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                                <GradientStop Color="#b38d6d" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" Content="Select Color Style" Margin="0,0,0,0"></Label>
+                    </Border>
+
+                    <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" >
 
             </ComboBox>
         </StackPanel>
@@ -77,11 +91,11 @@
         <Grid Name="RNGSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="RNGSearchBar" TextChanged="RNG_TextChanged" Height="33" VerticalAlignment="Bottom" Width="200"></TextBox>
-            <ListBox Grid.Row="1" Name="RNGfilteredListBox" Width="200" Height="200"></ListBox>
+            <TextBox Grid.Row="0" Name="RNGSearchBar" TextChanged="RNG_TextChanged" Height="40" Width="200"></TextBox>
+            <ListBox Grid.Row="1" Name="RNGfilteredListBox" Width="200" MinHeight="200" MaxHeight="300"></ListBox>
             
             <Grid Grid.Row="2" >
                         <Grid.ColumnDefinitions>
@@ -90,66 +104,81 @@
                         </Grid.ColumnDefinitions>
 
                         <Button Click="RNGSaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
-                    <TextBlock Text="Print" FontSize="20"/>
+                    <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                  </Button>
 
                         <Button Click="RNGCloseMenu" Margin="20 0 100 0"  Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
-                    <TextBlock Text="Close" FontSize="20"/>
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
                 
             </Grid>
         </Grid>
 
-            <Grid Name="NoteSearch" Margin="0,0,0,0" Background="black" Visibility="Hidden" Grid.Column="0" Grid.Row="0">
+            <Grid Name="NoteSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="NoteSearchBar" TextChanged="Note_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="NoteFilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="NoteSaveFile" Margin="100 0 20 0">
-                    <TextBlock Text="Print" FontSize="20"/>
+                    <TextBox Grid.Row="0" Name="NoteSearchBar" TextChanged="Note_TextChanged" Height="40" Width="200"></TextBox>
+                    <ListBox Grid.Row="1" Name="NoteFilteredListBox" Width="200" MinHeight="200" MaxHeight="300"></ListBox>
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="NoteSaveFile"  Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-                <Button Click="NoteCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+                        <Button Click="NoteCloseMenu"  Margin="20 0 100 0"  Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+            </Grid>
         </Grid>
-            <Grid Name="NoteCategorySearch" Margin="0,0,0,0" Background="black" Visibility="Hidden" Grid.Column="0" Grid.Row="2">
+            <Grid Name="NoteCategorySearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="NoteCategorySearchBar" TextChanged="NoteCategory_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="NoteCategoryFilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="NoteCategorySaveFile" Margin="100 0 20 0">
-                    <TextBlock Text="Print" FontSize="20"/>
+                    <TextBox Grid.Row="0" Name="NoteCategorySearchBar" TextChanged="NoteCategory_TextChanged" Height="40" Width="200"></TextBox>
+                    <ListBox Grid.Row="1" Name="NoteCategoryFilteredListBox" Width="200"  MinHeight="200" MaxHeight="300"></ListBox>
+
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="NoteCategorySaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-                <Button Click="NoteCategoryCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+                        <Button Click="NoteCategoryCloseMenu" Margin="20 0 100 0" Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+            </Grid>
+                
         </Grid>
-            <Grid Name="MapSearch" Margin="0,0,0,0" Background="black" Visibility="Hidden" Grid.Column="0" Grid.Row="3">
+            <Grid Name="MapSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="0" Name="MapSearchBar" TextChanged="Map_TextChanged" Height="33" VerticalAlignment="Bottom"></TextBox>
-            <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200" Height="80"></ListBox>
-            <StackPanel Grid.Row="2"  Orientation="Horizontal">
-                <Button Click="MapSaveFile" Margin="100 0 20 0">
-                    <TextBlock Text="Print" FontSize="20"/>
+
+                    <TextBox Grid.Row="0" Name="MapSearchBar" TextChanged="Map_TextChanged" Height="40" Width="200"></TextBox>
+                    <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200"  MinHeight="200" MaxHeight="300"></ListBox>
+                    <Grid Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Click="MapSaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-                <Button Click="MapCloseMenu" Margin="20 0 100 0">
-                    <TextBlock Text="Close" FontSize="20"/>
+                        <Button Click="MapCloseMenu" Margin="20 0 100 0" Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
+                            <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
-            </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
     </ScrollViewer>

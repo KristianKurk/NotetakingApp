@@ -60,7 +60,8 @@ namespace NotetakingApp
         {
             MapSearch.Visibility = Visibility.Visible;
         }
-
+        
+        //Crashs when you close the file explorer without seleccting anything
         private void Export_Database(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
