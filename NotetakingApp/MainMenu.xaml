@@ -108,7 +108,7 @@
                 </LinearGradientBrush>
             </Border.Background>
             <!-- Mini Map -->
-            <Grid Margin="10,10,10,10"  MinHeight="450" MaxHeight="500">
+            <Grid Margin="10,10,10,10"  MinHeight="450" MaxHeight="450">
 
                 <StackPanel>
                     <Button Style="{StaticResource InformButton}" Click="BtnClickMap" HorizontalAlignment="Left" Height="20" Width="65" >Reset Map</Button>
