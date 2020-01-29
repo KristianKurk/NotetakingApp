@@ -12,7 +12,7 @@
 
 
     <Page.Resources>
-        <!--Scroll Bar Style-->
+        <!--Scroll Bar Style + Rest-->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SettingsStyle.xaml"></ResourceDictionary>
