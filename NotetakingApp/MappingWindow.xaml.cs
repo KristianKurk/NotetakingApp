@@ -228,7 +228,7 @@ namespace NotetakingApp
             pin.Stretch = Stretch.UniformToFill;
 
 
-            Button button = new Button() { Style = FindResource("PinStyle") as Style }; 
+            Button button = new Button();// { Style = FindResource("PinStyle") as Style }; 
             button.Click += new RoutedEventHandler(Click_Pin);
             button.MouseEnter += new MouseEventHandler(Mouse_Enter);
             button.MouseLeave += new MouseEventHandler(Mouse_Leave);
@@ -267,7 +267,7 @@ namespace NotetakingApp
             map.Source = bitmap;
             map.Stretch = Stretch.UniformToFill;
 
-            Button button = new Button() { Style = FindResource("PinStyle") as Style };
+            Button button = new Button();// { Style = FindResource("PinStyle") as Style };
             //button.Click += new RoutedEventHandler(Click_Map);
             button.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(Click_Map);
             button.PreviewMouseRightButtonDown += new MouseButtonEventHandler(Right_Click_Map);
@@ -414,6 +414,7 @@ namespace NotetakingApp
             text.Text = "You are about to delete a pin. Are you sure?";
             child.Click -= DeleteMap;
             child.Click += DeletePin2;
+            Console.WriteLine(child);
             AreYouSure.Visibility = Visibility.Visible;
 
 
@@ -524,6 +525,7 @@ namespace NotetakingApp
 
         private void DeletePin(object sender, RoutedEventArgs e)
         {
+            //Called by the button.
             Pin attachedPin = DB.GetPin(Int32.Parse(displayCanvas.Name.Substring(2)));
             DB.DeletePin(attachedPin.pin_id);
             pinCanvas.Children.Remove(displayCanvas);
@@ -538,46 +540,55 @@ namespace NotetakingApp
 
         private void DeletePin2(object sender, RoutedEventArgs e)
         {
+            //Called by right clicking.
             Button button = sender as Button;
             Pin attachedPin = DB.GetPin(Int32.Parse(button.Name.Substring(2)));
+            if (attachedPin != null)
+            {
+                Button pin = null;
 
-            Button pin = null;
+                foreach (Button mypin in pins)
+                    if (int.Parse(mypin.Name.Substring(2)) == attachedPin.pin_id)
+                        pin = mypin;
 
-            foreach (Button mypin in pins)
-                if (int.Parse(mypin.Name.Substring(2)) == attachedPin.pin_id)
-                    pin = mypin;
-
-            pinCanvas.Children.Remove(pin);
-            AreYouSure.Visibility = Visibility.Hidden;
+                DB.DeletePin(attachedPin.pin_id);
+                pinCanvas.Children.Remove(pin);
+                AreYouSure.Visibility = Visibility.Hidden;
+            }
         }
 
         private void DeleteMap(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             Map mapToBeDeleted = DB.GetMap(int.Parse(button.Name.Substring(3)));
+            if (mapToBeDeleted != null)
+            {
+                tbd.Clear();
+                RecursiveGetMapChildren(mapToBeDeleted);
+                tbd.Add(mapToBeDeleted);
 
-            tbd.Clear();
-            RecursiveGetMapChildren(mapToBeDeleted);
-            tbd.Add(mapToBeDeleted);
-
-            foreach (Pin pin in DB.getPins()) {
-                foreach (Map mymap in tbd) {
-                    if (pin.parent_map_id == mymap.map_id)
-                        DB.DeletePin(pin.pin_id);
+                foreach (Pin pin in DB.getPins())
+                {
+                    foreach (Map mymap in tbd)
+                    {
+                        if (pin.parent_map_id == mymap.map_id)
+                            DB.DeletePin(pin.pin_id);
+                    }
                 }
+
+                foreach (Map mymap in tbd)
+                {
+                    DB.DeleteMap(mymap.map_id);
+                }
+
+                Button map = null;
+
+                foreach (Button mymap in maps)
+                    if (int.Parse(mymap.Name.Substring(3)) == mapToBeDeleted.map_id)
+                        map = mymap;
+                pinCanvas.Children.Remove(map);
+                AreYouSure.Visibility = Visibility.Hidden;
             }
-
-            foreach (Map mymap in tbd) {
-                DB.DeleteMap(mymap.map_id);
-            }
-
-            Button map = null;
-
-            foreach (Button mymap in maps)
-                if (int.Parse(mymap.Name.Substring(3)) == mapToBeDeleted.map_id)
-                    map = mymap;
-            pinCanvas.Children.Remove(map);
-            AreYouSure.Visibility = Visibility.Hidden;
         }
 
         private void RecursiveGetMapChildren(Map mapToBeDeleted)
