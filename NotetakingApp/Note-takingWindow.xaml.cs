@@ -34,6 +34,9 @@ namespace NotetakingApp
         private string type;
         List<TextBox> hiddenNotes;
         private TextBox editedTitle; //Current Note or Category being edited
+        private bool isClicked = false;
+        private bool isDragged = false;
+        private Point startPoint;
 
         public Note_takingWindow()
         {
@@ -41,16 +44,17 @@ namespace NotetakingApp
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
 
-            
+
             hiddenNotes = new List<TextBox>();
 
-            
+
             if (Properties.Settings.Default.currentNote != null)
             {
                 openNote = Properties.Settings.Default.currentNote;
             }
             UpdateNotes();
-            LoadNoteContent();
+            if (openNote != null)
+                LoadNoteContent();
         }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -73,8 +77,8 @@ namespace NotetakingApp
             dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|All files (*.*)|*.*";
             if (dlg.ShowDialog() == true)
             {
-               //Crash if file being used by something
-               //Can't open same file twice in a row, crashes
+                //Crash if file being used by something
+                //Can't open same file twice in a row, crashes
 
                 FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
@@ -99,10 +103,12 @@ namespace NotetakingApp
         }
         private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try { 
-            rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
-        }
-            catch (Exception ee) {
+            try
+            {
+                rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
+            }
+            catch (Exception ee)
+            {
                 rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, "12");
             }
         }
@@ -162,9 +168,9 @@ namespace NotetakingApp
             TextRange selectionRange = new TextRange(rtbEditor.Selection.Start, rtbEditor.Selection.End);
 
 
-            
 
-            
+
+
 
             if (selectionRange.GetPropertyValue(FlowDocument.TextAlignmentProperty).ToString() == "Left")
             {
@@ -181,9 +187,9 @@ namespace NotetakingApp
                 ToolStripButtonAlignRight.IsChecked = true;
             }
 
-          
 
-          
+
+
         }
         private void RichTextControl_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -204,7 +210,7 @@ namespace NotetakingApp
                 tr.Save(ms, DataFormats.Rtf);
                 rtfText = Encoding.ASCII.GetString(ms.ToArray());
             }
-        
+
             openNote.note_content = rtfText;
             DB.Update(openNote);
         }
@@ -220,7 +226,8 @@ namespace NotetakingApp
                 id = int.Parse(tb.Name.Substring(4));
                 type = tb.Name.Substring(0, 4);
             }
-            else {
+            else
+            {
                 MenuItem menuItem = cm.Items[2] as MenuItem;
                 menuItem.IsEnabled = false;
                 id = 1;
@@ -280,17 +287,25 @@ namespace NotetakingApp
             UpdateNotes();
         }
 
-        private void CreateNewCategory(NoteCategory noteCategory) {
+        private void CreateNewCategory(NoteCategory noteCategory)
+        {
             TextBox tb = new TextBox();
-            tb.Name = "cate"+noteCategory.category_id;
+            tb.Name = "cate" + noteCategory.category_id;
             tb.Text = noteCategory.category_title;
             tb.Focusable = true;
             tb.Background = Brushes.Red;
+            tb.AllowDrop = true;
             tb.IsReadOnly = false;
             tb.Cursor = Cursors.Arrow;
             tb.PreviewMouseLeftButtonDown += OpenCloseCategory;
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
+
+            tb.PreviewMouseMove += TB_Move;
+            tb.PreviewDrop += TB_Drop;
+            tb.PreviewDragEnter += TB_DragEnter;
+            tb.PreviewDragOver += TB_DragEnter;
+            tb.PreviewMouseLeftButtonUp += TB_MouseUp;
 
             TextBox parent = null;
             foreach (TextBox tb1 in UnCategorised.Children)
@@ -302,7 +317,8 @@ namespace NotetakingApp
             {
                 int count = 0;
                 TextBox loopTB = tb;
-                while (loopTB.Tag != null) {
+                while (loopTB.Tag != null)
+                {
                     count++;
                     loopTB = loopTB.Tag as TextBox;
                 }
@@ -332,6 +348,9 @@ namespace NotetakingApp
                     hiddenChildren.Reverse();
                     MakeVisible(hiddenChildren);
                 }
+
+                isClicked = true;
+                startPoint = e.GetPosition(UnCategorised);
             }
         }
 
@@ -351,7 +370,8 @@ namespace NotetakingApp
         {
             foreach (TextBox potentialChild in UnCategorised.Children)
             {
-                if (potentialChild.Tag == tb) {
+                if (potentialChild.Tag == tb)
+                {
                     children.Add(potentialChild);
                     GetVisibleChildren(potentialChild, children);
                 }
@@ -360,13 +380,16 @@ namespace NotetakingApp
 
         private void MakeVisible(List<TextBox> children)
         {
-            foreach (TextBox t in children) {
+            foreach (TextBox t in children)
+            {
                 hiddenNotes.Remove(t);
                 UnCategorised.Children.Insert(UnCategorised.Children.IndexOf((TextBox)t.Tag) + 1, t);
             }
         }
-        private void MakeHidden(List<TextBox> children) {
-            foreach (TextBox t in children) {
+        private void MakeHidden(List<TextBox> children)
+        {
+            foreach (TextBox t in children)
+            {
                 UnCategorised.Children.Remove(t);
                 hiddenNotes.Add(t);
             }
@@ -381,9 +404,17 @@ namespace NotetakingApp
             tb.Background = Brushes.Yellow;
             tb.IsReadOnly = false;
             tb.Cursor = Cursors.Arrow;
+            tb.AllowDrop = true;
             tb.PreviewMouseLeftButtonDown += ClickNote;
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
+
+
+            tb.PreviewMouseMove += TB_Move;
+            tb.PreviewDrop += TB_Drop;
+            tb.PreviewDragEnter += TB_DragEnter;
+            tb.PreviewDragOver += TB_DragEnter;
+            tb.PreviewMouseLeftButtonUp += TB_MouseUp;
 
             TextBox parent = null;
             foreach (TextBox tb1 in UnCategorised.Children)
@@ -409,6 +440,7 @@ namespace NotetakingApp
             }
         }
 
+
         private void SetUneditable(object sender, RoutedEventArgs e)
         {
             editedTitle = sender as TextBox;
@@ -420,7 +452,8 @@ namespace NotetakingApp
                 nc.category_title = editedTitle.Text;
                 DB.Update(nc);
             }
-            else if (editedTitle.Name.Substring(0, 4) == "note") {
+            else if (editedTitle.Name.Substring(0, 4) == "note")
+            {
                 Note n = DB.GetNote(int.Parse(editedTitle.Name.Substring(4)));
                 n.note_title = editedTitle.Text;
                 DB.Update(n);
@@ -442,10 +475,14 @@ namespace NotetakingApp
                 openNote = DB.GetNote(noteId);
                 Properties.Settings.Default.currentNote = openNote;
                 LoadNoteContent();
+
+                isClicked = true;
+                startPoint = e.GetPosition(UnCategorised);
             }
         }
 
-        private void LoadNoteContent() {
+        private void LoadNoteContent()
+        {
             string rtfText = openNote.note_content;
             byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
             using (MemoryStream ms = new MemoryStream(byteArray))
@@ -457,25 +494,138 @@ namespace NotetakingApp
 
         private void AddCategories(NoteCategory noteCategory)
         {
-            foreach (NoteCategory nc in DB.GetNoteCategories()) {
-                if (nc.category_parent == noteCategory.category_id) {
+            foreach (NoteCategory nc in DB.GetNoteCategories())
+            {
+                if (nc.category_parent == noteCategory.category_id)
+                {
                     CreateNewCategory(nc);
                     AddCategories(nc);
                 }
-            } 
+            }
         }
 
-        private void AddNotes() {
+        private void AddNotes()
+        {
             List<Note> nList = DB.GetNotes();
-            foreach (Note n in nList) {
+            foreach (Note n in nList)
+            {
                 CreateNewNote(n);
             }
         }
 
-        private void UpdateNotes() {
+        private void UpdateNotes()
+        {
             UnCategorised.Children.Clear();
             AddCategories(DB.GetNoteCategories()[0]);
             AddNotes();
         }
+
+        private void TB_Move(object sender, MouseEventArgs e)
+        {
+            if (isClicked && !isDragged)
+            {
+                Point current = e.GetPosition(UnCategorised);
+                if (Math.Abs(current.Y - startPoint.Y) >= SystemParameters.MinimumVerticalDragDistance)
+                {
+                    DataObject dataObject = new DataObject((TextBox)sender);
+                    DragDrop.DoDragDrop((TextBox)sender, dataObject, DragDropEffects.Move);
+                    isDragged = true;
+                }
+            }
+        }
+
+        private void TB_Drop(object sender, DragEventArgs e)
+        {
+            isClicked = false;
+            isDragged = false;
+            TextBox draggedTB = (TextBox)e.Data.GetData(typeof(TextBox));
+            DragTB(draggedTB, sender as TextBox);
+        }
+
+        private void TB_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void TB_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragged = false;
+            isClicked = false;
+        }
+
+        private void DropUnCategorised(object sender, DragEventArgs e)
+        {
+            if (e.Source is StackPanel)
+            {
+                isClicked = false;
+                isDragged = false;
+                TextBox draggedTB = (TextBox)e.Data.GetData(typeof(TextBox));
+                DragTB(draggedTB, UnCategorised);
+            }
+        }
+
+        private void DragTB(TextBox dragElement, TextBox destination)
+        {
+            Console.WriteLine(dragElement.Text + "--->" + destination.Text);
+            if (dragElement.Name.Substring(0, 4) == "note")
+            {
+                Note dragNote = DB.GetNote(int.Parse(dragElement.Name.Substring(4)));
+                if (destination.Name.Substring(0, 4) == "note")
+                {
+                    Note destNote = DB.GetNote(int.Parse(destination.Name.Substring(4)));
+                    dragNote.category_id = destNote.category_id;
+                    DB.Update(dragNote);
+                }
+                else if (destination.Name.Substring(0, 4) == "cate")
+                {
+                    NoteCategory destCategory = DB.GetNoteCategory(int.Parse(destination.Name.Substring(4)));
+                    dragNote.category_id = destCategory.category_id;
+                    DB.Update(dragNote);
+                }
+                else
+                {
+                    dragNote.category_id = 1;
+                    DB.Update(dragNote);
+                }
+            }
+            else if (dragElement.Name.Substring(0, 4) == "cate")
+            {
+                NoteCategory dragCategory = DB.GetNoteCategory(int.Parse(dragElement.Name.Substring(4)));
+                if (destination.Name.Substring(0, 4) == "note")
+                {
+                    Note destNote = DB.GetNote(int.Parse(destination.Name.Substring(4)));
+                    dragCategory.category_parent = destNote.category_id;
+                    DB.Update(dragCategory);
+                }
+                else if (destination.Name.Substring(0, 4) == "cate")
+                {
+                    NoteCategory destCategory = DB.GetNoteCategory(int.Parse(destination.Name.Substring(4)));
+                    if (dragCategory.category_id != destCategory.category_id && dragCategory.category_parent != destCategory.category_id)
+                    {
+                        dragCategory.category_parent = destCategory.category_id;
+                        DB.Update(dragCategory);
+                    }
+                }
+            }
+            UpdateNotes();
+        }
+
+        private void DragTB(TextBox dragElement, StackPanel destination)
+        {
+            if (dragElement.Name.Substring(0, 4) == "note")
+            {
+                Note dragNote = DB.GetNote(int.Parse(dragElement.Name.Substring(4)));
+                dragNote.category_id = 1;
+                DB.Update(dragNote);
+            }
+            else if (dragElement.Name.Substring(0, 4) == "cate")
+            {
+                NoteCategory dragCat = DB.GetNoteCategory(int.Parse(dragElement.Name.Substring(4)));
+                dragCat.category_parent = 1;
+                DB.Update(dragCat);
+            }
+            UpdateNotes();
+        }
     }
 }
+

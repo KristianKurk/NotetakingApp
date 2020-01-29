@@ -172,21 +172,17 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch">
 
+                <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Aqua" AllowDrop="True" PreviewDrop="DropUnCategorised">
+                    <!-- Categories and Notes go here-->
 
-
-
-            <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Aqua">
-                <!-- Categories and Notes go here-->
-
-                <!--  Added Category                       
+                    <!--  Added Category                       
                  - New Categories add StackPanel with Name Tag + TextBlock
                  - Notes go in the designated Category as TextBlocks      
                 -->
-                <TextBlock Text="Example" Width="200"></TextBlock>
-                <TextBlock Text="Example" Width="200"></TextBlock>
-                <!-- End of Categories and Notes-->
-            </StackPanel>
-
+                    <TextBox Text="Example" Background="Red"></TextBox>
+                    <TextBox Text="Example 2" Background="Red"></TextBox>
+                    <!-- End of Categories and Notes-->
+                </StackPanel>
         </ScrollViewer>
     </Grid>
 
