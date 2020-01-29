@@ -53,8 +53,8 @@
         <Style x:Key="InformButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="0"/>
-            <Setter Property="FontFamily" Value="Times New Roman Special"/>
-            <Setter Property="FontSize" Value="20px"/>
+            <Setter Property="FontFamily" Value="Calisto MT"/>
+            <Setter Property="FontSize" Value="18px"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
             <Setter Property="Foreground" Value="#563232"/>
