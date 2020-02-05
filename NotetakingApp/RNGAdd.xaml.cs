@@ -39,6 +39,8 @@ namespace NotetakingApp
                 //Crash if file being used by something
                 //Can't open same file twice in a row, crashes
 
+                //Same thing as notetaking
+
                 FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 TextRange range = new TextRange(rngTB.Document.ContentStart, rngTB.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
