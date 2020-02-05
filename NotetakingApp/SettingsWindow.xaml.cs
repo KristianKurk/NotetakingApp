@@ -60,7 +60,7 @@ namespace NotetakingApp
         {
             MapSearch.Visibility = Visibility.Visible;
         }
-        
+
         //Crashs when you close the file explorer without seleccting anything
         private void Export_Database(object sender, RoutedEventArgs e)
         {
@@ -71,8 +71,9 @@ namespace NotetakingApp
             saveFileDialog.ShowDialog();
 
             string path = saveFileDialog.FileName;
-            if (path != null && path != "") {
-                string myFile = Directory.GetCurrentDirectory() +"/DB" + Connection.GetActiveCampaignDirectory() + ".db";
+            if (path != null && path != "")
+            {
+                string myFile = Directory.GetCurrentDirectory() + "/DB" + Connection.GetActiveCampaignDirectory() + ".db";
                 string dest = System.IO.Path.Combine(path, "DB" + Connection.GetActiveCampaignDirectory() + ".db");
                 if (!Directory.Exists(path))
                 {
@@ -120,12 +121,11 @@ namespace NotetakingApp
                 Note note = NoteFilteredListBox.SelectedItem as Note;
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+                saveFileDialog.Filter = "Rich Text File (*.rtf)|*.rtf";
                 saveFileDialog.Title = "Save Note as:";
                 saveFileDialog.FileName = note.note_title;
                 saveFileDialog.ShowDialog();
                 File.WriteAllText(saveFileDialog.FileName, note.note_content);
-                //Logic goes here for note.
             }
         }
 
@@ -161,7 +161,8 @@ namespace NotetakingApp
                 RNGfilteredListBox.ItemsSource = null;
                 RNGfilteredListBox.ItemsSource = RNGfilteredList;
             }
-            else {
+            else
+            {
                 RNGfilteredList = DB.getRandomGenerators();
                 RNGfilteredListBox.ItemsSource = null;
                 RNGfilteredListBox.ItemsSource = RNGfilteredList;
@@ -239,7 +240,7 @@ namespace NotetakingApp
 
         private void RNGCloseMenu(object sender, RoutedEventArgs e)
         {
-            RNGSearch.Visibility = Visibility.Hidden; 
+            RNGSearch.Visibility = Visibility.Hidden;
         }
 
         private void NoteCategoryCloseMenu(object sender, RoutedEventArgs e)
@@ -259,7 +260,39 @@ namespace NotetakingApp
 
         private void Change_Map(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a Map Image File";
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.ReadOnlyChecked = true;
+            openFileDialog.ShowReadOnly = true;
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            var result = openFileDialog.ShowDialog();
+            Map dbMap = DB.GetMap(1);
+            if (openFileDialog.FileName != "")
+            {
+                byte[] buffer = File.ReadAllBytes(openFileDialog.FileName);
+                dbMap.map_file = buffer;
+                dbMap.map_name = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+                DB.Update(dbMap);
+                List<Map> maps = DB.GetMaps();
+                List<Pin> pins = DB.getPins();
+                foreach (Pin pin in pins)
+                    DB.DeletePin(pin.pin_id);
 
+                for (int i = 1; i < maps.Count; i++)
+                    DB.DeleteMap(maps[i].map_id);
+            }
+        }
+
+        private void ShowPopup(object sender, RoutedEventArgs e)
+        {
+            MapPopup.IsOpen = true;
+        }
+
+        private void HidePopup(object sender, RoutedEventArgs e)
+        {
+            MapPopup.IsOpen = false;
         }
     }
 }
