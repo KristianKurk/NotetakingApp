@@ -260,6 +260,7 @@ namespace NotetakingApp
 
         private void Change_Map(object sender, RoutedEventArgs e)
         {
+            MapChangePopup.IsOpen = false;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select a Map Image File";
             openFileDialog.CheckFileExists = true;
@@ -285,14 +286,35 @@ namespace NotetakingApp
             }
         }
 
-        private void ShowPopup(object sender, RoutedEventArgs e)
+        private void ShowMapChangePopup(object sender, RoutedEventArgs e)
         {
-            MapPopup.IsOpen = true;
+            MapChangePopup.IsOpen = true;
         }
 
-        private void HidePopup(object sender, RoutedEventArgs e)
+        private void HideMapChangePopup(object sender, RoutedEventArgs e)
         {
-            MapPopup.IsOpen = false;
+            MapChangePopup.IsOpen = false;
+        }
+
+        private void HideNamePopup(object sender, RoutedEventArgs e)
+        {
+            NamePopup.IsOpen = false;
+        }
+
+        private void ShowNamePopup(object sender, RoutedEventArgs e)
+        {
+            NamePopup.IsOpen = true;
+        }
+
+        private void ChangeMapName(object sender, RoutedEventArgs e)
+        {
+            string newName = NewName.Text;
+
+            if (newName.Length > 0)
+            {
+                Connection.SetActiveCampaignName(newName);
+                NamePopup.IsOpen = false;
+            }
         }
     }
 }

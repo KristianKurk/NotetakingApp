@@ -42,7 +42,8 @@
                  Height="40"  
                  Width="80"
                  ClickMode="Press" 
-                 Margin="0,20,0,20">
+                 Margin="0,20,0,20"
+            Click="SetTitle_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#ffe5cf"/>
@@ -65,7 +66,7 @@
         </Button>
         
         <!-- Error Message -->
-        <TextBlock></TextBlock>
+        <TextBlock Name="ErrorMsg"></TextBlock>
         
     </StackPanel>
     

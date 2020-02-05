@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,20 @@ namespace NotetakingApp
         public CampaignSelector()
         {
             InitializeComponent();
+        }
+
+        private void SetTitle_Click(object sender, RoutedEventArgs e)
+        {
+            string newName = title.Text;
+
+            if (newName.Length > 0)
+            {
+                foreach (Window window in Application.Current.Windows.OfType<CampaignSelectWindow>())
+                    ((CampaignSelectWindow)window).NewCampaign(newName);
+            }
+            else {
+                ErrorMsg.Text = "Please input a value for the name.";
+            }
         }
     }
 }
