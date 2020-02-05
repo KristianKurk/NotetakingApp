@@ -102,7 +102,7 @@
                     </Border>
                     <!-- Import Button -->
                     <Border Style="{StaticResource BorderStyle2}" Grid.Column="1" Width="200" Grid.Row="0" >
-                        <Button  Style="{StaticResource CampaignButton2}"   Content="Import Existing Campaign">
+                        <Button  Style="{StaticResource CampaignButton2}"  Click="ImportCampaign" Content="Import Existing Campaign">
                         </Button>
                     </Border>
                  

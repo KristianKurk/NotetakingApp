@@ -36,7 +36,17 @@ namespace Database
                 destination.Open();
                 source.BackupDatabase(destination, "main", "main", -1, null, -1);
             }
+        }
 
+        public static void ImportExistingCampaign(string path) {
+            CreateXmlCampaign("Imported Campaign");
+            CreateConnectionString();
+
+            if (path != null && path != "")
+            {
+                string dest = System.IO.Directory.GetCurrentDirectory() + "\\DB" + GetActiveCampaignDirectory() + ".db";
+                System.IO.File.Copy(path, dest);
+            }
         }
 
         private static void CreateConnectionString() {
@@ -121,6 +131,19 @@ namespace Database
                 }
                 return "";
             }
+        }
+
+        public static void SetActiveCampaignName(string newName)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlPath);
+            XmlNodeList campaigns = xmlDoc.GetElementsByTagName("campaign");
+            foreach (XmlNode campaign in campaigns)
+            {
+                if (campaign.Attributes["status"].Value == "active")
+                    campaign.Attributes["name"].Value = newName;
+            }
+            xmlDoc.Save(xmlPath);
         }
 
         public static List<string> GetCampaignNames()

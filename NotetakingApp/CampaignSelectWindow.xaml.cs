@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Database;
+using Microsoft.Win32;
 
 namespace NotetakingApp
 {
@@ -198,19 +199,36 @@ namespace NotetakingApp
             this.Close(); //close the current window.
         }
 
-        private void NewCampaign(object sender, RoutedEventArgs e)
+        public void NewCampaign(object sender, RoutedEventArgs e)
         {
             //Load form for campaign
-            camp.Content = new CampaignSelector();
+            if (camp.Content == null)
+                camp.Content = new CampaignSelector();
+            else
+                camp.Content = null;
+        }
 
-            Connection.CreateNewCampaign("Test");   //insert campaign name here.
-
+        public void NewCampaign(string name) {
+            Connection.CreateNewCampaign(name);
+            camp.Content = null;
             DisplayCampaigns();
         }
 
         private void ImportCampaign(object sender, RoutedEventArgs e)
         {
-            //To be implemented
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a Campaign File";
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.ReadOnlyChecked = true;
+            openFileDialog.ShowReadOnly = true;
+            openFileDialog.Filter = "Campaign File (*.db)|*.db|All files (*.*)|*.*";
+            var result = openFileDialog.ShowDialog();
+
+            if (openFileDialog.FileName != "") {
+                Connection.ImportExistingCampaign(openFileDialog.FileName);
+            }
+            DisplayCampaigns();
         }
 
         private void SetMaximizeIcon()
