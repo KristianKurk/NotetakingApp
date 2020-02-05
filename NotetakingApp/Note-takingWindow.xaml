@@ -24,35 +24,51 @@
             <MenuItem Header="Delete" Click="DeleteClick"></MenuItem>
         </ContextMenu>
 
+
+
         <!--Note border Style-->
         <Style x:Key="BorderHover">
 
-            <Setter Property="Border.Width" Value="200"/>
+           
             <Setter Property="Border.CornerRadius" Value="12,12,12,12"/>
             <Setter Property="Border.BorderBrush" Value="Transparent"/>
             <Setter Property="Border.BorderThickness" Value="1"/>
-            <Setter Property="Border.Background" Value="#b38d6d"/>
-            <Setter Property="Border.Margin" Value="10,0,10,0"/>
-            <Setter Property="Border.Background" Value="#ffe5cf"/>
+           
+            <Setter Property="Border.Margin" Value="0,0,0,0"/>
+            <Setter Property="Border.Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                        <GradientStop Color="#ffe5cf" Offset="0"/>
+                        <GradientStop Color="#b38d6d" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
-                <Trigger Property="Border.IsMouseOver" Value="True">
-                    <Setter Property="Border.Background" Value="#d6c0ae" />
+                <Trigger Property="TextBox.IsMouseOver" Value="True">
+                    <Setter Property="TextBox.Background" Value="#d6c0ae" />
                 </Trigger>
             </Style.Triggers>
         </Style>
         
         <!--Category border Style-->
         <Style x:Key="CategoryHover">
-            
-            <Setter Property="Border.Width" Value="200"/>
+           
             <Setter Property="Border.CornerRadius" Value="12,12,0,12"/>
             <Setter Property="Border.BorderBrush" Value="Transparent"/>
             <Setter Property="Border.BorderThickness" Value="1"/>
-            <Setter Property="Border.Background" Value="#b38d6d"/>
-            <Setter Property="Border.Margin" Value="10,10,10,0"/>
+           
+            <Setter Property="Border.Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                        <GradientStop Color="#b38d6d" Offset="0"/>
+                        <GradientStop Color="#806650" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Border.Margin" Value="0,0,0,0"/>
             <Style.Triggers>
-                <Trigger Property="Border.IsMouseOver" Value="True">
-                    <Setter Property="Border.Background" Value="#876b54" />
+                <Trigger Property="TextBox.IsMouseOver" Value="True">
+                    <Setter Property="TextBox.Background" Value="#876b54" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -146,6 +162,14 @@
                         <Image Source="/Assets/NotetakingRTF/redo.png" Stretch="None"/>
                     </Button>
                     <Separator/>
+
+                    <Button x:Name="Add"  ToolTip="Add Note">
+                        <Image Source="/Assets/NotetakingRTF/redo.png" Stretch="None"/>
+                    </Button>
+                    <Button x:Name="Delete"  ToolTip="Delete Note">
+                        <Image Source="/Assets/NotetakingRTF/redo.png" Stretch="None"/>
+                    </Button>
+
                     <!--
                     <ToggleButton x:Name="ToolStripButtonSubscript" ToolTip="Subscript" Click="ToolStripButtonSubscript_Click">
                         <Image Source="Images\Subscript.png" Stretch="None"/>
@@ -172,15 +196,15 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1" VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch">
 
-                <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Aqua" AllowDrop="True" PreviewDrop="DropUnCategorised">
+                <StackPanel  Name="UnCategorised" Margin="0,30,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Transparent" AllowDrop="True" PreviewDrop="DropUnCategorised">
                     <!-- Categories and Notes go here-->
 
                     <!--  Added Category                       
                  - New Categories add StackPanel with Name Tag + TextBlock
                  - Notes go in the designated Category as TextBlocks      
                 -->
-                    <TextBox Text="Example" Background="Red"></TextBox>
-                    <TextBox Text="Example 2" Background="Red"></TextBox>
+                <TextBox Text="Example"  Style="{StaticResource BorderHover}"></TextBox>
+                <TextBox Text="Example 2"  Style="{StaticResource CategoryHover}"></TextBox>
                     <!-- End of Categories and Notes-->
                 </StackPanel>
         </ScrollViewer>
