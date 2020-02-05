@@ -52,15 +52,6 @@ namespace Database
             }
         }
 
-        public static List<PinNote> getPinNotes()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
-            {
-                var output = cnn.Query<PinNote>("select * from Pin-Note", new DynamicParameters());
-                return output.ToList();
-            }
-        }
-
         public static List<RandomGenerator> getRandomGenerators()
         {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
@@ -162,17 +153,10 @@ namespace Database
         {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
             {
-                cnn.Execute("insert into Pin(pin_title,pin_content,pin_x,pin_y,parent_map_id) values (@pin_title,@pin_content,@pin_x,@pin_y,@parent_map_id)", pin);
+                cnn.Execute("insert into Pin(pin_title,pin_content,pin_x,pin_y,parent_map_id,attached_note_id) values (@pin_title,@pin_content,@pin_x,@pin_y,@parent_map_id,@attached_note_id)", pin);
             }
         }
 
-        public static void Add(PinNote pinNote)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
-            {
-                cnn.Execute("insert into Pin-Note(pin_id,note_id) values (@pin_id,@note_id)", pinNote);
-            }
-        }
 
         public static void Add(RandomGenerator rng)
         {
@@ -183,7 +167,6 @@ namespace Database
         }
 
         //Update Methods
-        //There is no UpdatePinNote as it was deemed unnecessary.
 
         public static void Update(Note note) {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))

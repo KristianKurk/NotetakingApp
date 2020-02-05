@@ -36,7 +36,7 @@
         <Style x:Key="ShadowStyle">
             <Setter Property="Control.Foreground" Value="Black" />
         </Style>
-        
+
         <ContextMenu x:Key="cmButton">
             <MenuItem Header="Add Note" Click="CreateNewNoteClick"></MenuItem>
             <MenuItem Header="Add Category" Click="CreateNewCategoryClick"></MenuItem>
@@ -47,12 +47,12 @@
         <Style x:Key="InformButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="0"/>
-           
+
             <Setter Property="FontSize" Value="16px"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
             <Setter Property="Foreground" Value="#563232"/>
-            
+
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
@@ -96,7 +96,7 @@
                                 </Setter>
                                 <Setter Property="Foreground" Value="Black" />
                             </Trigger>
-                          
+
 
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -107,11 +107,11 @@
         <!--Note border Style-->
         <Style x:Key="BorderHover">
 
-           
+
             <Setter Property="Border.CornerRadius" Value="12,12,12,12"/>
             <Setter Property="Border.BorderBrush" Value="Transparent"/>
             <Setter Property="Border.BorderThickness" Value="1"/>
-           
+
             <Setter Property="Border.Margin" Value="0,0,0,0"/>
             <Setter Property="Border.Background">
                 <Setter.Value>
@@ -127,14 +127,14 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <!--Category border Style-->
         <Style x:Key="CategoryHover">
-           
+
             <Setter Property="Border.CornerRadius" Value="12,12,0,12"/>
             <Setter Property="Border.BorderBrush" Value="Transparent"/>
             <Setter Property="Border.BorderThickness" Value="1"/>
-           
+
             <Setter Property="Border.Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
@@ -150,23 +150,23 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-      
-       
+
+
     </Page.Resources>
-   
+
     <!--Content-->
 
     <Grid DockPanel.Dock="Top"  Height="2000">
-        
+
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                
+
                 <GradientStop Color="#ffe5cf" Offset="0.0" />
                 <GradientStop Color="#b59981" Offset="0.3" />
                 <GradientStop Color="#332323" Offset="0.6" />
             </LinearGradientBrush>
         </Grid.Background>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3.2*"/>
             <ColumnDefinition Width="1*"/>
@@ -175,7 +175,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-           <!-- <RowDefinition Height="*"/>-->
+            <!-- <RowDefinition Height="*"/>-->
         </Grid.RowDefinitions>
 
 
@@ -185,7 +185,7 @@
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
                   >
-        
+
             <!--Content Goes Here-->
 
 
@@ -210,7 +210,7 @@
                     <Separator />
                     <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
                     <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
-                    
+
                     <!-- Feature list 2-->
 
                     <Button x:Name="ToolStripButtonTextcolor" Click="ToolStripButtonTextcolor_Click">
@@ -236,16 +236,16 @@
                     <Button x:Name="ToolStripButtonNumbersList" Command="EditingCommands.ToggleNumbering" ToolTip="Numbers">
                         <Image Source="/Assets/NotetakingRTF/num_list.png" Stretch="None"/>
                     </Button>
-                    
+
                     <Separator/>
-                    
+
                     <Button x:Name="ToolStripButtonIndent" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
                         <Image Source="/Assets/NotetakingRTF/indent_increase.png" Stretch="None"/>
                     </Button>
                     <Button x:Name="ToolStripButtonIndentDelete" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
                         <Image Source="/Assets/NotetakingRTF/indent_decrease.png" Stretch="None"/>
                     </Button>
-                    
+
                     <!-- Feature List 3-->
                     <Button x:Name="ToolStripButtonUndo" Command="ApplicationCommands.Undo" ToolTip="Undo">
                         <Image Source="/Assets/NotetakingRTF/undo.png" Stretch="None"/>
@@ -262,7 +262,7 @@
                     <Separator/>
                     -->
                     <Button x:Name="Delete"  ToolTip="Delete Note" Content="Delete Note" Foreground="Red" ClickMode="Press" Click="BtnDeleteNote">
-                        
+
                     </Button>
                     <Separator/>
                     <Button x:Name="Favorite"  ToolTip="Add to Favorites" Content="Add to Favorites" Foreground="Goldenrod" ClickMode="Press" Click="BtnFavorite">
@@ -286,7 +286,7 @@
 
 
                 <RichTextBox Height="400" Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextChanged="RtbEditor_TextChanged">
-                    
+
                 </RichTextBox>
             </DockPanel>
 
@@ -294,33 +294,29 @@
         </StackPanel>
 
 
-        <Button Margin="0,5,0,0" HorizontalAlignment="Center" Width="100" Height="30" Content="Add Note"  Grid.Column="1" Grid.Row="0" Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddNote"> </Button>
-      
-        <!-- New Right Action/Nav Bar-->
-        
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1"   Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Row="1" Height="400" VerticalAlignment="Top">
-            
-                <StackPanel  Name="UnCategorised" Margin="0,5,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Transparent" AllowDrop="True" PreviewDrop="DropUnCategorised">
-                    <!-- Categories and Notes go here-->
+        <Button Margin="0,5,0,0" HorizontalAlignment="Center" Width="100" Height="30" Content="Add Note"  Grid.Column="1" Grid.Row="0" Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddNote"></Button>
 
-                    <!--  Added Category                       
+        <!-- New Right Action/Nav Bar-->
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="Transparent" Grid.Column="1"   Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Row="1" Height="400" VerticalAlignment="Top">
+
+            <StackPanel  Name="UnCategorised" Margin="0,5,0,0" PreviewMouseRightButtonDown="OpenCM"  Orientation="Vertical" Background="Transparent" AllowDrop="True" PreviewDrop="DropUnCategorised">
+                <!-- Categories and Notes go here-->
+
+                <!--  Added Category                       
                  - New Categories add StackPanel with Name Tag + TextBlock
                  - Notes go in the designated Category as TextBlocks      
                 -->
                 <TextBox Text="Example"  Style="{StaticResource BorderHover}"></TextBox>
                 <TextBox Text="Example 2"  Style="{StaticResource CategoryHover}"></TextBox>
-                    <!-- End of Categories and Notes-->
-                </StackPanel>
+                <!-- End of Categories and Notes-->
+            </StackPanel>
         </ScrollViewer>
 
-<!--
+        <!--
         <StackPanel Background="#ffe5cf" HorizontalAlignment="Stretch" MinHeight="1000" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top">
             
         </StackPanel>
         -->
     </Grid>
-
-     
-
-
 </Page>

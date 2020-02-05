@@ -47,7 +47,6 @@
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\NoteCategory.cs" />
     <Compile Include="Models\Pin.cs" />
-    <Compile Include="Models\PinNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RandomGenerator.cs" />
   </ItemGroup>
