@@ -18,6 +18,9 @@ namespace BLL
 
         public BitmapImage LoadImage()
         {
+
+            //Restrict to image selections only when importing
+
             if (map_file == null || map_file.Length == 0) return null;
             var image = new BitmapImage();
             using (var mem = new System.IO.MemoryStream(map_file))

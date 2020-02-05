@@ -56,6 +56,22 @@ namespace NotetakingApp
             if (openNote != null)
                 LoadNoteContent();
         }
+        private void BtnDeleteNote(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BtnAddNote(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BtnFavorite(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void BtnRemoveFavorite(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -79,6 +95,8 @@ namespace NotetakingApp
             {
                 //Crash if file being used by something
                 //Can't open same file twice in a row, crashes
+
+                //Should be restricted to RTF
 
                 FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
