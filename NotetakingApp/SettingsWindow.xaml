@@ -55,10 +55,22 @@
             <TextBlock Text="Export Database"></TextBlock>
         </Button>
 
-        <Button Grid.Row="0" Grid.Column="1" Click="Change_Map" Style="{StaticResource InformButton}" Width="200">
+        <Button Grid.Row="0" Grid.Column="1" Click="ShowPopup" Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Change Main Map"></TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="1"        Style="{StaticResource InformButton}" Width="200">
+                <Popup Name="MapPopup" Placement="Center" AllowsTransparency="True">
+                    <StackPanel Background="White">
+
+                        <TextBlock Text="Are You Sure?"></TextBlock>
+                        <Button Click="Change_Map">
+                            <TextBlock Text="Yes"></TextBlock>
+                        </Button>
+                    <Button Click="HidePopup">
+                        <TextBlock Text="No"></TextBlock>
+                    </Button>
+                    </StackPanel>
+                </Popup>
+                <Button Grid.Row="1" Grid.Column="1"        Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Change Campaign Title"></TextBlock>
         </Button>
 
@@ -174,7 +186,7 @@
                         </Grid.ColumnDefinitions>
                         <Button Click="MapSaveFile" Margin="100 0 20 0" Grid.Column="0" Style="{StaticResource InformButton}" Width="100" Height="auto">
                             <TextBlock Text="Print" FontSize="18" VerticalAlignment="Center"/>
-                </Button>
+                        </Button>
                         <Button Click="MapCloseMenu" Margin="20 0 100 0" Grid.Column="1" Style="{StaticResource InformButton}" Width="100" Height="auto">
                             <TextBlock Text="Close" FontSize="18" VerticalAlignment="Center"/>
                 </Button>
