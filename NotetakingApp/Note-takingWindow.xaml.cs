@@ -55,14 +55,26 @@ namespace NotetakingApp
             UpdateNotes();
             if (openNote != null)
                 LoadNoteContent();
+            else
+                rtbEditor.Visibility = Visibility.Hidden;
         }
         private void BtnDeleteNote(object sender, RoutedEventArgs e)
         {
-
+            DB.DeleteNote(openNote.note_id);
+            openNote = null;
+            Properties.Settings.Default.currentNote = null;
+            rtbEditor.Visibility = Visibility.Hidden;
+            UpdateNotes();
         }
         private void BtnAddNote(object sender, RoutedEventArgs e)
         {
-
+            Note note = new Note();
+            string rtfText = "{\\rtf1\\ansi\\ansicpg1252\\uc1\\htmautsp\\deff2{\\fonttbl{\\f0\\fcharset0 Times New Roman;}{\\f2\\fcharset0 Segoe UI;}}{\\colortbl\\red0\\green0\\blue0;\\red255\\green255\\blue255;}\\loch\\hich\\dbch\\pard\\plain\\ltrpar\\itap0{\\lang1033\\fs18\\f2\\cf0 \\cf0\\ql{\\f2 \\li0\\ri0\\sa0\\sb0\\fi0\\ql\\par}}}";
+            note.note_title = "New Note";
+            note.category_id = 1;
+            note.note_content = rtfText;
+            DB.Add(note);
+            UpdateNotes();
         }
         private void BtnFavorite(object sender, RoutedEventArgs e)
         {
@@ -228,9 +240,11 @@ namespace NotetakingApp
                 tr.Save(ms, DataFormats.Rtf);
                 rtfText = Encoding.ASCII.GetString(ms.ToArray());
             }
-
-            openNote.note_content = rtfText;
-            DB.Update(openNote);
+            if (openNote != null)
+            {
+                openNote.note_content = rtfText;
+                DB.Update(openNote);
+            }
         }
 
         private void OpenCM(object sender, MouseButtonEventArgs e)
@@ -427,7 +441,6 @@ namespace NotetakingApp
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
 
-
             tb.PreviewMouseMove += TB_Move;
             tb.PreviewDrop += TB_Drop;
             tb.PreviewDragEnter += TB_DragEnter;
@@ -458,7 +471,6 @@ namespace NotetakingApp
             }
         }
 
-
         private void SetUneditable(object sender, RoutedEventArgs e)
         {
             editedTitle = sender as TextBox;
@@ -473,8 +485,11 @@ namespace NotetakingApp
             else if (editedTitle.Name.Substring(0, 4) == "note")
             {
                 Note n = DB.GetNote(int.Parse(editedTitle.Name.Substring(4)));
-                n.note_title = editedTitle.Text;
-                DB.Update(n);
+                if (n != null)
+                {
+                    n.note_title = editedTitle.Text;
+                    DB.Update(n);
+                }
             }
         }
 
@@ -501,6 +516,7 @@ namespace NotetakingApp
 
         private void LoadNoteContent()
         {
+            rtbEditor.Visibility = Visibility.Visible;
             string rtfText = openNote.note_content;
             byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
             using (MemoryStream ms = new MemoryStream(byteArray))
@@ -584,7 +600,6 @@ namespace NotetakingApp
 
         private void DragTB(TextBox dragElement, TextBox destination)
         {
-            Console.WriteLine(dragElement.Text + "--->" + destination.Text);
             if (dragElement.Name.Substring(0, 4) == "note")
             {
                 Note dragNote = DB.GetNote(int.Parse(dragElement.Name.Substring(4)));
