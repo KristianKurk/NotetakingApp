@@ -257,6 +257,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                
             </Grid.ColumnDefinitions>
 
             <Button Style="{StaticResource TopButton}"  Grid.Column="0" Click="BtnCampaign" ClickMode="Press"
@@ -267,22 +269,28 @@
 
             <Grid Name="movingArea" MouseDown="Window_MouseDown" Grid.Column="1"></Grid>
 
-            <Button Style="{StaticResource TopButton}" Grid.Column="2" Click="BtnSettings" ClickMode="Press"
+            <Button Style="{StaticResource TopButton}" Grid.Column="2" Click="BtnHelp" ClickMode="Press"
+                    ToolTip="Help"
+                    >
+                <Image Source="Assets/Navigation/help.png" Margin="3"/>
+            </Button>
+            
+            <Button Style="{StaticResource TopButton}" Grid.Column="3" Click="BtnSettings" ClickMode="Press"
                     ToolTip="Settings"
                     >
                 <Image Source="Assets/Navigation/settings.png" Margin="3"/>
             </Button>
-            <Button Style="{StaticResource TopButton}" Grid.Column="3" Click="BtnMin" ClickMode="Press"
+            <Button Style="{StaticResource TopButton}" Grid.Column="4" Click="BtnMin" ClickMode="Press"
                     ToolTip="Minimize"
                     >
                 <Image Source="Assets/Navigation/minimize.png" Margin="3"/>
             </Button>
-            <Button Style="{StaticResource TopButton}"   Grid.Column="4" Click="BtnMax" ClickMode="Press"
+            <Button Style="{StaticResource TopButton}"   Grid.Column="5" Click="BtnMax" ClickMode="Press"
                     ToolTip="Maximize"
                     >
                 <Image Name="switchIcon" Source="Assets/Navigation/maximize.png" Margin="3"/>
             </Button>
-            <Button Style="{StaticResource TopButton}"   Grid.Column="5" Click="BtnClose" ClickMode="Press"
+            <Button Style="{StaticResource TopButton}"   Grid.Column="6" Click="BtnClose" ClickMode="Press"
                     ToolTip="Close"
                     >
                 <Image Source="Assets/Navigation/close.png" Margin="3"/>
