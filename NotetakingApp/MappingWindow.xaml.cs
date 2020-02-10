@@ -36,6 +36,7 @@ namespace NotetakingApp
         private Canvas displayCanvas;
         private bool isHover = false;
         List<Map> tbd = new List<Map>();
+        private List<Note> filteredNoteList;
 
         public MappingWindow()
         {
@@ -47,6 +48,9 @@ namespace NotetakingApp
             imgSource.Source = img;
             dbInit();
             init();
+
+            filteredNoteList = DB.GetNotes();
+            filteredListBox.ItemsSource = filteredNoteList;
         }
 
         public void init()
@@ -456,7 +460,10 @@ namespace NotetakingApp
             addNote.ToolTip = "Add a note.";
             addNote.Name = "nt" + button.Name.Substring(2);
             addNote.Click += AddNote;
-            addNote.Content = new TextBlock() { Text = "Add a Note." };
+            if (attachedPin.attached_note_id == 0)
+                addNote.Content = new TextBlock() { Text = "Add a Note." };
+            else
+                addNote.Content = new TextBlock() { Text = DB.GetNote(attachedPin.attached_note_id).note_title };
             addNote.Width = 175;
 
             Button deleteNote = new Button();
@@ -464,6 +471,7 @@ namespace NotetakingApp
             deleteNote.Name = "nt" + button.Name.Substring(2);
             deleteNote.Click += DeleteNote;
             deleteNote.ToolTip = "Delete a note.";
+            deleteNote.Tag = addNote;
             deleteNote.Width = 20;
 
             Button closeButton = new Button();
@@ -641,13 +649,17 @@ namespace NotetakingApp
             {
                 pinpopup.PlacementTarget = (UIElement)sender;
                 pinpopup.IsOpen = true;
+                pinpopup.Tag = sender;
             }
             else {
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window.GetType() == typeof(MainWindow))
                     {
+                        Properties.Settings.Default.currentNote = DB.GetNote(myPin.attached_note_id);
                         (window as MainWindow).main.Content = new Note_takingWindow();
+                        ((MainWindow)window).disabledButton = "noteNavButton";
+                        ((MainWindow)window).DisableButton("noteNavButton");
                     }
                 }
             }
@@ -655,12 +667,45 @@ namespace NotetakingApp
 
         private void DeleteNote(object sender, RoutedEventArgs e)
         {
+            Pin myPin = DB.GetPin(int.Parse(((Button)(sender)).Name.Substring(2)));
+            myPin.attached_note_id = 0;
+            DB.Update(myPin);
+            ((Button)((Button)(sender)).Tag).Content = "Add a Note.";
             pinpopup.IsOpen = false;
         }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (SearchBar.Text != null && SearchBar.Text != "" && DB.GetNotes() != null)
+            {
+                filteredNoteList.Clear();
+                foreach (Note n in DB.GetNotes())
+                {
+                    if (n.note_title.ToUpper().StartsWith(SearchBar.Text.ToUpper()))
+                    {
+                        filteredNoteList.Add(n);
+                    }
+                }
+                Console.WriteLine(filteredNoteList.Count);
+                filteredListBox.ItemsSource = null;
+                filteredListBox.ItemsSource = filteredNoteList;
+            }
+            else
+            {
+                filteredNoteList = DB.GetNotes();
+                filteredListBox.ItemsSource = null;
+                filteredListBox.ItemsSource = filteredNoteList;
+            }
+        }
 
+        private void FilteredListBox_Selected(object sender, SelectionChangedEventArgs e)
+        {
+            Note n = filteredListBox.SelectedItem as Note;
+            Pin p = DB.GetPin(int.Parse(((Button)(pinpopup.Tag)).Name.Substring(2)));
+            ((Button)(pinpopup.Tag)).Content = n.note_title;
+            p.attached_note_id = n.note_id;
+            DB.Update(p);
+            pinpopup.IsOpen = false;
         }
     }
 }

@@ -133,7 +133,7 @@
         <Popup Name="pinpopup" Placement="Bottom" AllowsTransparency="True">
             <StackPanel Background="Transparent">
                 <TextBox Name="SearchBar" TextChanged="SearchBar_TextChanged" Height="20" Width="175"></TextBox>
-                <ListBox Name="filteredListBox" Width="175" MinHeight="200" MaxHeight="300"></ListBox>
+                <ListBox Name="filteredListBox" Width="175" MinHeight="200" MaxHeight="300" SelectionChanged="FilteredListBox_Selected"></ListBox>
             </StackPanel>
         </Popup>
     </Grid>

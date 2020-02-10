@@ -62,6 +62,10 @@ namespace NotetakingApp
         {
             if (openNote != null)
             {
+                foreach (Pin p in DB.getPins())
+                    if (p.attached_note_id == openNote.note_id)
+                        p.attached_note_id = 0;
+
                 DB.DeleteNote(openNote.note_id);
                 openNote = null;
                 Properties.Settings.Default.currentNote = null;
@@ -339,6 +343,10 @@ namespace NotetakingApp
                                 Properties.Settings.Default.currentNote = null;
                                 rtbEditor.Visibility = Visibility.Hidden;
                             }
+                        foreach (Pin p in DB.getPins())
+                            if (p.attached_note_id == int.Parse(t.Name.Substring(4)))
+                                p.attached_note_id = 0;
+
                         DB.DeleteNote(int.Parse(t.Name.Substring(4)));
                     }
             }
@@ -350,6 +358,10 @@ namespace NotetakingApp
                     Properties.Settings.Default.currentNote = null;
                     rtbEditor.Visibility = Visibility.Hidden;
                 }
+                foreach (Pin p in DB.getPins())
+                    if (p.attached_note_id == id)
+                        p.attached_note_id = 0;
+
                 DB.DeleteNote(id);
             }
             UpdateNotes();
