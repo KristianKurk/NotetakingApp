@@ -59,13 +59,37 @@
             <TextBlock Text="Change Main Map"></TextBlock>
         </Button>
                 <Popup Name="MapChangePopup" Placement="Center" AllowsTransparency="True">
-                    <StackPanel Background="White">
+                    <StackPanel>
+                        <StackPanel.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
+                                <GradientStop Color="#664529" Offset="0"/>
+                                <GradientStop Color="#856346" Offset="0.2"/>
+                                <GradientStop Color="#664529" Offset="0.8"/>
+                                <GradientStop Color="#5e3d22" Offset="1"/>
 
-                        <TextBlock Text="Are You Sure?"></TextBlock>
-                        <Button Click="Change_Map">
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+
+
+                        <TextBlock FontSize="30" HorizontalAlignment="Center" Foreground="White">!</TextBlock>
+
+                        <Border Width="200" Height="30" Margin="0,0,0,0"  BorderThickness="1" 
+                        
+                         CornerRadius="10,10,10,10">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                    <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                                    <GradientStop Color="#b38d6d" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" Content="Are you sure?" Margin="0,0,0,0"></Label>
+                        </Border>
+                        <Button Click="Change_Map" Style="{StaticResource PopUpButton}">
                             <TextBlock Text="Yes"></TextBlock>
                         </Button>
-                    <Button Click="HideMapChangePopup">
+                        <Button Click="HideMapChangePopup" Style="{StaticResource PopUpButton}">
                         <TextBlock Text="No"></TextBlock>
                     </Button>
                     </StackPanel>
@@ -73,10 +97,22 @@
                 <Button Grid.Row="1" Grid.Column="1" Click="ShowNamePopup"       Style="{StaticResource InformButton}" Width="200">
             <TextBlock Text="Change Campaign Title"></TextBlock>
         </Button>
+            
                 <Popup Name="NamePopup" Placement="Center" AllowsTransparency="True">
-                    <StackPanel Background="White">
+                    <StackPanel>
+                        <StackPanel.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
+                                <GradientStop Color="#664529" Offset="0"/>
+                                <GradientStop Color="#856346" Offset="0.2"/>
+                                <GradientStop Color="#664529" Offset="0.8"/>
+                                <GradientStop Color="#5e3d22" Offset="1"/>
 
-                        <Border Width="200" Height="30" Margin="0,20,0,0"  BorderThickness="1" 
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+
+                        <TextBlock FontSize="30" HorizontalAlignment="Center" Foreground="White">!</TextBlock>
+
+                        <Border Width="200" Height="30" Margin="0,0,0,0"  BorderThickness="1" 
                         
                          CornerRadius="10,10,0,0">
                             <Border.Background>

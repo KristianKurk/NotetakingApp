@@ -17,6 +17,7 @@ using Database;
 using BLL;
 using System.IO;
 using Microsoft.Win32;
+using System.Windows.Controls.Primitives;
 
 namespace NotetakingApp
 {
@@ -39,7 +40,13 @@ namespace NotetakingApp
             NoteCategoryFilteredListBox.ItemsSource = noteCategoryfilteredList;
             mapfilteredList = DB.GetMaps();
             MapFilteredListBox.ItemsSource = mapfilteredList;
+
+
+           
+
         }
+        
+      
 
         private void Note_Report_Click(object sender, RoutedEventArgs e)
         {

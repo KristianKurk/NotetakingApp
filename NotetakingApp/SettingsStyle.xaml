@@ -282,9 +282,9 @@
     <Style x:Key="PopUpButton" TargetType="Button">
 
         <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Width" Value="300"/>
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="2"/>
         <Setter Property="FontFamily" Value="Verdana"/>
         <Setter Property="FontSize" Value="11px"/>
         <Setter Property="FontWeight" Value="Normal"/>
@@ -302,7 +302,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Name="border" 
-        				BorderThickness="1,1,1,0"
+        				BorderThickness="1,1,1,1"
         				CornerRadius="25,25,25,25"
         				BorderBrush="#563232" 
         				
@@ -330,27 +330,10 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" >
-                                <Setter.Value>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                        <GradientStop Color="#ffe5cf" Offset="0.35"/>
-                                        <GradientStop Color="#ffe5cf" Offset="0.95"/>
-                                        <GradientStop Color="#ffe5cf" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Setter.Value>
-                            </Setter>
-
-                        </Trigger>
+                      
 
 
-                        <Trigger Property="IsEnabled" Value="False">
-
-
-                            <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
-                            <Setter Property="Foreground" Value="#ffe5cf" />
-                            <Setter Property="Background" Value="#563232" />
-                        </Trigger>
+                  
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
