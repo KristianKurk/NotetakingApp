@@ -265,12 +265,8 @@
 
                     </Button>
                     <Separator/>
-                    <Button x:Name="Favorite"  ToolTip="Add to Favorites" Content="Add to Favorites" Foreground="Goldenrod" ClickMode="Press" Click="BtnFavorite">
-
-                    </Button>
-                    <Separator/>
-                    <Button x:Name="RemoveFavorite"  ToolTip="Remove from Favorites" Content="Remove from Favorites" Foreground="Goldenrod" ClickMode="Press" Click="BtnRemoveFavorite" IsEnabled="False">
-
+                    <Button x:Name="Favorite"  ToolTip="Add to Favorites" Foreground="Goldenrod" ClickMode="Press" Click="BtnFavorite">
+                        <TextBlock Text="Add To Favorites"/>
                     </Button>
 
                     <!--

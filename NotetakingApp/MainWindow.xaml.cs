@@ -24,7 +24,7 @@ namespace NotetakingApp
     public partial class MainWindow : Window
     {
         bool normalSize = true;
-        String disabledButton;
+        public string disabledButton;
 
         public MainWindow()
         {
@@ -105,7 +105,7 @@ namespace NotetakingApp
             main.Content = new RNGWindow();
         }
 
-        private void DisableButton(string btn) {
+        public void DisableButton(string btn) {
 
             EnableAll();
 

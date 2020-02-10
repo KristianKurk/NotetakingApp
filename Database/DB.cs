@@ -132,7 +132,7 @@ namespace Database
         public static void Add(Note note) {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
             {
-                cnn.Execute("insert into Note(note_title,note_content,category_id,is_favorite) values (@note_title,@note_content,@category_id)",note);
+                cnn.Execute("insert into Note(note_title,note_content,category_id,is_favorite) values (@note_title,@note_content,@category_id,@is_favorite)",note);
             }
         }
 
