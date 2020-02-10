@@ -43,6 +43,7 @@ namespace NotetakingApp
 
             initialMat = mapCanvas.RenderTransform.Value;
             BitmapImage img = DB.GetMap(1).LoadImage();
+
             imgSource.Source = img;
             dbInit();
             init();
@@ -450,9 +451,25 @@ namespace NotetakingApp
             pinTitle.MaxLines = 1;
             pinTitle.Height = 23;
 
+            Button addNote = new Button();
+            addNote.ClickMode = ClickMode.Press;
+            addNote.ToolTip = "Add a note.";
+            addNote.Name = "nt" + button.Name.Substring(2);
+            addNote.Click += AddNote;
+            addNote.Content = new TextBlock() { Text = "Add a Note." };
+            addNote.Width = 175;
+
+            Button deleteNote = new Button();
+            deleteNote.ClickMode = ClickMode.Press;
+            deleteNote.Name = "nt" + button.Name.Substring(2);
+            deleteNote.Click += DeleteNote;
+            deleteNote.ToolTip = "Delete a note.";
+            deleteNote.Width = 20;
+
             Button closeButton = new Button();
             closeButton.Click += new RoutedEventHandler(SaveAndCloseButton);
             closeButton.ClickMode = ClickMode.Press;
+            closeButton.Width = 22;
             closeButton.ToolTip = "Close Pin";
 
             Image closeImage = new Image();
@@ -463,9 +480,14 @@ namespace NotetakingApp
             closeImage.Source = bmp;
             closeButton.Content = closeImage;
 
+            Image closeImage2 = new Image();
+            closeImage2.Source = bmp;
+            deleteNote.Content = closeImage2;
+
             Button deleteButton = new Button();
             deleteButton.Click += new RoutedEventHandler(DeletePin);
             deleteButton.ClickMode = ClickMode.Press;
+            deleteButton.Width = 22;
             deleteButton.ToolTip = "Delete Pin";
 
             Image deleteImage = new Image();
@@ -481,12 +503,17 @@ namespace NotetakingApp
             textCanvas.Children.Add(pinText);
             textCanvas.Children.Add(deleteButton);
             textCanvas.Children.Add(closeButton);
+            textCanvas.Children.Add(addNote);
+            textCanvas.Children.Add(deleteNote);
             textCanvas.Height = 75;
             textCanvas.Width = 200;
             Canvas.SetTop(pinText, 25);
             Canvas.SetTop(pinTitle, 0);
             Canvas.SetLeft(closeButton, 178);
             Canvas.SetLeft(deleteButton, 153);
+            Canvas.SetTop(addNote, 75);
+            Canvas.SetTop(deleteNote, 75);
+            Canvas.SetLeft(deleteNote, 180);
             textCanvas.Name = button.Name;
 
             Canvas.SetLeft(textCanvas, attachedPin.pin_x);
@@ -516,6 +543,7 @@ namespace NotetakingApp
 
             DB.Update(attachedPin);
             pinCanvas.Children.Remove(displayCanvas);
+            pinpopup.IsOpen = false;
         }
 
         private void SaveAndCloseButton(object sender, RoutedEventArgs e)
@@ -604,6 +632,35 @@ namespace NotetakingApp
         private void HidePanel(object sender, RoutedEventArgs e)
         {
             AreYouSure.Visibility = Visibility.Hidden;
+        }
+
+        private void AddNote(object sender, RoutedEventArgs e) {
+            Pin myPin = DB.GetPin(int.Parse(((Button)(sender)).Name.Substring(2)));
+
+            if (myPin.attached_note_id == 0)
+            {
+                pinpopup.PlacementTarget = (UIElement)sender;
+                pinpopup.IsOpen = true;
+            }
+            else {
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(MainWindow))
+                    {
+                        (window as MainWindow).main.Content = new Note_takingWindow();
+                    }
+                }
+            }
+        }
+
+        private void DeleteNote(object sender, RoutedEventArgs e)
+        {
+            pinpopup.IsOpen = false;
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
