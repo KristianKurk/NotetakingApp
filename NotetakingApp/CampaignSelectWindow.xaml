@@ -81,7 +81,7 @@
     
 
         <!-- Container for Campaign StackPanels-->
-        <ScrollViewer>
+        <ScrollViewer Height="500">
 
             <StackPanel Name="CampaignStack" Orientation="Vertical" Margin="50">
 
