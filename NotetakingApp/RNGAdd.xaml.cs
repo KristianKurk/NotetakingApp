@@ -40,10 +40,15 @@ namespace NotetakingApp
                 //Can't open same file twice in a row, crashes
 
                 //Same thing as notetaking
-
+                try {
                 FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
                 TextRange range = new TextRange(rngTB.Document.ContentStart, rngTB.Document.ContentEnd);
                 range.Load(fileStream, DataFormats.Rtf);
+                }
+                catch (IOException ee)
+                {
+                    Console.WriteLine("Attempted to open same file twice.");
+                }
             }
         }
         private void SaveText(object sender, RoutedEventArgs e)
