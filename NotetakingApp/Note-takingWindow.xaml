@@ -128,6 +128,29 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="SelectedNoteStyle">
+
+
+            <Setter Property="Border.CornerRadius" Value="12,12,12,12"/>
+            <Setter Property="Border.BorderBrush" Value="Transparent"/>
+            <Setter Property="Border.BorderThickness" Value="1"/>
+
+            <Setter Property="Border.Margin" Value="0,0,0,0"/>
+            <Setter Property="Border.Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                        <GradientStop Color="FloralWhite" Offset="0"/>
+                        <GradientStop Color="BlanchedAlmond" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="TextBox.IsMouseOver" Value="True">
+                    <Setter Property="TextBox.Background" Value="#d6c0ae" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <!--Category border Style-->
         <Style x:Key="CategoryHover">
 
@@ -158,14 +181,14 @@
 
     <Grid DockPanel.Dock="Top"  Height="2000">
 
-        <Grid.Background>
+        <!--   <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
 
                 <GradientStop Color="#ffe5cf" Offset="0.0" />
                 <GradientStop Color="#b59981" Offset="0.3" />
                 <GradientStop Color="#332323" Offset="0.6" />
             </LinearGradientBrush>
-        </Grid.Background>
+        </Grid.Background>-->
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3.2*"/>

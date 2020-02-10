@@ -81,24 +81,23 @@ namespace NotetakingApp
         }
         private void BtnFavorite(object sender, RoutedEventArgs e)
         {
-            if (openNote.is_favorite == 1)
+            if (openNote != null)
             {
-                openNote.is_favorite = 0;
-                DB.Update(openNote);
-                Favorite.ToolTip = "Add to Favorites";
-                ((TextBlock)Favorite.Content).Text = "Add to Favorites";
+                if (openNote.is_favorite == 1)
+                {
+                    openNote.is_favorite = 0;
+                    DB.Update(openNote);
+                    Favorite.ToolTip = "Add to Favorites";
+                    ((TextBlock)Favorite.Content).Text = "Add to Favorites";
+                }
+                else if (openNote.is_favorite == 0)
+                {
+                    openNote.is_favorite = 1;
+                    DB.Update(openNote);
+                    Favorite.ToolTip = "Remove from Favorites";
+                    ((TextBlock)Favorite.Content).Text = "Remove from Favorites";
+                }
             }
-            else if (openNote.is_favorite == 0)
-            {
-                openNote.is_favorite = 1;
-                DB.Update(openNote);
-                Favorite.ToolTip = "Remove from Favorites";
-                ((TextBlock)Favorite.Content).Text = "Remove from Favorites";
-            }
-        }
-        private void BtnRemoveFavorite(object sender, RoutedEventArgs e)
-        {
-            //if (DB.GetNote(id))
         }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -332,7 +331,16 @@ namespace NotetakingApp
                     if (t.Name.Substring(0, 4) == "cate")
                         DB.DeleteNoteCategory(int.Parse(t.Name.Substring(4)));
                     else if (t.Name.Substring(0, 4) == "note")
+                    {
+                        if (openNote != null)
+                            if (openNote.note_id == int.Parse(t.Name.Substring(4)))
+                            {
+                                openNote = null;
+                                Properties.Settings.Default.currentNote = null;
+                                rtbEditor.Visibility = Visibility.Hidden;
+                            }
                         DB.DeleteNote(int.Parse(t.Name.Substring(4)));
+                    }
             }
             else if (type == "note")
             {
@@ -353,7 +361,6 @@ namespace NotetakingApp
             tb.Name = "cate" + noteCategory.category_id;
             tb.Text = noteCategory.category_title;
             tb.Focusable = true;
-            tb.Background = Brushes.Red;
             tb.MaxLength = 20;
             tb.AllowDrop = true;
             tb.IsReadOnly = false;
@@ -361,6 +368,7 @@ namespace NotetakingApp
             tb.PreviewMouseLeftButtonDown += OpenCloseCategory;
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
+            tb.Style = FindResource("CategoryHover") as Style;
 
             tb.PreviewMouseMove += TB_Move;
             tb.PreviewDrop += TB_Drop;
@@ -383,7 +391,7 @@ namespace NotetakingApp
                     count++;
                     loopTB = loopTB.Tag as TextBox;
                 }
-                tb.Margin = new Thickness(count * 10, 0, 0, 0);
+                tb.Margin = new Thickness(count * 10, 3, 0, 0);
                 UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
             }
             else
@@ -463,13 +471,13 @@ namespace NotetakingApp
             tb.Text = note.note_title;
             tb.Focusable = true;
             tb.MaxLength = 20;
-            tb.Background = Brushes.Yellow;
             tb.IsReadOnly = false;
             tb.Cursor = Cursors.Arrow;
             tb.AllowDrop = true;
             tb.PreviewMouseLeftButtonDown += ClickNote;
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
+            tb.Style = FindResource("BorderHover") as Style;
 
             tb.PreviewMouseMove += TB_Move;
             tb.PreviewDrop += TB_Drop;
@@ -492,12 +500,12 @@ namespace NotetakingApp
                     count++;
                     loopTB = loopTB.Tag as TextBox;
                 }
-                tb.Margin = new Thickness(count * 10, 0, 0, 0);
+                tb.Margin = new Thickness(count * 10, 2, 0, 0);
                 UnCategorised.Children.Insert(UnCategorised.Children.IndexOf(parent) + 1, tb);
             }
             else
             {
-                UnCategorised.Children.Add(tb);
+                UnCategorised.Children.Insert(0,tb);
             }
         }
 
@@ -557,6 +565,17 @@ namespace NotetakingApp
                 Favorite.ToolTip = "Add to Favorites";
                 ((TextBlock)Favorite.Content).Text = "Add to Favorites";
             }
+
+            foreach (TextBox tb in UnCategorised.Children)
+                if (tb.Name == "note" + openNote.note_id)
+                    tb.Style = FindResource("SelectedNoteStyle") as Style;
+                else
+                {
+                    if (tb.Name.Contains("note"))
+                        tb.Style = FindResource("BorderHover") as Style;
+                    else
+                        tb.Style = FindResource("CategoryHover") as Style;
+                }
             string rtfText = openNote.note_content;
             byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
             using (MemoryStream ms = new MemoryStream(byteArray))
@@ -667,7 +686,8 @@ namespace NotetakingApp
                 if (destination.Name.Substring(0, 4) == "note")
                 {
                     Note destNote = DB.GetNote(int.Parse(destination.Name.Substring(4)));
-                    dragCategory.category_parent = destNote.category_id;
+                    if (dragCategory.category_id != destNote.category_id)
+                        dragCategory.category_parent = destNote.category_id;
                     DB.Update(dragCategory);
                 }
                 else if (destination.Name.Substring(0, 4) == "cate")

@@ -24,9 +24,61 @@ namespace NotetakingApp
     /// </summary>
     public partial class RNGAdd : Page
     {
+        private bool isEditing;
+        private RandomGenerator currentRNG;
+
         public RNGAdd()
         {
             InitializeComponent();
+            LoadRNGLists();
+        }
+
+        private void LoadRNGLists()
+        {
+            RNGLists.Children.Clear();
+            List<RandomGenerator> rngList = DB.getRandomGenerators();
+            foreach (RandomGenerator rng in rngList) {
+                Border border = new Border();
+                border.Style = FindResource("BorderHover") as Style;
+                border.Name = "rng"+rng.rng_id;
+                border.MouseLeftButtonDown += ClickRNG;
+                border.MouseRightButtonDown += OpenCM;
+                border.Child = new TextBlock() { HorizontalAlignment = HorizontalAlignment.Center, Text = rng.rng_title };
+                RNGLists.Children.Add(border);
+            }
+        }
+
+        private void OpenCM(object sender, MouseButtonEventArgs e)
+        {
+            ContextMenu cm = this.FindResource("deleteCM") as ContextMenu;
+            cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
+            ((MenuItem)cm.Items[0]).Name = ((Border)(sender)).Name;
+            cm.IsOpen = true;
+        }
+
+        private void ClickRNG(object sender, MouseButtonEventArgs e)
+        {
+            if (!isEditing)
+            {
+                isEditing = true;
+                RandomGenerator rng = DB.GetRandomGenerator(int.Parse(((Border)(sender)).Name.Substring(3)));
+                currentRNG = rng;
+                rngTitle.Text = rng.rng_title;
+
+                string rtfText = rng.rng_content;
+                byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
+                using (MemoryStream ms = new MemoryStream(byteArray))
+                {
+                    TextRange tr = new TextRange(rngTB.Document.ContentStart, rngTB.Document.ContentEnd);
+                    tr.Load(ms, DataFormats.Rtf);
+                }
+            }
+            else {
+                isEditing = false;
+                currentRNG = null;
+                rngTitle.Text = "";
+                rngTB.Document.Blocks.Clear();
+            }
         }
 
         //Open file
@@ -67,11 +119,36 @@ namespace NotetakingApp
             if (text != "" && title != "")
             {
                 text = text.Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
-                RandomGenerator rng = new RandomGenerator();
-                rng.rng_title = title;
-                rng.rng_content = text;
-                DB.Add(rng);
+
+                if (!isEditing)
+                {
+                    RandomGenerator rng = new RandomGenerator();
+                    rng.rng_title = title;
+                    rng.rng_content = text;
+                    DB.Add(rng);
+                    LoadRNGLists();
+                    rngTB.Document.Blocks.Clear();
+                    rngTitle.Text = "";
+                }
+                else {
+                    currentRNG.rng_title = rngTitle.Text;
+                    currentRNG.rng_content = text;
+                    DB.Update(currentRNG);
+                }
             }
+        }
+
+        private void DeleteRNG(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(((MenuItem)(sender)).Name.Substring(3)) == currentRNG.rng_id) {
+                isEditing = false;
+                currentRNG = null;
+                rngTitle.Text = "";
+                rngTB.Document.Blocks.Clear();
+            }
+
+            DB.DeleteRandomGenerator(int.Parse(((MenuItem)(sender)).Name.Substring(3)));
+            LoadRNGLists();
         }
     }
 }

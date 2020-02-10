@@ -21,12 +21,15 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ScrollBar.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            <ContextMenu x:Key="deleteCM">
+                <MenuItem Header="Delete" Click="DeleteRNG"></MenuItem>
+            </ContextMenu>
         </ResourceDictionary>
-     
     </Page.Resources>
+    
 
 
-        <Grid >
+    <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="1*"/>
@@ -204,6 +207,7 @@
             <Border BorderBrush="Transparent" BorderThickness="1" >
                 <!-- Content-->
                 <StackPanel Background="Transparent" 
+                  Name="RNGLists"
                   MinHeight="300"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
