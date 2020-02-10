@@ -76,12 +76,24 @@
                 <Popup Name="NamePopup" Placement="Center" AllowsTransparency="True">
                     <StackPanel Background="White">
 
-                        <TextBlock Text="Enter new name:"></TextBlock>
+                        <Border Width="200" Height="30" Margin="0,20,0,0"  BorderThickness="1" 
+                        
+                         CornerRadius="10,10,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                    <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                                    <GradientStop Color="#b38d6d" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" Content="Enter New Name:" Margin="0,0,0,0"></Label>
+                        </Border>
                         <TextBox Width="200" Name="NewName"></TextBox>
-                        <Button Click="ChangeMapName">
+                        <Button Click="ChangeMapName" Style="{StaticResource PopUpButton}">
                             <TextBlock Text="Confirm"></TextBlock>
                         </Button>
-                        <Button Click="HideNamePopup">
+                        <Button Click="HideNamePopup" Style="{StaticResource PopUpButton}">
                             <TextBlock Text="Cancel"></TextBlock>
                         </Button>
                     </StackPanel>
