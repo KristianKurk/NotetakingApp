@@ -60,11 +60,14 @@ namespace NotetakingApp
         }
         private void BtnDeleteNote(object sender, RoutedEventArgs e)
         {
-            DB.DeleteNote(openNote.note_id);
-            openNote = null;
-            Properties.Settings.Default.currentNote = null;
-            rtbEditor.Visibility = Visibility.Hidden;
-            UpdateNotes();
+            if (openNote != null)
+            {
+                DB.DeleteNote(openNote.note_id);
+                openNote = null;
+                Properties.Settings.Default.currentNote = null;
+                rtbEditor.Visibility = Visibility.Hidden;
+                UpdateNotes();
+            }
         }
         private void BtnAddNote(object sender, RoutedEventArgs e)
         {
@@ -78,7 +81,20 @@ namespace NotetakingApp
         }
         private void BtnFavorite(object sender, RoutedEventArgs e)
         {
-            //if (DB.GetNote(id))
+            if (openNote.is_favorite == 1)
+            {
+                openNote.is_favorite = 0;
+                DB.Update(openNote);
+                Favorite.ToolTip = "Add to Favorites";
+                ((TextBlock)Favorite.Content).Text = "Add to Favorites";
+            }
+            else if (openNote.is_favorite == 0)
+            {
+                openNote.is_favorite = 1;
+                DB.Update(openNote);
+                Favorite.ToolTip = "Remove from Favorites";
+                ((TextBlock)Favorite.Content).Text = "Remove from Favorites";
+            }
         }
         private void BtnRemoveFavorite(object sender, RoutedEventArgs e)
         {
@@ -288,6 +304,7 @@ namespace NotetakingApp
             note.note_title = "New Note";
             note.category_id = id;
             note.note_content = rtfText;
+            note.is_favorite = 0;
             DB.Add(note);
             UpdateNotes();
         }
@@ -332,6 +349,7 @@ namespace NotetakingApp
             tb.Text = noteCategory.category_title;
             tb.Focusable = true;
             tb.Background = Brushes.Red;
+            tb.MaxLength = 20;
             tb.AllowDrop = true;
             tb.IsReadOnly = false;
             tb.Cursor = Cursors.Arrow;
@@ -439,6 +457,7 @@ namespace NotetakingApp
             tb.Name = "note" + note.note_id;
             tb.Text = note.note_title;
             tb.Focusable = true;
+            tb.MaxLength = 20;
             tb.Background = Brushes.Yellow;
             tb.IsReadOnly = false;
             tb.Cursor = Cursors.Arrow;
@@ -523,6 +542,16 @@ namespace NotetakingApp
         private void LoadNoteContent()
         {
             rtbEditor.Visibility = Visibility.Visible;
+            if (openNote.is_favorite == 1)
+            {
+                Favorite.ToolTip = "Remove from Favorites";
+                ((TextBlock)Favorite.Content).Text = "Remove from Favorites";
+            }
+            else if (openNote.is_favorite == 0)
+            {
+                Favorite.ToolTip = "Add to Favorites";
+                ((TextBlock)Favorite.Content).Text = "Add to Favorites";
+            }
             string rtfText = openNote.note_content;
             byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
             using (MemoryStream ms = new MemoryStream(byteArray))

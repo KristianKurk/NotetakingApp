@@ -48,7 +48,7 @@
 
         <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1">
             <!-- Notes Stackpanel-->  
-        <StackPanel>
+        <StackPanel Name="NotesStackPanel">
                 
                 <Button Style="{StaticResource InformButton}" Name="favoritenote1"  Content="Favorite Note 1" ClickMode="Press" />
             <Button Style="{StaticResource InformButton}" Name="favoritenote2"  Content="Favorite Note 2" ClickMode="Press" />
