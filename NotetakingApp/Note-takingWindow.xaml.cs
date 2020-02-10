@@ -96,6 +96,10 @@ namespace NotetakingApp
                 ((TextBlock)Favorite.Content).Text = "Remove from Favorites";
             }
         }
+        private void BtnRemoveFavorite(object sender, RoutedEventArgs e)
+        {
+            //if (DB.GetNote(id))
+        }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
         {

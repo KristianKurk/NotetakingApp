@@ -262,7 +262,7 @@
             <Button Style="{StaticResource TopButton}"  Grid.Column="0" Click="BtnCampaign" ClickMode="Press"
                     ToolTip="Campaign Selector"
                     >
-                <Image Source="Assets/Navigation/back.png" />
+                <Image Source="Assets/Navigation/campaigns.png" />
             </Button>
 
             <Grid Name="movingArea" MouseDown="Window_MouseDown" Grid.Column="1"></Grid>

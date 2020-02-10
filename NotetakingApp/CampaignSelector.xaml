@@ -66,7 +66,8 @@
         </Button>
         
         <!-- Error Message -->
-        <TextBlock Name="ErrorMsg"></TextBlock>
+        <TextBlock Name="ErrorMsg" HorizontalAlignment="Center" Foreground="#ffe5cf"
+                FontSize="20"></TextBlock>
         
     </StackPanel>
     
