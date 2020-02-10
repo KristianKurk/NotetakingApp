@@ -191,6 +191,13 @@ namespace NotetakingApp
             main.Content = new SettingsWindow();
            
         }
+        private void BtnHelp(object sender, RoutedEventArgs e)
+        {
+
+            EnableAll();
+            main.Content = new HelpPage();
+
+        }
         private void BtnMin(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
