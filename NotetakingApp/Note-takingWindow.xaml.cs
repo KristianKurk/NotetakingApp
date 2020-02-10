@@ -80,6 +80,10 @@ namespace NotetakingApp
         {
             //if (DB.GetNote(id))
         }
+        private void BtnRemoveFavorite(object sender, RoutedEventArgs e)
+        {
+            //if (DB.GetNote(id))
+        }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
         {
