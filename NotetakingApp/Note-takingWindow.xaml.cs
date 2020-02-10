@@ -78,11 +78,7 @@ namespace NotetakingApp
         }
         private void BtnFavorite(object sender, RoutedEventArgs e)
         {
-
-        }
-        private void BtnRemoveFavorite(object sender, RoutedEventArgs e)
-        {
-
+            //if (DB.GetNote(id))
         }
 
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
@@ -314,6 +310,12 @@ namespace NotetakingApp
             }
             else if (type == "note")
             {
+                if (openNote.note_id == id)
+                {
+                    openNote = null;
+                    Properties.Settings.Default.currentNote = null;
+                    rtbEditor.Visibility = Visibility.Hidden;
+                }
                 DB.DeleteNote(id);
             }
             UpdateNotes();

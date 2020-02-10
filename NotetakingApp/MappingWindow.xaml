@@ -60,7 +60,7 @@
             <Canvas Name="daddyCanvas" Background="Black" ClipToBounds="True">
                 <Canvas Name="mapCanvas" Background="Transparent" Focusable="True" Canvas.Left="0" Canvas.Top="0">
                     <Image Name="imgSource"
-                         Width="1625" MinHeight="1070" Focusable="False">
+                         MinHeight="1070" Focusable="False">
                     </Image>
                     <Canvas Background="Transparent"  Name="pinCanvas"  Focusable="True" Canvas.Left="0" Canvas.Top="0">
 
@@ -130,6 +130,12 @@
 
 
         </Grid>
+        <Popup Name="pinpopup" Placement="Bottom" AllowsTransparency="True">
+            <StackPanel Background="Transparent">
+                <TextBox Name="SearchBar" TextChanged="SearchBar_TextChanged" Height="20" Width="175"></TextBox>
+                <ListBox Name="filteredListBox" Width="175" MinHeight="200" MaxHeight="300"></ListBox>
+            </StackPanel>
+        </Popup>
     </Grid>
 
 
