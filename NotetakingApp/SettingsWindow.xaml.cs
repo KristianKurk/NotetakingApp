@@ -75,10 +75,10 @@ namespace NotetakingApp
             saveFileDialog.Filter = "Campaign File (*.*)|*.*";
             saveFileDialog.Title = "Save campaign as:";
             saveFileDialog.FileName = Connection.GetActiveCampaignName();
-            saveFileDialog.ShowDialog();
+            bool? isCool = saveFileDialog.ShowDialog();
 
             string path = saveFileDialog.FileName;
-            if (path != null && path != "")
+            if (path != null && path != "" && isCool == true)
             {
                 string myFile = Directory.GetCurrentDirectory() + "/DB" + Connection.GetActiveCampaignDirectory() + ".db";
                 string dest = System.IO.Path.Combine(path, "DB" + Connection.GetActiveCampaignDirectory() + ".db");

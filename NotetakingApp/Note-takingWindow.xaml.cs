@@ -125,10 +125,15 @@ namespace NotetakingApp
                 //Can't open same file twice in a row, crashes
 
                 //Should be restricted to RTF
-
-                FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
-                TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-                range.Load(fileStream, DataFormats.Rtf);
+                try
+                {
+                    FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open);
+                    TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+                    range.Load(fileStream, DataFormats.Rtf);
+                }
+                catch (IOException ee) {
+                    Console.WriteLine("Attempted to open same file twice.");
+                }
             }
         }
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
