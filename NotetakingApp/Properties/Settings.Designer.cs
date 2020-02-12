@@ -132,7 +132,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#332323")]
         public string Color3 {
             get {
                 return ((string)(this["Color3"]));

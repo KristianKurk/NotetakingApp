@@ -186,7 +186,7 @@
 
                 <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0" />
                 <GradientStop Color="#b59981" Offset="0.3" />
-                <GradientStop Color="#332323" Offset="0.6" />
+                <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color3}" Offset="0.6" />
             </LinearGradientBrush>
         </Grid.Background>-->
 

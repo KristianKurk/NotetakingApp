@@ -481,7 +481,7 @@
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
 
                     <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
-                    <GradientStop Color="#332323" Offset="1.0" />
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color3}" Offset="1.0" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
