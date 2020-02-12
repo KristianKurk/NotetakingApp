@@ -239,7 +239,7 @@
             </Grid.RowDefinitions>
 
                     <TextBox Grid.Row="0" Name="MapSearchBar" TextChanged="Map_TextChanged" Height="40" Width="200"></TextBox>
-                    <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200"  MinHeight="200" MaxHeight="300"></ListBox>
+                    <ListBox Grid.Row="1" Name="MapFilteredListBox" Width="200"  MinHeight="200" MaxHeight="300" SelectionChanged="MapFilteredListBox_SelectionChanged"></ListBox>
                     <Grid Grid.Row="2" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -256,7 +256,6 @@
     </Grid>
     </ScrollViewer>
         <RichTextBox Name="nc1" Visibility="Hidden"></RichTextBox>
-        <RichTextBox Name="nc2" Visibility="Hidden"></RichTextBox>
-        <Frame NavigationUIVisibility="Hidden" Name="attempt"></Frame>
+        <Frame Name="attempt" MaxHeight="500" MaxWidth="500" Source="MappingWindow.xaml" Visibility="Hidden"></Frame>
     </Grid>
 </Page>

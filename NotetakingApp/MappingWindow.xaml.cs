@@ -383,19 +383,9 @@ namespace NotetakingApp
 
         private void Click_Map(object sender, MouseButtonEventArgs e)
         {
-                Button button = sender as Button;
-                Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
-                BitmapImage img = attachedMap.LoadImage();
-                imgSource.Source = img;
-                currentMap = attachedMap;
-                foreach (Button map in maps)
-                    pinCanvas.Children.Remove(map);
-                foreach (Button pin in pins)
-                    pinCanvas.Children.Remove(pin);
-                maps.Clear();
-                pins.Clear();
-                dbInit();
-                mapCanvas.RenderTransform.Value.Scale(1, 1);
+            Button button = sender as Button;
+            Map attachedMap = DB.GetMap(int.Parse(button.Name.Substring(3)));
+            LoadMap(attachedMap);
         }
 
         public void LoadMap(Map attachedMap) {
@@ -409,6 +399,7 @@ namespace NotetakingApp
             maps.Clear();
             pins.Clear();
             dbInit();
+            
             mapCanvas.RenderTransform.Value.Scale(1, 1);
         }
 

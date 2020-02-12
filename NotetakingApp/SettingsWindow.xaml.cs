@@ -159,14 +159,25 @@ namespace NotetakingApp
             if (MapFilteredListBox.SelectedItem != null)
             {
                 Map map = MapFilteredListBox.SelectedItem as Map;
-                MappingWindow meme = new MappingWindow();
-                attempt.Content = meme;
-                meme.LoadMap(map);
-                RenderTargetBitmap renderTargetBitmap =
-                new RenderTargetBitmap(1821, 768, 96, 96, PixelFormats.Pbgra32);
-                renderTargetBitmap.Render(meme.mapCanvas);
+                BitmapImage img = map.LoadImage();
+                UIElement elt = ((MappingWindow)attempt.Content).mapCanvas;
+
+                PresentationSource source = PresentationSource.FromVisual(elt);
+                RenderTargetBitmap rtb = new RenderTargetBitmap((int)map.LoadImage().PixelWidth,
+                      (int)map.LoadImage().PixelHeight, 96, 96, PixelFormats.Default);
+
+                VisualBrush sourceBrush = new VisualBrush(elt);
+                DrawingVisual drawingVisual = new DrawingVisual();
+                DrawingContext drawingContext = drawingVisual.RenderOpen();
+                using (drawingContext)
+                {
+                    drawingContext.DrawRectangle(sourceBrush, null, new Rect(new Point(0, 0),
+                          new Point(elt.RenderSize.Width, elt.RenderSize.Height)));
+                }
+                rtb.Render(drawingVisual);
+
                 PngBitmapEncoder pngImage = new PngBitmapEncoder();
-                pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+                pngImage.Frames.Add(BitmapFrame.Create(rtb));
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Image file (*.png)|*.png";
@@ -179,7 +190,6 @@ namespace NotetakingApp
                         pngImage.Save(fileStream);
                     }
                 }
-                //Logic goes here for Map.
             }
         }
 
@@ -352,6 +362,23 @@ namespace NotetakingApp
             {
                 Connection.SetActiveCampaignName(newName);
                 NamePopup.IsOpen = false;
+            }
+        }
+
+        private void MapFilteredListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MapFilteredListBox.SelectedItem != null)
+            {
+                MappingWindow window = ((MappingWindow)(attempt.Content));
+                Map map = MapFilteredListBox.SelectedItem as Map;
+                window.LoadMap(map);
+                
+                window.mapCanvas.Height = map.LoadImage().Height;
+                window.mapCanvas.Width = map.LoadImage().Width;
+                Canvas.SetLeft(window.imgSource,0);
+                Canvas.SetTop(window.imgSource, 0);
+                window.imgSource.Width = window.mapCanvas.Width;
+                window.imgSource.Height = window.mapCanvas.Height;
             }
         }
     }
