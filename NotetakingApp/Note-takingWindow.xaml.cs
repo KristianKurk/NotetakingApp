@@ -86,6 +86,10 @@ namespace NotetakingApp
             DB.Add(note);
             UpdateNotes();
         }
+        private void BtnAddCategory(object sender, RoutedEventArgs e)
+        {
+            //Add  Category .aspi3-jpg;kmmmmmmmmmsd.mgp
+        }
         private void BtnFavorite(object sender, RoutedEventArgs e)
         {
             if (openNote != null)

@@ -312,8 +312,11 @@
 
         </StackPanel>
 
-
-        <Button Margin="0,5,0,0" HorizontalAlignment="Center" Width="100" Height="30" Content="Add Note"  Grid.Column="1" Grid.Row="0" Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddNote"></Button>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
+            <Button Margin="0,5,5,0" HorizontalAlignment="Center" Width="105" Height="30" Content="Add Note"   Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddNote"></Button>
+            <Button Margin="5,5,0,0" HorizontalAlignment="Center" Width="105" Height="30" Content="Add Category"   Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddCategory"></Button>
+        </StackPanel>
+        
 
         <!-- New Right Action/Nav Bar-->
 
