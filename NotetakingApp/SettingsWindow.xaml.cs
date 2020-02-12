@@ -387,7 +387,7 @@ namespace NotetakingApp
 
         private void ChangeColor(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxItem item = sender as ComboBoxItem;
+            ComboBoxItem item = colorCombo.SelectedItem as ComboBoxItem;
             string name = item.Name;
 
             switch (name) {
