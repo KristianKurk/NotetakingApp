@@ -33,7 +33,7 @@
       <Value Profile="(Default)">#332323</Value>
     </Setting>
     <Setting Name="Color4" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#755454</Value>
     </Setting>
     <Setting Name="Color5" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
