@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NotetakingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1200"
+        Title="Scribe" Height="700" Width="1200"
         MinHeight="500"
         MinWidth="900"
             Closing="Window_Closed"
