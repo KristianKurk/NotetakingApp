@@ -51,6 +51,7 @@ namespace NotetakingApp
                 SetRestoreDownIcon();
             }
 
+            Properties.Settings.Default.currentNote = null;
             mainNavButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
         }
         private void Window_Closed(object sender, EventArgs e)
