@@ -151,9 +151,10 @@
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" Content="Select Color Style" Margin="0,0,0,0"></Label>
                     </Border>
 
-                    <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" >
-
-            </ComboBox>
+                    <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" SelectionChanged="">
+                        <ComboBoxItem Name="Scribe" Content="Scribe" />
+                        <ComboBoxItem Name="Vampire" Content="Vampire"/>
+                    </ComboBox>
         </StackPanel>
         
 

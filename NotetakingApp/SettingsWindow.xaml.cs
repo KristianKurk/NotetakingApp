@@ -381,6 +381,9 @@ namespace NotetakingApp
                 window.imgSource.Height = window.mapCanvas.Height;
             }
         }
+        private void ColorScribe() { }
+
+        private void ColorVampire() { }
     }
 }
 
