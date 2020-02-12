@@ -120,7 +120,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#ffe5cf")]
         public string Color2 {
             get {
                 return ((string)(this["Color2"]));
@@ -132,7 +132,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#332323")]
         public string Color3 {
             get {
                 return ((string)(this["Color3"]));
@@ -144,7 +144,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#755454")]
         public string Color4 {
             get {
                 return ((string)(this["Color4"]));

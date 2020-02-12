@@ -56,9 +56,9 @@
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
-                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
-                        <GradientStop Color="#ffe5cf" Offset="1"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.2"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.85"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -116,7 +116,7 @@
             <Setter Property="Border.Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0"/>
                         <GradientStop Color="#b38d6d" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
@@ -184,9 +184,9 @@
         <!--   <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
 
-                <GradientStop Color="#ffe5cf" Offset="0.0" />
+                <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0" />
                 <GradientStop Color="#b59981" Offset="0.3" />
-                <GradientStop Color="#332323" Offset="0.6" />
+                <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color3}" Offset="0.6" />
             </LinearGradientBrush>
         </Grid.Background>-->
 
@@ -336,7 +336,7 @@
         </ScrollViewer>
 
         <!--
-        <StackPanel Background="#ffe5cf" HorizontalAlignment="Stretch" MinHeight="1000" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top">
+        <StackPanel Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" HorizontalAlignment="Stretch" MinHeight="1000" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top">
             
         </StackPanel>
         -->

@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:properties="clr-namespace:NotetakingApp.Properties"
                     xmlns:local="clr-namespace:NotetakingApp">
    
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
@@ -188,7 +189,7 @@
         <Setter Property="Border.BorderThickness" Value="1"/>
         <Setter Property="Border.Background" Value="#b38d6d"/>
         <Setter Property="Border.Margin" Value="10,0,10,0"/>
-        <Setter Property="Border.Background" Value="#ffe5cf"/>
+        <Setter Property="Border.Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"/>
         <Style.Triggers>
             <Trigger Property="Border.IsMouseOver" Value="True">
                 <Setter Property="Border.Background" Value="#d6c0ae" />

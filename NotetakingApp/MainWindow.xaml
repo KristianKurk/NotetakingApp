@@ -61,9 +61,9 @@
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
-                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
-                        <GradientStop Color="#ffe5cf" Offset="1"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.2"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.85"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -97,9 +97,9 @@
                                 <Setter Property="Background" >
                                     <Setter.Value>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
-                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
-                                            <GradientStop Color="#ffe5cf" Offset="1"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.35"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.95"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Setter.Value>
                                 </Setter>
@@ -111,7 +111,7 @@
                                 
                                
                                 <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
-                                <Setter Property="Foreground" Value="#ffe5cf" />
+                                <Setter Property="Foreground" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" />
                                 <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" />
                             </Trigger>
 
@@ -127,7 +127,7 @@
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
                         <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
-                        <GradientStop Color="#755454" Offset="1.0" />
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color4}" Offset="1.0" />
                         
                     </LinearGradientBrush>
                 </Setter.Value>
@@ -143,7 +143,7 @@
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
 
                         <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
-                        <GradientStop Color="#332323" Offset="1.0" />
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color3}" Offset="1.0" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -204,9 +204,9 @@
                                 <Setter Property="Background" >
                                     <Setter.Value>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.35"/>
-                                            <GradientStop Color="#ffe5cf" Offset="0.95"/>
-                                            <GradientStop Color="#ffe5cf" Offset="1"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.35"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.95"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Setter.Value>
                                 </Setter>
@@ -221,7 +221,7 @@
 
 
                                 <Setter TargetName="border" Property="CornerRadius" Value="8,8,0,0" />
-                                <Setter Property="Foreground" Value="#ffe5cf" />
+                                <Setter Property="Foreground" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" />
                                 <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" />
                             </Trigger>
 
@@ -307,7 +307,7 @@
         
         <!--Navigation 2-->
 
-        <Grid Name="grid" Background="#755454">
+        <Grid Name="grid" Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color4}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

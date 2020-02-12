@@ -41,9 +41,9 @@
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.2"/>
-                        <GradientStop Color="#ffe5cf" Offset="0.85"/>
-                        <GradientStop Color="#ffe5cf" Offset="1"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.2"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.85"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>

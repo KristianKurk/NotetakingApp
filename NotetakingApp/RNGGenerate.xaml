@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
+      xmlns:properties="clr-namespace:NotetakingApp.Properties"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RNGGenerate">
 
@@ -26,7 +27,7 @@
                   Grid.Column="0"
                   CornerRadius="0" 
                   Margin="1" 
-                  Background="#ffe5cf" 
+                  Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" 
                   BorderBrush="#FF97A0A5"
                   BorderThickness="0,0,1,0" />
                 <Path 
@@ -201,8 +202,8 @@
                          CornerRadius="10">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                            <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                            <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
+                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.1"/>
                             <GradientStop Color="#b38d6d" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
@@ -240,8 +241,8 @@
                          CornerRadius="10">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                            <GradientStop Color="#ffe5cf" Offset="0.0"/>
-                            <GradientStop Color="#ffe5cf" Offset="0.1"/>
+                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
+                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.1"/>
                             <GradientStop Color="#b38d6d" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
@@ -263,7 +264,7 @@
                  Margin="0,20,0,20">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#ffe5cf"/>
+                    <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
@@ -287,7 +288,7 @@
                 HorizontalAlignment="Center" 
                 Name="displayText" 
                 MinHeight="100"
-                Foreground="#ffe5cf"
+                Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"
                 FontSize="20"
                 ></TextBlock>
             <!-- Generated Data Goes Here -->
