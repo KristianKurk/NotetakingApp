@@ -48,6 +48,7 @@ Scribe is built with WPF C#. It uses SQLite to store user data on the client-sid
 FAQ
 ------------
 **How do I change the color of the application?**
+
 Click on the settings button (gear icon) on the top navbar of the application. From then, you can change the color by using the combobox.
 
 
