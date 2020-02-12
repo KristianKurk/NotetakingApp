@@ -34,7 +34,7 @@ namespace NotetakingApp
                 StartFavNotes();
 
             //Load 
-            //StartMusic();
+                StartDice();
         }
         public void StartMap() {
             //Load map
@@ -45,9 +45,9 @@ namespace NotetakingApp
             //Load Favorite Notes
             notes.Content = new FavoriteNotes();
         }
-        public void StartMusic()
+        public void StartDice()
         {
-
+            dice.Content = new DashboardDice();
         }
         private void BtnClickMap(object sender, RoutedEventArgs e)
         {

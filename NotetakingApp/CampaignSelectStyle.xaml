@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:NotetakingApp">
+                    xmlns:local="clr-namespace:NotetakingApp"
+                    xmlns:properties="clr-namespace:NotetakingApp.Properties"
+                    >
     <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
     <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
     <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
@@ -286,7 +288,7 @@
                     <Border Name="border" 
         				BorderThickness="1,1,1,0"
         				CornerRadius="25,25,0,0"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                         <Grid >
@@ -325,7 +327,7 @@
 
                             <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
                             <Setter Property="Foreground" Value="#ffe5cf" />
-                            <Setter Property="Background" Value="#563232" />
+                            <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -366,7 +368,7 @@
                     <Border Name="border" 
         				BorderThickness="1,1,1,1"
         				CornerRadius="12,12,12,12"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                         <Grid >
@@ -425,7 +427,7 @@
                     <Border Name="border" 
         				BorderThickness="1,1,1,1"
         				CornerRadius="12,12,12,12"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                         <Grid >
@@ -462,7 +464,7 @@
         <Setter Property="Background" >
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
-                    <GradientStop Color="#563232" Offset="0.0" />
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
                     <GradientStop Color="#755454" Offset="1.0" />
 
                 </LinearGradientBrush>
@@ -478,7 +480,7 @@
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
 
-                    <GradientStop Color="#563232" Offset="0.0" />
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
                     <GradientStop Color="#332323" Offset="1.0" />
                 </LinearGradientBrush>
             </Setter.Value>
@@ -550,7 +552,7 @@
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#563232"/>
+                            <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}"/>
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
@@ -558,7 +560,7 @@
 
                             <Setter TargetName="border" Property="CornerRadius" Value="8,8,0,0" />
                             <Setter Property="Foreground" Value="#ffe5cf" />
-                            <Setter Property="Background" Value="#563232" />
+                            <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" />
                         </Trigger>
 
                     </ControlTemplate.Triggers>

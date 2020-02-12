@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="Note_takingWindow"
-      
+      xmlns:properties="clr-namespace:NotetakingApp.Properties"
       >
 
     <Page.CommandBindings>
@@ -51,7 +51,7 @@
             <Setter Property="FontSize" Value="16px"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Foreground" Value="#563232"/>
+            <Setter Property="Foreground" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}"/>
 
             <Setter Property="Background" >
                 <Setter.Value>
@@ -68,7 +68,7 @@
                         <Border Name="border" 
         				BorderThickness="1,1,1,1"
         				CornerRadius="15,15,15,15"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                             <Grid >
@@ -312,8 +312,11 @@
 
         </StackPanel>
 
-
-        <Button Margin="0,5,0,0" HorizontalAlignment="Center" Width="100" Height="30" Content="Add Note"  Grid.Column="1" Grid.Row="0" Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddNote"></Button>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center">
+            <Button Margin="0,5,5,0" HorizontalAlignment="Center" Width="105" Height="30" Content="Add Note"   Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddNote"></Button>
+            <Button Margin="5,5,0,0" HorizontalAlignment="Center" Width="105" Height="30" Content="Add Category"   Style="{StaticResource InformButton}" ClickMode="Press" Click="BtnAddCategory"></Button>
+        </StackPanel>
+        
 
         <!-- New Right Action/Nav Bar-->
 

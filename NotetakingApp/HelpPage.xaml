@@ -53,6 +53,6 @@
 
         </Grid>
 
-    <Frame NavigationUIVisibility="Hidden" Name="help" Grid.Row="2"></Frame>
+    <Frame NavigationUIVisibility="Hidden" Name="help" Grid.Row="2" Margin="0,5,0,0"></Frame>
     </Grid>
 </Page>

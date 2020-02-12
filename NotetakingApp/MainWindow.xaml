@@ -9,7 +9,7 @@
         MinHeight="500"
         MinWidth="900"
             Closing="Window_Closed"
-       
+       xmlns:properties="clr-namespace:NotetakingApp.Properties"
         >
     
 
@@ -57,7 +57,7 @@
             <Setter Property="FontSize" Value="18px"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Foreground" Value="#563232"/>
+            <Setter Property="Foreground" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}"/>
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
@@ -73,7 +73,7 @@
                         <Border Name="border" 
         				BorderThickness="1,1,1,0"
         				CornerRadius="25,25,0,0"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                             <Grid >
@@ -112,7 +112,7 @@
                                
                                 <Setter TargetName="border" Property="CornerRadius" Value="25,25,0,0" />
                                 <Setter Property="Foreground" Value="#ffe5cf" />
-                                <Setter Property="Background" Value="#563232" />
+                                <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" />
                             </Trigger>
 
                         </ControlTemplate.Triggers>
@@ -126,7 +126,7 @@
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
-                        <GradientStop Color="#563232" Offset="0.0" />
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
                         <GradientStop Color="#755454" Offset="1.0" />
                         
                     </LinearGradientBrush>
@@ -142,7 +142,7 @@
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
 
-                        <GradientStop Color="#563232" Offset="0.0" />
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" Offset="0.0" />
                         <GradientStop Color="#332323" Offset="1.0" />
                     </LinearGradientBrush>
                 </Setter.Value>
@@ -214,7 +214,7 @@
                             </Trigger>
 
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#563232"/>
+                                <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}"/>
                             </Trigger>
                             
                             <Trigger Property="IsEnabled" Value="False">
@@ -222,7 +222,7 @@
 
                                 <Setter TargetName="border" Property="CornerRadius" Value="8,8,0,0" />
                                 <Setter Property="Foreground" Value="#ffe5cf" />
-                                <Setter Property="Background" Value="#563232" />
+                                <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" />
                             </Trigger>
 
                         </ControlTemplate.Triggers>
