@@ -222,7 +222,7 @@ namespace NotetakingApp
             openFileDialog.CheckPathExists = true;
             openFileDialog.ReadOnlyChecked = true;
             openFileDialog.ShowReadOnly = true;
-            openFileDialog.Filter = "Campaign File (*.db)|*.db|All files (*.*)|*.*";
+            openFileDialog.Filter = "Campaign File (*.db)|*.db";
             var result = openFileDialog.ShowDialog();
 
             if (openFileDialog.FileName != "") {

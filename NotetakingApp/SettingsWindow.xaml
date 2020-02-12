@@ -255,5 +255,8 @@
         </Grid>
     </Grid>
     </ScrollViewer>
+        <RichTextBox Name="nc1" Visibility="Hidden"></RichTextBox>
+        <RichTextBox Name="nc2" Visibility="Hidden"></RichTextBox>
+        <Frame NavigationUIVisibility="Hidden" Name="attempt"></Frame>
     </Grid>
 </Page>

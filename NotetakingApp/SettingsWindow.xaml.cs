@@ -110,14 +110,32 @@ namespace NotetakingApp
             if (NoteCategoryFilteredListBox.SelectedItem != null)
             {
                 NoteCategory noteCategory = NoteCategoryFilteredListBox.SelectedItem as NoteCategory;
+                List<Note> notes = DB.GetNotes().Where(x => x.category_id == noteCategory.category_id).ToList();
+
+                foreach (Note n in notes) {
+                    string rtfText = n.note_content;
+                    byte[] byteArray = Encoding.ASCII.GetBytes(rtfText);
+                    nc1.AppendText(n.note_title+": ");
+                    nc1.AppendText(Environment.NewLine);
+                    using (MemoryStream ms = new MemoryStream(byteArray))
+                    {
+                        TextRange tr = new TextRange(nc1.Document.ContentEnd, nc1.Document.ContentEnd);
+                        tr.Load(ms, DataFormats.Rtf);
+                    }
+                    nc1.AppendText(Environment.NewLine);
+                    nc1.AppendText(Environment.NewLine);
+                }
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+                saveFileDialog.Filter = "Rich Text Format (*.rtf)|*.rtf";
                 saveFileDialog.Title = "Save Note Category as:";
                 saveFileDialog.FileName = noteCategory.category_title;
-                saveFileDialog.ShowDialog();
-                File.WriteAllText(saveFileDialog.FileName, noteCategory.category_title);
-                //Logic goes here for note category.
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    FileStream fileStream = new FileStream(saveFileDialog.FileName, FileMode.Create);
+                    TextRange range = new TextRange(nc1.Document.ContentStart, nc1.Document.ContentEnd);
+                    range.Save(fileStream, DataFormats.Rtf);
+                }
             }
         }
 
@@ -141,13 +159,26 @@ namespace NotetakingApp
             if (MapFilteredListBox.SelectedItem != null)
             {
                 Map map = MapFilteredListBox.SelectedItem as Map;
+                MappingWindow meme = new MappingWindow();
+                attempt.Content = meme;
+                meme.LoadMap(map);
+                RenderTargetBitmap renderTargetBitmap =
+                new RenderTargetBitmap(1821, 768, 96, 96, PixelFormats.Pbgra32);
+                renderTargetBitmap.Render(meme.mapCanvas);
+                PngBitmapEncoder pngImage = new PngBitmapEncoder();
+                pngImage.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+                saveFileDialog.Filter = "Image file (*.png)|*.png";
                 saveFileDialog.Title = "Save Map as:";
                 saveFileDialog.FileName = map.map_name;
-                saveFileDialog.ShowDialog();
-                File.WriteAllText(saveFileDialog.FileName, map.map_file.ToString());
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    using (Stream fileStream = File.Create(saveFileDialog.FileName))
+                    {
+                        pngImage.Save(fileStream);
+                    }
+                }
                 //Logic goes here for Map.
             }
         }

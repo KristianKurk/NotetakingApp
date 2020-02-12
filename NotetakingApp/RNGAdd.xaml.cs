@@ -85,7 +85,7 @@ namespace NotetakingApp
         private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf|Text Format (*.txt)|*.txt|All files (*.*)|*.*";
+            dlg.Filter = "Text Format (*.txt)|*.txt|All files (*.*)|*.*";
             if (dlg.ShowDialog() == true)
             {
                 //Crash if file being used by something

@@ -64,7 +64,10 @@ namespace NotetakingApp
             {
                 foreach (Pin p in DB.getPins())
                     if (p.attached_note_id == openNote.note_id)
+                    {
                         p.attached_note_id = 0;
+                        DB.Update(p);
+                    }
 
                 DB.DeleteNote(openNote.note_id);
                 openNote = null;
@@ -380,6 +383,7 @@ namespace NotetakingApp
             tb.PreviewMouseLeftButtonDown += OpenCloseCategory;
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
+            tb.KeyDown += KeyDownEnter;
             tb.Style = FindResource("CategoryHover") as Style;
 
             tb.PreviewMouseMove += TB_Move;
@@ -488,6 +492,7 @@ namespace NotetakingApp
             tb.AllowDrop = true;
             tb.PreviewMouseLeftButtonDown += ClickNote;
             tb.PreviewMouseDoubleClick += SetEditable;
+            tb.KeyDown += KeyDownEnter;
             tb.LostFocus += SetUneditable;
             tb.Style = FindResource("BorderHover") as Style;
 
@@ -518,6 +523,32 @@ namespace NotetakingApp
             else
             {
                 UnCategorised.Children.Insert(0,tb);
+            }
+        }
+
+        private void KeyDownEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                editedTitle = sender as TextBox;
+                editedTitle.IsReadOnly = true;
+                editedTitle.Cursor = Cursors.Arrow;
+                if (editedTitle.Name.Substring(0, 4) == "cate")
+                {
+                    NoteCategory nc = DB.GetNoteCategory(int.Parse(editedTitle.Name.Substring(4)));
+                    nc.category_title = editedTitle.Text;
+                    DB.Update(nc);
+                }
+                else if (editedTitle.Name.Substring(0, 4) == "note")
+                {
+                    Note n = DB.GetNote(int.Parse(editedTitle.Name.Substring(4)));
+                    if (n != null)
+                    {
+                        n.note_title = editedTitle.Text;
+                        DB.Update(n);
+                    }
+                }
+                rtbEditor.Focus();
             }
         }
 

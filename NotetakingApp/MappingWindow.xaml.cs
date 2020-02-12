@@ -398,6 +398,20 @@ namespace NotetakingApp
                 mapCanvas.RenderTransform.Value.Scale(1, 1);
         }
 
+        public void LoadMap(Map attachedMap) {
+            BitmapImage img = attachedMap.LoadImage();
+            imgSource.Source = img;
+            currentMap = attachedMap;
+            foreach (Button map in maps)
+                pinCanvas.Children.Remove(map);
+            foreach (Button pin in pins)
+                pinCanvas.Children.Remove(pin);
+            maps.Clear();
+            pins.Clear();
+            dbInit();
+            mapCanvas.RenderTransform.Value.Scale(1, 1);
+        }
+
         private void Right_Click_Map(object sender, MouseButtonEventArgs e)
         {
             Button button = sender as Button;
