@@ -149,7 +149,7 @@
             <Grid Margin="10,10,10,10"   MaxHeight="450">
 
                 <!--Frame-->
-                <Frame NavigationUIVisibility="Hidden" Name="music"></Frame>
+                <Frame NavigationUIVisibility="Hidden" Name="dice"></Frame>
 
 
             </Grid>
