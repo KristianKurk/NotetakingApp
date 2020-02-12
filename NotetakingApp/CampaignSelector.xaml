@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CampaignSelector">
+      Title="CampaignSelector"
+      xmlns:properties="clr-namespace:NotetakingApp.Properties"
+      >
 
     <StackPanel>
         
@@ -46,7 +48,7 @@
             Click="SetTitle_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="#ffe5cf"/>
+                    <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"/>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type Button}">
@@ -66,7 +68,7 @@
         </Button>
         
         <!-- Error Message -->
-        <TextBlock Name="ErrorMsg" HorizontalAlignment="Center" Foreground="#ffe5cf"
+        <TextBlock Name="ErrorMsg" HorizontalAlignment="Center" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"
                 FontSize="20"></TextBlock>
         
     </StackPanel>

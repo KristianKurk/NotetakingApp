@@ -39,7 +39,7 @@
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                        <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                         <GradientStop Color="#b38d6d" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
@@ -74,7 +74,7 @@
                                 <Setter Property="Border.Background">
                                     <Setter.Value>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                            <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                                             <GradientStop Color="#cca17c" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Setter.Value>
@@ -103,7 +103,7 @@
             >
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
@@ -122,7 +122,7 @@
         <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Margin="10" CornerRadius="12" >
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
-                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
 
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
@@ -141,7 +141,7 @@
         <Border BorderThickness="1" BorderBrush="Black" Grid.Column="2" Margin="10" CornerRadius="12" >
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                    <GradientStop Color="#ffe5cf" Offset="0.0"/>
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                     <GradientStop Color="#b38d6d" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>

@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="HelpPage">
+      Title="HelpPage"
+      xmlns:properties="clr-namespace:NotetakingApp.Properties"
+      >
 
     <Page.Resources>
         <!--Scroll Bar Style + Rest-->
@@ -24,7 +26,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="0,10,0,0" Name="ErrorMsg" HorizontalAlignment="Center" Foreground="#ffe5cf"
+        <TextBlock Margin="0,10,0,0" Name="ErrorMsg" HorizontalAlignment="Center" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"
                 FontSize="20">Select a section below for more information.</TextBlock>
         
         <Grid  VerticalAlignment="Stretch"  Margin="0,0,0,0" HorizontalAlignment="Stretch" Grid.Row="1"
@@ -44,11 +46,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-        <Button Style="{StaticResource InformButton}" Name="helpDash" Content="Dashboard" Grid.Column="1" Height="40"  ClickMode="Press" Click="BtnHelpDash" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-        <Button Style="{StaticResource InformButton}" Name="helpMap" Content="Mapping" Grid.Column="3"  Height="40"  ClickMode="Press" Click="BtnHelpMap" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-        <Button Style="{StaticResource InformButton}" Name="helpNote" Content="Note-taking" Grid.Column="5"  Height="40"  ClickMode="Press" Click="BtnHelpNote" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-        <Button Style="{StaticResource InformButton}" Name="helpRNG" Content="RNG Utilities" Grid.Column="7"  Height="40"  ClickMode="Press" Click="BtnHelpRNG" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
-        <Button Style="{StaticResource InformButton}" Name="helpSettings" Content="Settings" Grid.Column="9"  Height="40"  ClickMode="Press" Click="BtnHelpSettings" Background="#ffe5cf" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+        <Button Style="{StaticResource InformButton}" Name="helpDash" Content="Dashboard" Grid.Column="1" Height="40"  ClickMode="Press" Click="BtnHelpDash" Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+        <Button Style="{StaticResource InformButton}" Name="helpMap" Content="Mapping" Grid.Column="3"  Height="40"  ClickMode="Press" Click="BtnHelpMap" Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+        <Button Style="{StaticResource InformButton}" Name="helpNote" Content="Note-taking" Grid.Column="5"  Height="40"  ClickMode="Press" Click="BtnHelpNote" Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+        <Button Style="{StaticResource InformButton}" Name="helpRNG" Content="RNG Utilities" Grid.Column="7"  Height="40"  ClickMode="Press" Click="BtnHelpRNG" Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
+        <Button Style="{StaticResource InformButton}" Name="helpSettings" Content="Settings" Grid.Column="9"  Height="40"  ClickMode="Press" Click="BtnHelpSettings" Background="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Margin="0,20,0,0" MouseEnter="rngNavButton_MouseEnter" MouseLeave="rngNavButton_MouseLeave"/>
 
 
         </Grid>
