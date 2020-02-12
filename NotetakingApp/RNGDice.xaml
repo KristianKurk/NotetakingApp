@@ -111,6 +111,10 @@
         </Border>
 
         <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -123,27 +127,35 @@
 
 
             <Button Name="d4" Click="diceRoll" Grid.Column="0" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100" ></Image>
+                <!--<Image Source="Assets/RNG/testimage.png" Width="100" Height="100" ></Image>-->
+                <TextBlock Text="d4"></TextBlock>
             </Button>
             <Button Name="d6" Click="diceRoll" Grid.Column="1" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                <TextBlock Text="d6"></TextBlock>
+                <!--<Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>-->
             </Button>
             <Button Name="d8" Click="diceRoll"  Grid.Column="2" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                <TextBlock Text="d8"></TextBlock>
+                <!--<Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>-->
             </Button>
             <Button Name="d10" Click="diceRoll" Grid.Column="3" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                <TextBlock Text="d10"></TextBlock>
+                <!--<Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>-->
             </Button>
             <Button Name="d12" Click="diceRoll" Grid.Column="4" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                <TextBlock Text="d12"></TextBlock>
+                <!--<Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>-->
             </Button>
             <Button Name="d20" Click="diceRoll" Grid.Column="5" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                <TextBlock Text="d20"></TextBlock>
+                <!-- <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>-->
             </Button>
             <Button Name="d100" Click="diceRoll" Grid.Column="6" Style="{StaticResource InformButton}">
-                <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                <TextBlock Text="d100"></TextBlock>
+                <!--<Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>-->
             </Button>
-            
+            <TextBox Name="formulaBox" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="200"/>
+            <Button Content="Calculate" Click="FormulaCalculate" Grid.Row="2" Grid.Column="4"></Button>
         </Grid>
        
     </StackPanel>

@@ -35,5 +35,12 @@ namespace NotetakingApp
             int diceResult = rnd.Next(1, sides+1);
             result.Text = diceResult.ToString();
         }
+
+        private void FormulaCalculate(object sender, RoutedEventArgs e)
+        {
+            string text = formulaBox.Text.Trim().ToUpper();
+
+            string[] parts = text.Split('D');
+        }
     }
 }
