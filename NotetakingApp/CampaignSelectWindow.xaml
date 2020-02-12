@@ -6,7 +6,7 @@
         
         xmlns:local="clr-namespace:NotetakingApp"
         mc:Ignorable="d"
-        Title="CampaignSelectWindow" 
+        Title="Scribe" 
         Height="700" Width="1200"
         MinHeight="500"
         MinWidth="900"
