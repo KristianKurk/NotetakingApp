@@ -37,6 +37,7 @@ namespace NotetakingApp
         private bool isClicked = false;
         private bool isDragged = false;
         private Point startPoint;
+        string dragma = "";
 
         public Note_takingWindow()
         {
@@ -88,7 +89,11 @@ namespace NotetakingApp
         }
         private void BtnAddCategory(object sender, RoutedEventArgs e)
         {
-            //Add  Category .aspi3-jpg;kmmmmmmmmmsd.mgp
+            NoteCategory nc = new NoteCategory();
+            nc.category_parent = 1;
+            nc.category_title = "New Category";
+            DB.Add(nc);
+            UpdateNotes();
         }
         private void BtnFavorite(object sender, RoutedEventArgs e)
         {
@@ -439,6 +444,7 @@ namespace NotetakingApp
                 }
 
                 isClicked = true;
+                dragma = tb.Name;
                 startPoint = e.GetPosition(UnCategorised);
             }
         }
@@ -595,6 +601,7 @@ namespace NotetakingApp
                 LoadNoteContent();
 
                 isClicked = true;
+                dragma = ((TextBox)(sender)).Name;
                 startPoint = e.GetPosition(UnCategorised);
             }
         }
@@ -660,6 +667,8 @@ namespace NotetakingApp
             AddNotes();
         }
 
+
+
         private void TB_Move(object sender, MouseEventArgs e)
         {
             if (isClicked && !isDragged)
@@ -679,7 +688,11 @@ namespace NotetakingApp
             isClicked = false;
             isDragged = false;
             TextBox draggedTB = (TextBox)e.Data.GetData(typeof(TextBox));
-            DragTB(draggedTB, sender as TextBox);
+            if (draggedTB.Name == dragma)
+            {
+                Console.WriteLine(draggedTB.Name + " ");
+                DragTB(draggedTB, sender as TextBox);
+            }
         }
 
         private void TB_DragEnter(object sender, DragEventArgs e)
@@ -689,6 +702,7 @@ namespace NotetakingApp
 
         private void TB_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            dragma = "";
             isDragged = false;
             isClicked = false;
         }
