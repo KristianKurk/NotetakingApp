@@ -134,6 +134,7 @@ namespace NotetakingApp
                     currentRNG.rng_title = rngTitle.Text;
                     currentRNG.rng_content = text;
                     DB.Update(currentRNG);
+                    LoadRNGLists();
                 }
             }
         }
