@@ -29,31 +29,31 @@ namespace NotetakingApp
         {
             disabledButton = "helpDash";
             DisableButton("helpDash");
-           // rng.Content = new RNGAdd();
+            help.Content = new HelpDash();
         }
         private void BtnHelpMap(object sender, RoutedEventArgs e)
         {
             disabledButton = "helpMap";
             DisableButton("helpMap");
-           // rng.Content = new RNGGenerate();
+            help.Content = new HelpMap();
         }
         private void BtnHelpNote(object sender, RoutedEventArgs e)
         {
             disabledButton = "helpNote";
             DisableButton("helpNote");
-          //  rng.Content = new RNGDice();
+            help.Content = new HelpNote();
         }
         private void BtnHelpRNG(object sender, RoutedEventArgs e)
         {
             disabledButton = "helpRNG";
             DisableButton("helpRNG");
-            //  rng.Content = new RNGDice();
+            help.Content = new HelpRNG();
         }
         private void BtnHelpSettings(object sender, RoutedEventArgs e)
         {
             disabledButton = "helpSettings";
             DisableButton("helpSettings");
-            //  rng.Content = new RNGDice();
+            help.Content = new HelpSettings();
         }
         private void DisableButton(string btn)
         {

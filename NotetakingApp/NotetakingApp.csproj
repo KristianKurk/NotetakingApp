@@ -75,8 +75,23 @@
     <Compile Include="FavoriteNotes.xaml.cs">
       <DependentUpon>FavoriteNotes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HelpDash.xaml.cs">
+      <DependentUpon>HelpDash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpMap.xaml.cs">
+      <DependentUpon>HelpMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpNote.xaml.cs">
+      <DependentUpon>HelpNote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpRNG.xaml.cs">
+      <DependentUpon>HelpRNG.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpSettings.xaml.cs">
+      <DependentUpon>HelpSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
@@ -123,11 +138,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HelpDash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HelpPageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpRNG.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
