@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainMenu"
-  
+        xmlns:properties="clr-namespace:NotetakingApp.Properties"
       >
     <Page.Resources>
         <Style x:Key="MyFocusVisual">
@@ -50,7 +50,7 @@
                         <Border Name="border" 
         				BorderThickness="1,1,1,1"
         				CornerRadius="10,10,10,10"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                             <Grid >

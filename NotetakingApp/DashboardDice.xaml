@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DashboardDice">
+      Title="DashboardDice"
+      xmlns:properties="clr-namespace:NotetakingApp.Properties"
+      >
 
     <Page.Resources>
 
@@ -51,7 +53,7 @@
                         <Border Name="border" 
         				BorderThickness="0,0,0,0"
         				CornerRadius="0,0,0,0"
-        				BorderBrush="#563232" 
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
         				Background="{TemplateBinding Background}">
                             <Grid >
