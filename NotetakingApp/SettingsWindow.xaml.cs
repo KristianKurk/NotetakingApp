@@ -384,6 +384,19 @@ namespace NotetakingApp
         private void ColorScribe() { }
 
         private void ColorVampire() { }
+
+        private void ChangeColor(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem item = sender as ComboBoxItem;
+            string name = item.Name;
+
+            switch (name) {
+                case "Scribe":
+                    break;
+                case "Vampire":
+                    break;
+            }
+        }
     }
 }
 
