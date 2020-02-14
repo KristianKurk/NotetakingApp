@@ -36,21 +36,45 @@
       <Value Profile="(Default)">#755454</Value>
     </Setting>
     <Setting Name="Color5" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#f5d2b5</Value>
     </Setting>
     <Setting Name="Color6" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#b38d6d</Value>
     </Setting>
     <Setting Name="Color7" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#ffecdb</Value>
     </Setting>
     <Setting Name="Color8" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#d6c0ae</Value>
     </Setting>
     <Setting Name="Color9" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">#806650</Value>
     </Setting>
     <Setting Name="Color10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#876b54</Value>
+    </Setting>
+    <Setting Name="Color11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#cca17c</Value>
+    </Setting>
+    <Setting Name="Color12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#debb9e</Value>
+    </Setting>
+    <Setting Name="Color13" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#fccba2</Value>
+    </Setting>
+    <Setting Name="Color14" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#fcf4ed</Value>
+    </Setting>
+    <Setting Name="Color15" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#ffdf5c</Value>
+    </Setting>
+    <Setting Name="Color16" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Color17" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Color18" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

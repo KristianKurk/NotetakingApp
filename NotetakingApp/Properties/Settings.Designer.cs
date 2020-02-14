@@ -156,7 +156,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#f5d2b5")]
         public string Color5 {
             get {
                 return ((string)(this["Color5"]));
@@ -168,7 +168,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#b38d6d")]
         public string Color6 {
             get {
                 return ((string)(this["Color6"]));
@@ -180,7 +180,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#ffecdb")]
         public string Color7 {
             get {
                 return ((string)(this["Color7"]));
@@ -192,7 +192,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#d6c0ae")]
         public string Color8 {
             get {
                 return ((string)(this["Color8"]));
@@ -204,7 +204,7 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#806650")]
         public string Color9 {
             get {
                 return ((string)(this["Color9"]));
@@ -216,13 +216,109 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("#876b54")]
         public string Color10 {
             get {
                 return ((string)(this["Color10"]));
             }
             set {
                 this["Color10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#cca17c")]
+        public string Color11 {
+            get {
+                return ((string)(this["Color11"]));
+            }
+            set {
+                this["Color11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#debb9e")]
+        public string Color12 {
+            get {
+                return ((string)(this["Color12"]));
+            }
+            set {
+                this["Color12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#fccba2")]
+        public string Color13 {
+            get {
+                return ((string)(this["Color13"]));
+            }
+            set {
+                this["Color13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#fcf4ed")]
+        public string Color14 {
+            get {
+                return ((string)(this["Color14"]));
+            }
+            set {
+                this["Color14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#ffdf5c")]
+        public string Color15 {
+            get {
+                return ((string)(this["Color15"]));
+            }
+            set {
+                this["Color15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Color16 {
+            get {
+                return ((string)(this["Color16"]));
+            }
+            set {
+                this["Color16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Color17 {
+            get {
+                return ((string)(this["Color17"]));
+            }
+            set {
+                this["Color17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Color18 {
+            get {
+                return ((string)(this["Color18"]));
+            }
+            set {
+                this["Color18"] = value;
             }
         }
     }

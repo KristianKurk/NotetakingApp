@@ -81,7 +81,7 @@
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                                     <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                                     <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.1"/>
-                                    <GradientStop Color="#b38d6d" Offset="1"/>
+                                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color6}" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
 
@@ -120,7 +120,7 @@
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                                     <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                                     <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.1"/>
-                                    <GradientStop Color="#b38d6d" Offset="1"/>
+                                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color6}" Offset="1"/>
                                 </LinearGradientBrush>
                             </Border.Background>
 
@@ -145,7 +145,7 @@
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                                 <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.0"/>
                                 <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.1"/>
-                                <GradientStop Color="#b38d6d" Offset="1"/>
+                                <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color6}" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
 

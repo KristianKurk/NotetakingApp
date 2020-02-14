@@ -31,7 +31,7 @@
                             <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="#f5d2b5" />
+                            <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color5}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -60,7 +60,7 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#debb9e"/>
+                            <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color12}"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>

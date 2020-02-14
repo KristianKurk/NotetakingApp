@@ -187,12 +187,12 @@
         <Setter Property="Border.CornerRadius" Value="12,12,12,12"/>
         <Setter Property="Border.BorderBrush" Value="Transparent"/>
         <Setter Property="Border.BorderThickness" Value="1"/>
-        <Setter Property="Border.Background" Value="#b38d6d"/>
+        <Setter Property="Border.Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color6}"/>
         <Setter Property="Border.Margin" Value="10,0,10,0"/>
         <Setter Property="Border.Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"/>
         <Style.Triggers>
             <Trigger Property="Border.IsMouseOver" Value="True">
-                <Setter Property="Border.Background" Value="#d6c0ae" />
+                <Setter Property="Border.Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color8}" />
             </Trigger>
         </Style.Triggers>
     </Style>

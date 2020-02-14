@@ -74,7 +74,7 @@
                                 <Setter Property="Border.Background">
                                     <Setter.Value>
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                            <GradientStop Color="#fcf4ed" Offset="0.0"/>
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color14}" Offset="0.0"/>
 
                                         </LinearGradientBrush>
                                     </Setter.Value>
@@ -92,7 +92,7 @@
                     <RadialGradientBrush 
                              GradientOrigin="0.5,0.5" Center="0.5,0.5" 
                                 RadiusX="0.2" RadiusY="0.5">
-                        <GradientStop Color="#fcf4ed" Offset="0" />
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color14}" Offset="0" />
                         <GradientStop Color="Transparent" Offset="0.8" />
                     </RadialGradientBrush>
 

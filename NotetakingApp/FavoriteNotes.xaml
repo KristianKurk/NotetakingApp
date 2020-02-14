@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:NotetakingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:properties="clr-namespace:NotetakingApp.Properties"
       Title="FavoriteNotes">
 
     <Page.Resources>
@@ -37,7 +38,7 @@
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" >
                     <GradientStop Color="Transparent" Offset="0.8"/>
 
-                    <GradientStop Color="#b38d6d" Offset="1"/>
+                    <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color6}" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
