@@ -114,7 +114,7 @@ namespace NotetakingApp
 
             object button = grid.FindName(btn);
             Button button1 = (Button)button;
-             button1.Background = new SolidColorBrush(Color.FromArgb(255,86, 50, 50));
+             button1.Background = new SolidColorBrush(Color.FromArgb(Properties.Settings.Default.Color16a,Properties.Settings.Default.Color16b,Properties.Settings.Default.Color16c,Properties.Settings.Default.Color16d));
 
             //  button1.IsEnabled = false;
             button1.Focusable = false;
@@ -135,7 +135,7 @@ namespace NotetakingApp
                 };
             foreach (Button b in buttons) {
                 b.IsEnabled = true;
-                b.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+                b.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c));
             }
         }
 
@@ -296,7 +296,7 @@ namespace NotetakingApp
             Button button1 = (Button)sender;
             if (disabledButton != button1.Name)
             {
-                button1.Background = new SolidColorBrush(Color.FromRgb(250, 238, 227));
+                button1.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color18a, Properties.Settings.Default.Color18b, Properties.Settings.Default.Color18c));
             }
         }
 
@@ -307,7 +307,7 @@ namespace NotetakingApp
 
             if (disabledButton != button1.Name)
             {
-                button1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+                button1.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c));
             }
         }
       

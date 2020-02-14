@@ -68,14 +68,35 @@
     <Setting Name="Color15" Type="System.String" Scope="User">
       <Value Profile="(Default)">#ffdf5c</Value>
     </Setting>
-    <Setting Name="Color16" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="Color16a" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">255</Value>
     </Setting>
-    <Setting Name="Color17" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="Color16b" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">86</Value>
     </Setting>
-    <Setting Name="Color18" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="Color16c" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="Color16d" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="Color17a" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">255</Value>
+    </Setting>
+    <Setting Name="Color17b" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">229</Value>
+    </Setting>
+    <Setting Name="Color17c" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">207</Value>
+    </Setting>
+    <Setting Name="Color18a" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">250</Value>
+    </Setting>
+    <Setting Name="Color18b" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">238</Value>
+    </Setting>
+    <Setting Name="Color18c" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">227</Value>
     </Setting>
   </Settings>
 </SettingsFile>

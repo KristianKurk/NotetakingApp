@@ -381,9 +381,74 @@ namespace NotetakingApp
                 window.imgSource.Height = window.mapCanvas.Height;
             }
         }
-        private void ColorScribe() { }
+        private void ColorScribe()
+        {
+            //XAML Colors
 
-        private void ColorVampire() { }
+            Properties.Settings.Default.Color1 = "#563232";
+            Properties.Settings.Default.Color2 = "#ffe5cf";
+            Properties.Settings.Default.Color3 = "#332323";
+            Properties.Settings.Default.Color4 = "#755454";
+            Properties.Settings.Default.Color5 = "#f5d2b5";
+            Properties.Settings.Default.Color6 = "#b38d6d";
+            Properties.Settings.Default.Color7 = "#ffecdb";
+            Properties.Settings.Default.Color8 = "#d6c0ae";
+            Properties.Settings.Default.Color9 = "#806650";
+            Properties.Settings.Default.Color10 = "#876b54";
+            Properties.Settings.Default.Color11 = "#cca17c";
+            Properties.Settings.Default.Color12 = "#debb9e";
+            Properties.Settings.Default.Color13 = "#fccba2";
+            Properties.Settings.Default.Color14 = "#fcf4ed";
+            Properties.Settings.Default.Color15 = "#ffdf5c";
+
+            //C# Colors
+
+            Properties.Settings.Default.Color16a = 255;
+            Properties.Settings.Default.Color16b = 86;
+            Properties.Settings.Default.Color16c = 50;
+            Properties.Settings.Default.Color16d = 50;
+            Properties.Settings.Default.Color17a = 255;
+            Properties.Settings.Default.Color17b = 229;
+            Properties.Settings.Default.Color17c = 207;
+            Properties.Settings.Default.Color18a = 250;
+            Properties.Settings.Default.Color18b = 238;
+            Properties.Settings.Default.Color18c = 227;
+
+        }
+
+        private void ColorVampire() 
+        {
+            //XAML Colors
+
+            Properties.Settings.Default.Color1 = "#563232";
+            Properties.Settings.Default.Color2 = "#ffe5cf";
+            Properties.Settings.Default.Color3 = "#332323";
+            Properties.Settings.Default.Color4 = "#755454";
+            Properties.Settings.Default.Color5 = "#f5d2b5";
+            Properties.Settings.Default.Color6 = "#b38d6d";
+            Properties.Settings.Default.Color7 = "#ffecdb";
+            Properties.Settings.Default.Color8 = "#d6c0ae";
+            Properties.Settings.Default.Color9 = "#806650";
+            Properties.Settings.Default.Color10 = "#876b54";
+            Properties.Settings.Default.Color11 = "#cca17c";
+            Properties.Settings.Default.Color12 = "#debb9e";
+            Properties.Settings.Default.Color13 = "#fccba2";
+            Properties.Settings.Default.Color14 = "#fcf4ed";
+            Properties.Settings.Default.Color15 = "#ffdf5c";
+
+            //C# Colors
+
+            Properties.Settings.Default.Color16a = 255;
+            Properties.Settings.Default.Color16b = 86;
+            Properties.Settings.Default.Color16c = 50;
+            Properties.Settings.Default.Color16d = 50;
+            Properties.Settings.Default.Color17a = 255;
+            Properties.Settings.Default.Color17b = 229;
+            Properties.Settings.Default.Color17c = 207;
+            Properties.Settings.Default.Color18a = 250;
+            Properties.Settings.Default.Color18b = 238;
+            Properties.Settings.Default.Color18c = 227;
+        }
 
         private void ChangeColor(object sender, SelectionChangedEventArgs e)
         {
@@ -392,8 +457,10 @@ namespace NotetakingApp
 
             switch (name) {
                 case "Scribe":
+                    ColorScribe();
                     break;
                 case "Vampire":
+                    ColorVampire();
                     break;
             }
         }

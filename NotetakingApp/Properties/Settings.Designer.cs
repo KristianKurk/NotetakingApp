@@ -288,37 +288,121 @@ namespace NotetakingApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Color16 {
+        [global::System.Configuration.DefaultSettingValueAttribute("255")]
+        public byte Color16a {
             get {
-                return ((string)(this["Color16"]));
+                return ((byte)(this["Color16a"]));
             }
             set {
-                this["Color16"] = value;
+                this["Color16a"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Color17 {
+        [global::System.Configuration.DefaultSettingValueAttribute("86")]
+        public byte Color16b {
             get {
-                return ((string)(this["Color17"]));
+                return ((byte)(this["Color16b"]));
             }
             set {
-                this["Color17"] = value;
+                this["Color16b"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Color18 {
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public byte Color16c {
             get {
-                return ((string)(this["Color18"]));
+                return ((byte)(this["Color16c"]));
             }
             set {
-                this["Color18"] = value;
+                this["Color16c"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public byte Color16d {
+            get {
+                return ((byte)(this["Color16d"]));
+            }
+            set {
+                this["Color16d"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255")]
+        public byte Color17a {
+            get {
+                return ((byte)(this["Color17a"]));
+            }
+            set {
+                this["Color17a"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("229")]
+        public byte Color17b {
+            get {
+                return ((byte)(this["Color17b"]));
+            }
+            set {
+                this["Color17b"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("207")]
+        public byte Color17c {
+            get {
+                return ((byte)(this["Color17c"]));
+            }
+            set {
+                this["Color17c"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250")]
+        public byte Color18a {
+            get {
+                return ((byte)(this["Color18a"]));
+            }
+            set {
+                this["Color18a"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("238")]
+        public byte Color18b {
+            get {
+                return ((byte)(this["Color18b"]));
+            }
+            set {
+                this["Color18b"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("227")]
+        public byte Color18c {
+            get {
+                return ((byte)(this["Color18c"]));
+            }
+            set {
+                this["Color18c"] = value;
             }
         }
     }

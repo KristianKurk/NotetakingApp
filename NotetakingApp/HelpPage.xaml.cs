@@ -64,7 +64,7 @@ namespace NotetakingApp
 
             object button = helpGrid.FindName(btn);
             Button button1 = (Button)button;
-            button1.Background = new SolidColorBrush(Color.FromArgb(255, 86, 50, 50)) { Opacity = 0 };
+            button1.Background = new SolidColorBrush(Color.FromArgb(Properties.Settings.Default.Color16a, Properties.Settings.Default.Color16b, Properties.Settings.Default.Color16c, Properties.Settings.Default.Color16d)) { Opacity = 0 };
 
             //  button1.IsEnabled = false;
             button1.Focusable = false;
@@ -94,11 +94,11 @@ namespace NotetakingApp
             navb4.IsEnabled = true;
             navb5.IsEnabled = true;
 
-            navb1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
-            navb2.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
-            navb3.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
-            navb4.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
-            navb5.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207)) { Opacity = 1 };
+            navb1.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c)) { Opacity = 1 };
+            navb2.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c)) { Opacity = 1 };
+            navb3.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c)) { Opacity = 1 };
+            navb4.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c)) { Opacity = 1 };
+            navb5.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c)) { Opacity = 1 };
 
         }
         //Set button hover color
@@ -108,7 +108,7 @@ namespace NotetakingApp
             Button button1 = (Button)sender;
             if (disabledButton != button1.Name)
             {
-                button1.Background = new SolidColorBrush(Color.FromRgb(250, 238, 227));
+                button1.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color18a, Properties.Settings.Default.Color18b, Properties.Settings.Default.Color18c));
             }
         }
 
@@ -119,7 +119,7 @@ namespace NotetakingApp
 
             if (disabledButton != button1.Name)
             {
-                button1.Background = new SolidColorBrush(Color.FromRgb(255, 229, 207));
+                button1.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c));
             }
         }
     }
