@@ -41,9 +41,9 @@
             <Setter Property="Background" >
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.2"/>
-                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.85"/>
-                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
+                        <GradientStop Color="Transparent" Offset="0.2"/>
+                        <GradientStop Color="Transparent" Offset="0.85"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -51,7 +51,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Name="border" 
-        				BorderThickness="1,1,1,1"
+        				BorderThickness="0,0,0,0"
         				CornerRadius="0,0,0,0"
         				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
         				
@@ -76,6 +76,60 @@
                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                                             <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color14}" Offset="0.0"/>
                                           
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="InformButton2" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.2"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="0.85"/>
+                        <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+        				BorderThickness="0,0,0,0"
+        				CornerRadius="0,0,0,0"
+        				BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=Color1}" 
+        				
+        				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+        	                           VerticalAlignment="Center" Name="contentShadow" 
+        					Style="{StaticResource ShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                <Setter Property="Border.Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color14}" Offset="0.0"/>
+
                                         </LinearGradientBrush>
                                     </Setter.Value>
                                 </Setter>
@@ -126,29 +180,29 @@
             </Grid.ColumnDefinitions>
 
 
-            <Button Name="d4" Click="diceRoll" Grid.Column="0" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d4" Click="diceRoll" Grid.Column="0" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d4.png" Width="100" Height="100" ></Image>
             </Button>
-            <Button Name="d6" Click="diceRoll" Grid.Column="1" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d6" Click="diceRoll" Grid.Column="1" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d6.png" Width="100" Height="100"></Image>
             </Button>
-            <Button Name="d8" Click="diceRoll"  Grid.Column="2" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d8" Click="diceRoll"  Grid.Column="2" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d8.png" Width="100" Height="100"></Image>
             </Button>
-            <Button Name="d10" Click="diceRoll" Grid.Column="3" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d10" Click="diceRoll" Grid.Column="3" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d10.png" Width="100" Height="100"></Image>
             </Button>
-            <Button Name="d12" Click="diceRoll" Grid.Column="4" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d12" Click="diceRoll" Grid.Column="4" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d12.png" Width="100" Height="100"></Image>
             </Button>
-            <Button Name="d20" Click="diceRoll" Grid.Column="5" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d20" Click="diceRoll" Grid.Column="5" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d20.png" Width="100" Height="100"></Image>
             </Button>
-            <Button Name="d100" Click="diceRoll" Grid.Column="6" Style="{StaticResource InformButton}" Background="Transparent">
+            <Button Name="d100" Click="diceRoll" Grid.Column="6" Style="{StaticResource InformButton}" >
                 <Image Source="Assets/RNG/d100.png" Width="100" Height="100"></Image>
             </Button>
-            <TextBox Name="formulaBox" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="200"/>
-            <Button Content="Calculate" Click="FormulaCalculate" Grid.Row="2" Grid.Column="4"></Button>
+            <TextBox Margin="20" Name="formulaBox" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="200"/>
+            <Button  Margin="20" Style="{StaticResource InformButton2}" Content="Calculate" Click="FormulaCalculate" Grid.Row="2" Grid.Column="4"></Button>
         </Grid>
        
     </StackPanel>
