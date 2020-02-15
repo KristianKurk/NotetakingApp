@@ -420,34 +420,34 @@ namespace NotetakingApp
         {
             //XAML Colors
 
-            Properties.Settings.Default.Color1 = "#563232";
-            Properties.Settings.Default.Color2 = "#ffe5cf";
-            Properties.Settings.Default.Color3 = "#332323";
-            Properties.Settings.Default.Color4 = "#755454";
-            Properties.Settings.Default.Color5 = "#f5d2b5";
-            Properties.Settings.Default.Color6 = "#b38d6d";
-            Properties.Settings.Default.Color7 = "#ffecdb";
-            Properties.Settings.Default.Color8 = "#d6c0ae";
-            Properties.Settings.Default.Color9 = "#806650";
-            Properties.Settings.Default.Color10 = "#876b54";
-            Properties.Settings.Default.Color11 = "#cca17c";
-            Properties.Settings.Default.Color12 = "#debb9e";
-            Properties.Settings.Default.Color13 = "#fccba2";
-            Properties.Settings.Default.Color14 = "#fcf4ed";
-            Properties.Settings.Default.Color15 = "#ffdf5c";
+            Properties.Settings.Default.Color1 = "#474747";
+            Properties.Settings.Default.Color2 = "#d1d1d1";
+            Properties.Settings.Default.Color3 = "#2e2e2e";
+            Properties.Settings.Default.Color4 = "#757575";
+            Properties.Settings.Default.Color5 = "#ebebeb";
+            Properties.Settings.Default.Color6 = "#a6a6a6";
+            Properties.Settings.Default.Color7 = "#f7f7f7";
+            Properties.Settings.Default.Color8 = "#d4d4d4";
+            Properties.Settings.Default.Color9 = "#d1d1d1";
+            Properties.Settings.Default.Color10 = "#858585";
+            Properties.Settings.Default.Color11 = "#bfbfbf";
+            Properties.Settings.Default.Color12 = "#cfcfcf";
+            Properties.Settings.Default.Color13 = "#b8b7b6";
+            Properties.Settings.Default.Color14 = "#f2f2f2";
+            Properties.Settings.Default.Color15 = "#c9c9c9";
 
             //C# Colors
 
             Properties.Settings.Default.Color16a = 255;
-            Properties.Settings.Default.Color16b = 86;
-            Properties.Settings.Default.Color16c = 50;
-            Properties.Settings.Default.Color16d = 50;
-            Properties.Settings.Default.Color17a = 255;
-            Properties.Settings.Default.Color17b = 229;
-            Properties.Settings.Default.Color17c = 207;
-            Properties.Settings.Default.Color18a = 250;
-            Properties.Settings.Default.Color18b = 238;
-            Properties.Settings.Default.Color18c = 227;
+            Properties.Settings.Default.Color16b = 71;
+            Properties.Settings.Default.Color16c = 71;
+            Properties.Settings.Default.Color16d = 71;
+            Properties.Settings.Default.Color17a = 209;
+            Properties.Settings.Default.Color17b = 209;
+            Properties.Settings.Default.Color17c = 209;
+            Properties.Settings.Default.Color18a = 242;
+            Properties.Settings.Default.Color18b = 242;
+            Properties.Settings.Default.Color18c = 242;
         }
 
         private void ChangeColor(object sender, SelectionChangedEventArgs e)

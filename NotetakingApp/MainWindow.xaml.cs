@@ -52,6 +52,8 @@ namespace NotetakingApp
             }
 
             Properties.Settings.Default.currentNote = null;
+
+            //Click Dashboard button on startup
             mainNavButton.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
         }
         private void Window_Closed(object sender, EventArgs e)
@@ -135,6 +137,7 @@ namespace NotetakingApp
                 };
             foreach (Button b in buttons) {
                 b.IsEnabled = true;
+                b.Focusable = true;
                 b.Background = new SolidColorBrush(Color.FromRgb(Properties.Settings.Default.Color17a, Properties.Settings.Default.Color17b, Properties.Settings.Default.Color17c));
             }
         }
@@ -187,14 +190,14 @@ namespace NotetakingApp
         }
             private void BtnSettings(object sender, RoutedEventArgs e)
         {
-
+            disabledButton = "";
             EnableAll();
             main.Content = new SettingsWindow();
            
         }
         private void BtnHelp(object sender, RoutedEventArgs e)
         {
-
+            disabledButton = "";
             EnableAll();
             main.Content = new HelpPage();
 
