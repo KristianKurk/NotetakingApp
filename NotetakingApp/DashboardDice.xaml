@@ -121,29 +121,29 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
                 <Button Name="d4" Click="diceRoll" Grid.Column="0" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100" ></Image>
+                    <Image Source="Assets/RNG/d4.png" Width="100" Height="100" ></Image>
                 </Button>
                 <Button Name="d6" Click="diceRoll" Grid.Column="1" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                    <Image Source="Assets/RNG/d6.png" Width="100" Height="100"></Image>
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
                 <Button Name="d8" Click="diceRoll"  Grid.Column="2" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                    <Image Source="Assets/RNG/d8.png" Width="100" Height="100"></Image>
                 </Button>
                 <Button Name="d10" Click="diceRoll" Grid.Column="3" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                    <Image Source="Assets/RNG/d10.png" Width="100" Height="100"></Image>
                 </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
                 <Button Name="d12" Click="diceRoll" Grid.Column="4" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                    <Image Source="Assets/RNG/d12.png" Width="100" Height="100"></Image>
                 </Button>
                 <Button Name="d20" Click="diceRoll" Grid.Column="5" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                    <Image Source="Assets/RNG/d20.png" Width="100" Height="100"></Image>
                 </Button>
                 <Button Name="d100" Click="diceRoll" Grid.Column="6" Style="{StaticResource InformButton}">
-                    <Image Source="Assets/RNG/testimage.png" Width="100" Height="100"></Image>
+                    <Image Source="Assets/RNG/d100.png" Width="100" Height="100"></Image>
                 </Button>
             </StackPanel>
 
