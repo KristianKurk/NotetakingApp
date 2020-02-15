@@ -9,7 +9,7 @@
       Title="HelpRNG">
     
     <StackPanel HorizontalAlignment="Center">
-        <Image Source="https://upload.wikimedia.org/wikipedia/commons/3/30/Googlelogo.png" />
+        <Image Source="Assets/Help/rng.png" />
         
     </StackPanel>
 </Page>

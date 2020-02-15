@@ -329,6 +329,14 @@
     <Resource Include="Assets\RNG\d6.png" />
     <Resource Include="Assets\RNG\d8.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Help\dashboard.PNG" />
+    <Resource Include="Assets\Help\mapping.PNG" />
+    <Resource Include="Assets\Help\notetaking.PNG" />
+    <Resource Include="Assets\Help\rng.PNG" />
+    <Resource Include="Assets\Help\settings1.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
