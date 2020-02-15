@@ -53,6 +53,7 @@ namespace NotetakingApp
             ContextMenu cm = this.FindResource("deleteCM") as ContextMenu;
             cm.Placement = System.Windows.Controls.Primitives.PlacementMode.MousePoint;
             ((MenuItem)cm.Items[0]).Name = ((Border)(sender)).Name;
+            currentRNG = DB.GetRandomGenerator(int.Parse(((Border)(sender)).Name.Substring(3)));
             cm.IsOpen = true;
         }
 
