@@ -72,7 +72,8 @@
 
                 <!--Text Box List Title-->
 
-                <TextBox HorizontalContentAlignment="Center" Name="rngTitle" Height="30" Width="300" FontSize="20" Margin="0,0,0,20">
+
+            <TextBox HorizontalContentAlignment="Center" Name="rngTitle" Height="30" Width="300" FontSize="20" Margin="0,0,0,20">
                     <TextBox.Style>
                         <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                             <Style.Resources>
@@ -108,8 +109,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
 
                     <!-- Import Button-->
@@ -122,28 +123,28 @@
                     </Button>
 
                     <!-- Rich Text box-->
-                    <RichTextBox Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Name="rngTB" MaxHeight="200" MinHeight="0" Width="270" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
-                        <RichTextBox.Style>
-                            <Style TargetType="RichTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                <Style.Resources>
-                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                        <VisualBrush.Visual>
-                                            <Label Content="Data list goes Here!" Foreground="LightGray" />
-                                        </VisualBrush.Visual>
-                                    </VisualBrush>
-                                </Style.Resources>
-                                <Style.Triggers>
+                <RichTextBox Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Name="rngTB" MaxHeight="200" MinHeight="0" Width="270" FontSize="20" AcceptsTab="True" VerticalScrollBarVisibility="Auto">
+                    <RichTextBox.Style>
+                        <Style TargetType="RichTextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                            <Style.Resources>
+                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <Label Content="Data list goes Here!" Foreground="LightGray" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Style.Resources>
+                            <Style.Triggers>
 
-                                    <Trigger Property="IsKeyboardFocused" Value="True">
-                                        <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color5}" />
-                                    </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=Color5}" />
+                                </Trigger>
 
-                                </Style.Triggers>
-                            </Style>
-                        </RichTextBox.Style>
-                    </RichTextBox>
+                            </Style.Triggers>
+                        </Style>
+                    </RichTextBox.Style>
+                </RichTextBox>
+            </Grid>
 
-                </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <!--Save Button-->
                 <Button  
@@ -185,7 +186,7 @@
                  Height="40"  
                  Width="80"
                  ClickMode="Press" 
-                 Click="SaveText" 
+                 Click="newList_Click" 
                  
                  Margin="0,20,0,20">
 
@@ -211,7 +212,7 @@
             </Button>
             </StackPanel>
 
-            <TextBlock><!-- Display Confirmation Message in here!!--></TextBlock>
+            <TextBlock Name="ErrorDisplay" TextAlignment="Center"></TextBlock>
             </StackPanel>
 
 

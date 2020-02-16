@@ -67,15 +67,6 @@
 
                     </Canvas>
                 </Canvas>
-                <Canvas Name="AreYouSure" Background="White" Focusable="True" Width="1000" Height="300" Visibility="Hidden" Canvas.Left="260" Canvas.Top="252">
-                    <TextBlock Text="This action is irreversible. This will delete all inner maps and pins. Are you sure?" Canvas.Left="63" Canvas.Top="82" FontSize="25"></TextBlock>
-                    <Button Canvas.Left="275" Canvas.Top="200" Height="54" Width="200" Click="DeleteMap">
-                        <TextBlock Text="Yes, I'm sure!" FontSize="20"></TextBlock>
-                    </Button>
-                    <Button Canvas.Left="525" Canvas.Top="200" Height="54" Width="200" Click="HidePanel">
-                        <TextBlock Text="No, take me back!" FontSize="20"></TextBlock>
-                    </Button>
-                </Canvas>
             </Canvas>
         </DockPanel>
 
@@ -135,6 +126,17 @@
             <StackPanel Background="Transparent">
                 <TextBox Name="SearchBar" TextChanged="SearchBar_TextChanged" Height="20" Width="175"></TextBox>
                 <ListBox Name="filteredListBox" Width="175" MinHeight="200" MaxHeight="300" SelectionChanged="FilteredListBox_Selected"></ListBox>
+            </StackPanel>
+        </Popup>
+        <Popup Name="AreYouSurePopup" Placement="Center">
+            <StackPanel Name="AreYouSure" Background="White" Focusable="True">
+                <TextBlock Text="This action is irreversible. This will delete all inner maps and pins. Are you sure?" TextAlignment="Center" FontSize="25"></TextBlock>
+                <Button Height="54" Width="200" Click="DeleteMap">
+                    <TextBlock Text="Yes, I'm sure!" FontSize="20"></TextBlock>
+                </Button>
+                <Button Height="54" Width="200" Click="HidePanel">
+                    <TextBlock Text="No, take me back!" FontSize="20"></TextBlock>
+                </Button>
             </StackPanel>
         </Popup>
     </Grid>

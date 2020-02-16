@@ -59,7 +59,7 @@ namespace NotetakingApp
 
         private void ClickRNG(object sender, MouseButtonEventArgs e)
         {
-            if (!isEditing)
+            if (!isEditing || currentRNG.rng_id != int.Parse(((Border)(sender)).Name.Substring(3)))
             {
                 isEditing = true;
                 RandomGenerator rng = DB.GetRandomGenerator(int.Parse(((Border)(sender)).Name.Substring(3)));
@@ -74,7 +74,8 @@ namespace NotetakingApp
                     tr.Load(ms, DataFormats.Rtf);
                 }
             }
-            else {
+            else
+            {
                 isEditing = false;
                 currentRNG = null;
                 rngTitle.Text = "";
@@ -100,7 +101,7 @@ namespace NotetakingApp
                 }
                 catch (IOException ee)
                 {
-                    Console.WriteLine("Attempted to open same file twice.");
+                    ErrorDisplay.Text = "Attempted to open a file in use.";
                 }
             }
         }
@@ -117,26 +118,38 @@ namespace NotetakingApp
             string text = textRange.Text;
             string title = rngTitle.Text;
 
-            if (text != "" && title != "")
+            if (text.Trim() != "" && text != null)
             {
-                text = text.Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
-
-                if (!isEditing)
+                if (title != "" && title != null)
                 {
-                    RandomGenerator rng = new RandomGenerator();
-                    rng.rng_title = title;
-                    rng.rng_content = text;
-                    DB.Add(rng);
-                    LoadRNGLists();
-                    rngTB.Document.Blocks.Clear();
-                    rngTitle.Text = "";
+                    Console.WriteLine(text);
+                    text = text.Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
+
+                    if (!isEditing)
+                    {
+                        RandomGenerator rng = new RandomGenerator();
+                        rng.rng_title = title;
+                        rng.rng_content = text;
+                        DB.Add(rng);
+                        LoadRNGLists();
+                        rngTB.Document.Blocks.Clear();
+                        rngTitle.Text = "";
+                    }
+                    else
+                    {
+                        currentRNG.rng_title = rngTitle.Text;
+                        currentRNG.rng_content = text;
+                        DB.Update(currentRNG);
+                        LoadRNGLists();
+                    }
                 }
                 else {
-                    currentRNG.rng_title = rngTitle.Text;
-                    currentRNG.rng_content = text;
-                    DB.Update(currentRNG);
-                    LoadRNGLists();
+                    ErrorDisplay.Text = "Please give your list a title.";
                 }
+            }
+            else
+            {
+                ErrorDisplay.Text = "Please enter something in your list.";
             }
         }
 
@@ -151,6 +164,14 @@ namespace NotetakingApp
 
             DB.DeleteRandomGenerator(int.Parse(((MenuItem)(sender)).Name.Substring(3)));
             LoadRNGLists();
+        }
+
+        private void newList_Click(object sender, RoutedEventArgs e)
+        {
+            isEditing = false;
+            currentRNG = null;
+            rngTitle.Text = "";
+            rngTB.Document.Blocks.Clear();
         }
     }
 }

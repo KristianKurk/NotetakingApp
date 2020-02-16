@@ -62,7 +62,7 @@ namespace NotetakingApp
                 if (displayCanvas != null)
                     SaveAndClosePin();
 
-                AreYouSure.Visibility = Visibility.Hidden;
+                AreYouSurePopup.IsOpen = false;
             };
 
             mapCanvas.PreviewMouseRightButtonDown += (ss, ee) =>
@@ -412,7 +412,8 @@ namespace NotetakingApp
             text.Text = "This action is irreversible. This will delete all inner maps and pins. Are you sure?";
             child.Click -= DeletePin2;
             child.Click += DeleteMap;
-            AreYouSure.Visibility = Visibility.Visible;
+            AreYouSurePopup.PlacementTarget = sender as UIElement;
+            AreYouSurePopup.IsOpen = true;
         }
 
         private void Right_Click_Pin(object sender, MouseButtonEventArgs e)
@@ -425,7 +426,8 @@ namespace NotetakingApp
             child.Click -= DeleteMap;
             child.Click += DeletePin2;
             Console.WriteLine(child);
-            AreYouSure.Visibility = Visibility.Visible;
+            AreYouSurePopup.PlacementTarget = sender as UIElement;
+            AreYouSurePopup.IsOpen = true;
 
 
         }
@@ -594,7 +596,7 @@ namespace NotetakingApp
 
                 DB.DeletePin(attachedPin.pin_id);
                 pinCanvas.Children.Remove(pin);
-                AreYouSure.Visibility = Visibility.Hidden;
+                AreYouSurePopup.IsOpen = false;
             }
         }
 
@@ -628,7 +630,7 @@ namespace NotetakingApp
                     if (int.Parse(mymap.Name.Substring(3)) == mapToBeDeleted.map_id)
                         map = mymap;
                 pinCanvas.Children.Remove(map);
-                AreYouSure.Visibility = Visibility.Hidden;
+                AreYouSurePopup.IsOpen = false;
             }
         }
 
@@ -644,7 +646,7 @@ namespace NotetakingApp
 
         private void HidePanel(object sender, RoutedEventArgs e)
         {
-            AreYouSure.Visibility = Visibility.Hidden;
+            AreYouSurePopup.IsOpen = false;
         }
 
         private void AddNote(object sender, RoutedEventArgs e) {
