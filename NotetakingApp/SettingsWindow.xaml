@@ -152,18 +152,26 @@
                         <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" Content="Select Color Style" Margin="0,0,0,0"></Label>
                     </Border>
 
-                    <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" SelectionChanged="ChangeColor">
+                    <ComboBox Name="colorCombo" Margin="0,0,0,20" Width="200" SelectionChanged="ChangeColor" SelectedIndex="0">
+                        <ComboBoxItem Content="Please Select a Color"/>
                         <ComboBoxItem Name="Scribe" Content="Scribe" />
                         <ComboBoxItem Name="Vampire" Content="Vampire"/>
                     </ComboBox>
-        </StackPanel>
-        
+
+
+                    </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Width="200" Height="20" Grid.Row="3" Grid.Column="2">
+                    <TextBlock Text="Enter Max Zoom: " Foreground="White"/>
+                    <TextBox Margin="10 0 0 0"  Width="50" KeyDown="TextBox_KeyDown" PreviewTextInput="MaxZoomInput_PreviewTextInput" Name="MaxZoomInput"/>
+                    <Button Margin="10 0 0 0" Click="Button_Click" Content="Enter"></Button>
+                </StackPanel>
 
 
 
 
 
-        <Grid Name="RNGSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="1" >
+                <Grid Name="RNGSearch" Margin="0,0,0,0" Background="Transparent" Visibility="Hidden" Grid.Column="0" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>

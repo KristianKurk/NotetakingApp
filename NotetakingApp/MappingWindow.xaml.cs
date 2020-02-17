@@ -21,9 +21,9 @@ namespace NotetakingApp
 {
     public partial class MappingWindow : Page
     {
-        private const int MAX_PIN_SIZE = 50;
-        private const int MAX_PIN_ZOOM_IN = 3;
-        private const float MAX_MAP_ZOOM_OUT = 0.5f;
+        private int MAX_PIN_SIZE = 50;
+        private int MAX_PIN_ZOOM_IN = 3;
+        private float MAX_MAP_ZOOM_OUT = Properties.Settings.Default.MaxZoom;
 
         private Map currentMap = DB.GetMap(1);
 
@@ -450,7 +450,7 @@ namespace NotetakingApp
             pinText.MaxWidth = 200;
             pinText.Width = 200;
             pinText.MinLines = 3;
-            pinText.MaxLines = 10;
+            pinText.MaxLines = 3;
             pinText.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
 
             pinTitle.Width = 150;

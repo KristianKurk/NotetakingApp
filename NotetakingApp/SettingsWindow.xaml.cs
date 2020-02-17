@@ -41,9 +41,7 @@ namespace NotetakingApp
             mapfilteredList = DB.GetMaps();
             MapFilteredListBox.ItemsSource = mapfilteredList;
 
-
-           
-
+            MaxZoomInput.Text = Properties.Settings.Default.MaxZoom.ToString();
         }
         
       
@@ -414,6 +412,9 @@ namespace NotetakingApp
             Properties.Settings.Default.Color18b = 238;
             Properties.Settings.Default.Color18c = 227;
 
+
+            foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
+                ((MainWindow)window).OpenSettings();
         }
 
         private void ColorVampire() 
@@ -448,6 +449,9 @@ namespace NotetakingApp
             Properties.Settings.Default.Color18a = 242;
             Properties.Settings.Default.Color18b = 242;
             Properties.Settings.Default.Color18c = 242;
+
+            foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
+                ((MainWindow)window).OpenSettings();
         }
 
         private void ChangeColor(object sender, SelectionChangedEventArgs e)
@@ -463,6 +467,30 @@ namespace NotetakingApp
                     ColorVampire();
                     break;
             }
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return) {
+                SetMaxZoom();
+            }
+        }
+
+        private void SetMaxZoom() {
+            float newZoom = float.Parse(MaxZoomInput.Text);
+            if (newZoom < 1 && newZoom > 0)
+                Properties.Settings.Default.MaxZoom = float.Parse(MaxZoomInput.Text);
+        }
+
+        private void MaxZoomInput_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SetMaxZoom();
         }
     }
 }

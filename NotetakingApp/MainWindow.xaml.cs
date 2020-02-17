@@ -190,10 +190,14 @@ namespace NotetakingApp
         }
             private void BtnSettings(object sender, RoutedEventArgs e)
         {
+            OpenSettings();
+           
+        }
+
+        public void OpenSettings() {
             disabledButton = "";
             EnableAll();
             main.Content = new SettingsWindow();
-           
         }
         private void BtnHelp(object sender, RoutedEventArgs e)
         {

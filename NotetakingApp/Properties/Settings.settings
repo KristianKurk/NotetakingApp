@@ -98,5 +98,8 @@
     <Setting Name="Color18c" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">227</Value>
     </Setting>
+    <Setting Name="MaxZoom" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
