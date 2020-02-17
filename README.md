@@ -37,7 +37,7 @@ Download the executable by either going to the releases on this page, or visitin
 
 CONFIGURATION
 ------------
-The application can be configured in so far as color themes go. To do this, click on the settings button (gear icon) on the top navbar of the application. From then, you can change the color by using the combobox.
+The application can be configured in the settings page. To get there, click on the settings button (gear icon) on the top navbar of the application. From there, you can set the image that you want to use as your main map, as well as customize the color of Scribe.
 
 
 SOFTWARE
@@ -80,6 +80,10 @@ The notetaking page allows you to create notes and edit them as you wish. The ed
 **What are RNG Utilities?**
 
 RNG Utilities are helpful features in running a tabletop roleplaying game. You're given the ability to create custom data lists and then generate a select number of those values. For example, you could create a list of NPC (Non-Player Character) names, and then get a random one in the midst of a game. The RNG Utilities allow you to also generate random dice rolls, using either the specific dice or using dice notation in a textbox. 
+
+**I can't see the full image of the map. What do I do?**
+
+You can change how far you can zoom out in the settings page of the application. To get there, click on the settings button (gear icon) on the top navbar of the application. There, you can edit the max zoom out of the application.
 
 
 MAINTAINERS
