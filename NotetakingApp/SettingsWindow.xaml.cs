@@ -313,7 +313,7 @@ namespace NotetakingApp
             openFileDialog.CheckPathExists = true;
             openFileDialog.ReadOnlyChecked = true;
             openFileDialog.ShowReadOnly = true;
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg";
             var result = openFileDialog.ShowDialog();
             Map dbMap = DB.GetMap(1);
             if (openFileDialog.FileName != "")
@@ -473,6 +473,7 @@ namespace NotetakingApp
         {
             if (e.Key == Key.Return) {
                 SetMaxZoom();
+                EnterButton.Focus();
             }
         }
 

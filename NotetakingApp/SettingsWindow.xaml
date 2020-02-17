@@ -164,7 +164,7 @@
                 <StackPanel Orientation="Horizontal" Width="200" Height="20" Grid.Row="3" Grid.Column="2">
                     <TextBlock Text="Enter Max Zoom: " Foreground="White"/>
                     <TextBox Margin="10 0 0 0"  Width="50" KeyDown="TextBox_KeyDown" PreviewTextInput="MaxZoomInput_PreviewTextInput" Name="MaxZoomInput"/>
-                    <Button Margin="10 0 0 0" Click="Button_Click" Content="Enter"></Button>
+                    <Button Margin="10 0 0 0" Name="EnterButton" Click="Button_Click" Content="Enter"></Button>
                 </StackPanel>
 
 
