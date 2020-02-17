@@ -652,23 +652,30 @@ namespace NotetakingApp
         private void AddNote(object sender, RoutedEventArgs e) {
             Pin myPin = DB.GetPin(int.Parse(((Button)(sender)).Name.Substring(2)));
 
-            if (myPin.attached_note_id == 0)
+            if (!pinpopup.IsOpen)
             {
-                pinpopup.PlacementTarget = (UIElement)sender;
-                pinpopup.IsOpen = true;
-                pinpopup.Tag = sender;
-            }
-            else {
-                foreach (Window window in Application.Current.Windows)
+                if (myPin.attached_note_id == 0)
                 {
-                    if (window.GetType() == typeof(MainWindow))
+                    pinpopup.PlacementTarget = (UIElement)sender;
+                    pinpopup.IsOpen = true;
+                    pinpopup.Tag = sender;
+                }
+                else
+                {
+                    foreach (Window window in Application.Current.Windows)
                     {
-                        Properties.Settings.Default.currentNote = DB.GetNote(myPin.attached_note_id);
-                        (window as MainWindow).main.Content = new Note_takingWindow();
-                        ((MainWindow)window).disabledButton = "noteNavButton";
-                        ((MainWindow)window).DisableButton("noteNavButton");
+                        if (window.GetType() == typeof(MainWindow))
+                        {
+                            Properties.Settings.Default.currentNote = DB.GetNote(myPin.attached_note_id);
+                            (window as MainWindow).main.Content = new Note_takingWindow();
+                            ((MainWindow)window).disabledButton = "noteNavButton";
+                            ((MainWindow)window).DisableButton("noteNavButton");
+                        }
                     }
                 }
+            }
+            else {
+                pinpopup.IsOpen = false;
             }
         }
 

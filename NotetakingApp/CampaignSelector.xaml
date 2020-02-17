@@ -13,7 +13,7 @@
     <StackPanel>
         
 
-        <TextBox HorizontalContentAlignment="Center" Name="title"  Height="20"  Margin="0,0,0,20"  Width="200" MaxLength="15">
+        <TextBox HorizontalContentAlignment="Center" Name="title"  Height="20"  Margin="0,0,0,20"  Width="200" MaxLength="15" KeyDown="Title_KeyDown">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                     <Style.Resources>

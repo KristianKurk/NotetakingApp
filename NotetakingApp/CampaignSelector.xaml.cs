@@ -28,6 +28,10 @@ namespace NotetakingApp
 
         private void SetTitle_Click(object sender, RoutedEventArgs e)
         {
+            Go();
+        }
+
+        private void Go() {
             string newName = title.Text;
 
             if (newName.Length > 0)
@@ -35,8 +39,16 @@ namespace NotetakingApp
                 foreach (Window window in Application.Current.Windows.OfType<CampaignSelectWindow>())
                     ((CampaignSelectWindow)window).NewCampaign(newName);
             }
-            else {
+            else
+            {
                 ErrorMsg.Text = "Please input a value for the name.";
+            }
+        }
+
+        private void Title_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return) {
+                Go();
             }
         }
     }

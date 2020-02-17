@@ -51,7 +51,7 @@ namespace NotetakingApp
 
             if (Properties.Settings.Default.currentNote != null)
             {
-                openNote = Properties.Settings.Default.currentNote;
+                openNote = DB.GetNote(Properties.Settings.Default.currentNote.note_id);
             }
             UpdateNotes();
             if (openNote != null)
@@ -357,7 +357,10 @@ namespace NotetakingApp
                             }
                         foreach (Pin p in DB.getPins())
                             if (p.attached_note_id == int.Parse(t.Name.Substring(4)))
+                            {
                                 p.attached_note_id = 0;
+                                DB.Update(p);
+                            }
 
                         DB.DeleteNote(int.Parse(t.Name.Substring(4)));
                     }
@@ -372,8 +375,10 @@ namespace NotetakingApp
                 }
                 foreach (Pin p in DB.getPins())
                     if (p.attached_note_id == id)
+                    {
                         p.attached_note_id = 0;
-
+                        DB.Update(p);
+                    }
                 DB.DeleteNote(id);
             }
             UpdateNotes();
@@ -392,6 +397,7 @@ namespace NotetakingApp
             tb.PreviewMouseLeftButtonDown += OpenCloseCategory;
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.LostFocus += SetUneditable;
+            tb.TextChanged += Tb_TextChanged;
             tb.KeyDown += KeyDownEnter;
             tb.Style = FindResource("CategoryHover") as Style;
 
@@ -504,6 +510,7 @@ namespace NotetakingApp
             tb.PreviewMouseDoubleClick += SetEditable;
             tb.KeyDown += KeyDownEnter;
             tb.LostFocus += SetUneditable;
+            tb.TextChanged += Tb_TextChanged;
             tb.Style = FindResource("BorderHover") as Style;
 
             tb.PreviewMouseMove += TB_Move;
@@ -533,6 +540,26 @@ namespace NotetakingApp
             else
             {
                 UnCategorised.Children.Insert(0,tb);
+            }
+        }
+
+        private void Tb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            editedTitle = sender as TextBox;
+            if (editedTitle.Name.Substring(0, 4) == "cate")
+            {
+                NoteCategory nc = DB.GetNoteCategory(int.Parse(editedTitle.Name.Substring(4)));
+                nc.category_title = editedTitle.Text;
+                DB.Update(nc);
+            }
+            else if (editedTitle.Name.Substring(0, 4) == "note")
+            {
+                Note n = DB.GetNote(int.Parse(editedTitle.Name.Substring(4)));
+                if (n != null)
+                {
+                    n.note_title = editedTitle.Text;
+                    DB.Update(n);
+                }
             }
         }
 
@@ -770,6 +797,8 @@ namespace NotetakingApp
             {
                 Note dragNote = DB.GetNote(int.Parse(dragElement.Name.Substring(4)));
                 dragNote.category_id = 1;
+                if (dragNote.note_id == openNote.note_id)
+                    openNote = dragNote;
                 DB.Update(dragNote);
             }
             else if (dragElement.Name.Substring(0, 4) == "cate")
