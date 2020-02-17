@@ -421,15 +421,15 @@ namespace NotetakingApp
         {
             //XAML Colors
 
-            Properties.Settings.Default.Color1 = "#474747";
-            Properties.Settings.Default.Color2 = "#d1d1d1";
+            Properties.Settings.Default.Color1 = "#363636";
+            Properties.Settings.Default.Color2 = "#fafafa";
             Properties.Settings.Default.Color3 = "#2e2e2e";
             Properties.Settings.Default.Color4 = "#757575";
             Properties.Settings.Default.Color5 = "#ebebeb";
             Properties.Settings.Default.Color6 = "#a6a6a6";
             Properties.Settings.Default.Color7 = "#f7f7f7";
             Properties.Settings.Default.Color8 = "#d4d4d4";
-            Properties.Settings.Default.Color9 = "#d1d1d1";
+            Properties.Settings.Default.Color9 = "#fafafa";
             Properties.Settings.Default.Color10 = "#858585";
             Properties.Settings.Default.Color11 = "#bfbfbf";
             Properties.Settings.Default.Color12 = "#cfcfcf";
@@ -443,9 +443,9 @@ namespace NotetakingApp
             Properties.Settings.Default.Color16b = 71;
             Properties.Settings.Default.Color16c = 71;
             Properties.Settings.Default.Color16d = 71;
-            Properties.Settings.Default.Color17a = 209;
-            Properties.Settings.Default.Color17b = 209;
-            Properties.Settings.Default.Color17c = 209;
+            Properties.Settings.Default.Color17a = 250;
+            Properties.Settings.Default.Color17b = 250;
+            Properties.Settings.Default.Color17c = 250;
             Properties.Settings.Default.Color18a = 242;
             Properties.Settings.Default.Color18b = 242;
             Properties.Settings.Default.Color18c = 242;
