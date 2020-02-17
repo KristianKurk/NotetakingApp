@@ -73,10 +73,11 @@
                             <Trigger Property="Border.IsMouseOver" Value="True">
                                 <Setter Property="Border.Background">
                                     <Setter.Value>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
-                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color14}" Offset="0.0"/>
-                                          
-                                        </LinearGradientBrush>
+                                        <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" 
+                                                             RadiusX="0.5" RadiusY="0.5">
+                                            <GradientStop Color="{Binding Source={x:Static properties:Settings.Default}, Path=Color14}" Offset="0.05"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </RadialGradientBrush>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -205,7 +206,8 @@
             </Button>
             <TextBox Margin="20" Name="formulaBox" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="200"/>
             <Button  Margin="20" Style="{StaticResource InformButton2}" Content="Calculate" Click="FormulaCalculate" Grid.Row="2" Grid.Column="4"></Button>
-            <TextBlock TextAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="The dice notation interpretor is in beta." Focusable="False"></TextBlock>
+            <TextBlock TextAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="The dice notation interpretor is in beta." Focusable="False" HorizontalAlignment="Center" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=Color2}"
+                ></TextBlock>
         </Grid>
        
     </StackPanel>
