@@ -1,5 +1,5 @@
 # Scribe
-Final project for Kristian Kurktchiev and Nami Pour Sabet Ali
+*Final project for Kristian Kurktchiev and Nami Pour Sabet Ali*
 
 
 CONTENTS OF THIS FILE
@@ -21,13 +21,17 @@ Scribe is a powerful mapping and notetaking application aimed at game masters an
 
 REQUIREMENTS
 ------------
-Minimum (Tested) System Requirements:
+Minimum System Requirements:
+* Windows 10
+* AMD C-60
+* 2gb of RAM
+
+Recommended System Requirements:
 * Windows 10
 * i5-5200u
-* Nvidia Geforce 840M
-* 8gb of RAM
+* 4gb of RAM
 
-No special requirements.
+This application is made for the Windows 10 operating system.
 
 
 INSTALLATION
