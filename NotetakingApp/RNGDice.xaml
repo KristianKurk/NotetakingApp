@@ -161,7 +161,7 @@
  
     <StackPanel>
         <Border VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Style="{StaticResource TextBack}" Name="result" Text="10" TextAlignment="Center" FontSize="100" Width="420" Height="150"  
+            <TextBlock Style="{StaticResource TextBack}" Name="result" Text="0" TextAlignment="Center" FontSize="100" Width="420" Height="150"  
                    ></TextBlock>
         </Border>
 
