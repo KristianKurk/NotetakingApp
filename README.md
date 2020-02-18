@@ -32,7 +32,7 @@ No special requirements.
 
 INSTALLATION
 ------------
-Download the executable by either going to the releases on this page, or visiting kristiankurk.com/Scribe/Download. It is recommeded to then put the folder wherever you wish, and to create a shortcut on your desktop.
+Download the executable by either going to the releases on this page, or visiting kristiankurk.com/Scribe/Download. It is recommended to then put the folder wherever you wish, and to create a shortcut on your desktop.
 
 
 CONFIGURATION
