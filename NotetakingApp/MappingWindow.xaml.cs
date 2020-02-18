@@ -37,6 +37,9 @@ namespace NotetakingApp
         private bool isHover = false;
         List<Map> tbd = new List<Map>();
         private List<Note> filteredNoteList;
+        private int startWidth;
+        private int startHeight;
+
 
         public MappingWindow()
         {
@@ -44,8 +47,17 @@ namespace NotetakingApp
 
             initialMat = mapCanvas.RenderTransform.Value;
             BitmapImage img = DB.GetMap(1).LoadImage();
-
             imgSource.Source = img;
+
+            //Many thanks to Luda for his help on this issue. <3
+            //Even though it doesn't work (Actual width/height returns 0)
+            startHeight = (int)((-img.PixelHeight + daddyCanvas.ActualHeight) / 2);
+            startWidth = (int)((-img.PixelWidth + daddyCanvas.ActualWidth) / 2);
+
+
+            Canvas.SetLeft(mapCanvas, startWidth);
+            Canvas.SetTop(mapCanvas, startHeight);
+
             dbInit();
             init();
 
@@ -150,7 +162,7 @@ namespace NotetakingApp
                     Image pin = new Image();
                     BitmapImage bitmap = new BitmapImage();
                     bitmap.BeginInit();
-                    bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
+                    bitmap.UriSource = new Uri("Assets/Pins/"+dbPin.pin_type+"pin.png", UriKind.Relative);
                     bitmap.EndInit();
                     pin.Source = bitmap;
                     pin.Stretch = Stretch.UniformToFill;
@@ -220,19 +232,7 @@ namespace NotetakingApp
             
         }
 
-        private void Create_Pin_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Created a pin");
-
-            Image pin = new Image();
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri("Assets/Pins/personpin.png", UriKind.Relative);
-            bitmap.EndInit();
-            pin.Source = bitmap;
-            pin.Stretch = Stretch.UniformToFill;
-
-
+        private void CreatePin(Image pin, string type) {
             Button button = new Button();// { Style = FindResource("PinStyle") as Style }; 
             button.Click += new RoutedEventHandler(Click_Pin);
             button.MouseEnter += new MouseEventHandler(Mouse_Enter);
@@ -241,7 +241,7 @@ namespace NotetakingApp
             button.Background = Brushes.Transparent;
             button.BorderThickness = new Thickness(0);
 
-           
+
 
             Pin dbPin = new Pin();
             dbPin.pin_title = "Untitled";
@@ -249,6 +249,7 @@ namespace NotetakingApp
             dbPin.pin_x = rightClickPoint.X;
             dbPin.pin_y = rightClickPoint.Y;
             dbPin.parent_map_id = currentMap.map_id;
+            dbPin.pin_type = type;
             DB.Add(dbPin);
 
             button.Name = "id" + DB.getPins().Last().pin_id;
@@ -258,6 +259,82 @@ namespace NotetakingApp
             ResizePins();
 
             pinCanvas.Children.Add(button);
+        }
+
+
+        private void Create_Pin_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Created a pin");
+
+            Image pin = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Pins/playerpin.png", UriKind.Relative);
+            bitmap.EndInit();
+            pin.Source = bitmap;
+            pin.Stretch = Stretch.UniformToFill;
+
+            CreatePin(pin,"player");
+        }
+
+        private void Create_Pin_Click1(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Created a pin");
+
+            Image pin = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Pins/npcpin.png", UriKind.Relative);
+            bitmap.EndInit();
+            pin.Source = bitmap;
+            pin.Stretch = Stretch.UniformToFill;
+
+            CreatePin(pin,"npc");
+        }
+
+        private void Create_Pin_Click2(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Created a pin");
+
+            Image pin = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Pins/enemypin.png", UriKind.Relative);
+            bitmap.EndInit();
+            pin.Source = bitmap;
+            pin.Stretch = Stretch.UniformToFill;
+
+            CreatePin(pin,"enemy");
+        }
+
+        private void Create_Pin_Click3(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Created a pin");
+
+            Image pin = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Pins/locationpin.png", UriKind.Relative);
+            bitmap.EndInit();
+            pin.Source = bitmap;
+            pin.Stretch = Stretch.UniformToFill;
+
+            CreatePin(pin,"location");
+        }
+
+        private void Create_Pin_Click4(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Created a pin");
+
+            Image pin = new Image();
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri("Assets/Pins/eventpin.png", UriKind.Relative);
+            bitmap.EndInit();
+            pin.Source = bitmap;
+            pin.Stretch = Stretch.UniformToFill;
+
+            CreatePin(pin,"event");
         }
 
         private void Create_Map_Click(object sender, RoutedEventArgs e)

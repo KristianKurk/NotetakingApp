@@ -15,5 +15,6 @@ namespace BLL
         public double pin_y { get; set; }
         public int parent_map_id { get; set; }
         public int attached_note_id { get; set; }
+        public string pin_type { get; set; }
     }
 }

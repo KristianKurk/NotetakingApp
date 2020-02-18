@@ -12,7 +12,11 @@
     <!--ShowsNavigationUI="false" can go in the page oject-->
     <Page.Resources>
         <ContextMenu x:Key="cmButton">
-            <MenuItem Header="Create Pin" Click="Create_Pin_Click"/>
+            <MenuItem Header="Create Player" Click="Create_Pin_Click"/>
+            <MenuItem Header="Create NPC" Click="Create_Pin_Click1"/>
+            <MenuItem Header="Create Enemy" Click="Create_Pin_Click2"/>
+            <MenuItem Header="Create Location" Click="Create_Pin_Click3"/>
+            <MenuItem Header="Create Event" Click="Create_Pin_Click4"/>
             <MenuItem Header="Create Map" Click="Create_Map_Click"/>
         </ContextMenu>
 
@@ -41,7 +45,7 @@
 
     <!--Content-->
 
-    <Grid DockPanel.Dock="Top"  >
+    <Grid DockPanel.Dock="Top" Name="TopLevel">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5.5*"/>

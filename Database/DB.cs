@@ -156,7 +156,7 @@ namespace Database
         {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
             {
-                cnn.Execute("insert into Pin(pin_title,pin_content,pin_x,pin_y,parent_map_id,attached_note_id) values (@pin_title,@pin_content,@pin_x,@pin_y,@parent_map_id,@attached_note_id)", pin);
+                cnn.Execute("insert into Pin(pin_title,pin_content,pin_x,pin_y,parent_map_id,attached_note_id, pin_type) values (@pin_title,@pin_content,@pin_x,@pin_y,@parent_map_id,@attached_note_id,@pin_type)", pin);
             }
         }
 
@@ -198,7 +198,7 @@ namespace Database
         {
             using (IDbConnection cnn = new SQLiteConnection(Connection.LoadConnectionString()))
             {
-                cnn.Execute("update Pin set pin_title = @pin_title,pin_content = @pin_content,pin_x = @pin_x,pin_y = @pin_y,parent_map_id = @parent_map_id,attached_note_id = @attached_note_id where pin_id = @pin_id", pin);
+                cnn.Execute("update Pin set pin_title = @pin_title,pin_content = @pin_content,pin_x = @pin_x,pin_y = @pin_y,parent_map_id = @parent_map_id,attached_note_id = @attached_note_id, pin_type = @pin_type where pin_id = @pin_id", pin);
             }
         }
 
