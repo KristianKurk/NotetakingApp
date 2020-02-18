@@ -24,12 +24,12 @@ REQUIREMENTS
 Minimum System Requirements:
 * Windows 10
 * AMD C-60
-* 2gb of RAM
+* 2GB of RAM
 
 Recommended System Requirements:
 * Windows 10
 * i5-5200u
-* 4gb of RAM
+* 4GB of RAM
 
 This application is made for the Windows 10 operating system.
 
