@@ -493,6 +493,24 @@ namespace NotetakingApp
         {
             SetMaxZoom();
         }
+
+        private void ShowDeletePopup(object sender, RoutedEventArgs e)
+        {
+            deletePopup.IsOpen = true;
+        }
+
+        private void DeleteCampaign (object sender, RoutedEventArgs e)
+        {   
+            Connection.DeleteCampaign();
+            deletePopup.IsOpen = false;
+            foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
+                ((MainWindow)window).GoCampaign();
+        }
+
+        private void HideDeletePopup(object sender, RoutedEventArgs e)
+        {
+            deletePopup.IsOpen = false;
+        }
     }
 }
 

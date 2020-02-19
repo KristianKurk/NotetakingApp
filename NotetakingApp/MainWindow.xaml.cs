@@ -238,6 +238,10 @@ namespace NotetakingApp
         }
         private void BtnCampaign(object sender, RoutedEventArgs e)
         {
+            GoCampaign();
+        }
+
+        public void GoCampaign() {
             EnableAll();
             //main.Content = new CampaignSelector();
 
@@ -262,11 +266,11 @@ namespace NotetakingApp
             }
 
             Properties.Settings.Default.Save();
-            
+
             var newForm = new CampaignSelectWindow(); //create your new window.
             newForm.Show(); //show the new window.
             this.Close(); //close the current window.
-            
+
         }
 
         private void SetMaximizeIcon() {

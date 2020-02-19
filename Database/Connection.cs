@@ -100,6 +100,23 @@ namespace Database
             xmlDoc.Save(xmlPath);
         }
 
+        public static void DeleteCampaign()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(xmlPath);
+           XmlNodeList campaigns = xmlDoc.GetElementsByTagName("campaign");
+            XmlNode joe = null;
+            foreach (XmlNode campaign in campaigns)
+            {
+                if (campaign.Attributes["status"].Value == "active")
+                    joe = campaign;
+            }
+            string dest = System.IO.Directory.GetCurrentDirectory() + "\\DB" + GetActiveCampaignDirectory() + ".db";
+            System.IO.File.Delete(dest);
+            joe.ParentNode.RemoveChild(joe);
+            xmlDoc.Save(xmlPath);
+        }
+
         public static string GetActiveCampaignDirectory()
         {
             using (XmlReader xmlReader = XmlReader.Create(xmlPath))
